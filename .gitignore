@@ -15,4 +15,5 @@ env
 .env
 yarn.lock
 
+sitEnv
 sitshop
