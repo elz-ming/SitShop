@@ -13,28 +13,15 @@
     <link href="{% static 'css/bootstrap-reboot.css' %}" >
     <link href="{% static 'css/bootstrap-reboot.min.css' %}" >
 
-    <script src="{% static 'bootstrap.min.js' %}"></script>
-    <script src="{% static 'bootstrap.bundle.js' %}"></script>
-    <script src="{% static 'bootstrap.bundle.min.js' %}"></script>
-    <script src="{% static 'bootstrap.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
     </head>
     <body>
 
     {% block content%}
-    <form action="/save" method="post">
-  <div class="form-group">
-    <label for="email">Email address:</label>
-    <input type="email" class="form-control" id="email">
-  </div>
-  <div class="form-group">
-    <label for="pwd">Password:</label>
-    <input type="password" class="form-control" id="pwd">
-  </div>
-  <div class="checkbox">
-    <label><input type="checkbox"> Remember me</label>
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+
    <div class="container">
        <div class="row">
 
