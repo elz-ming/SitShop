@@ -4,9 +4,10 @@ from django.shortcuts import render
 # Create your views here.
 
 # Alenna, work on this more.
-# Additionally, look at templates/components/searchbar.html & templates/pages/home.html
+# Additionally, look at templates/components/searchbar.html & templates/pages
 def home(request):
     return render(request, "pages/home.html")
+
 
 # JingYu, work on this more.
 # Additionally, look at templates/components/comparison.html
@@ -17,7 +18,15 @@ def compare(request):
 def welcome(request):
     return HttpResponse("Welcome to my app!")
 
-
+def search (request):
+    #defines what happens when there is a POST request
+    if request.method == "GET":
+        title = request.GET.get("q")
+        return render(request,'pages/base.html', { 'title' : title })
+    #defines what happens when there is a GET request
+    else:
+        return render(request,'components/searchbar.html')
+'''
 def search_view(request):
     query = request.GET.get('q')
     results = []
@@ -25,8 +34,9 @@ def search_view(request):
     if query:
         results = 'YourModel.objects.filter(your_field__icontains=query)'
 
-    return render(request, 'your_template.html', {'results': results})
+    return render(request, 'base.html', {'results': results})
     # Rest of the view code
+'''
 
 '''
 the search bar in views.py
@@ -37,3 +47,5 @@ the search bar in views.py
       </div>
 
 '''
+
+
