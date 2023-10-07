@@ -1,5 +1,4 @@
 django
-gunicorn
 python-dotenv
 whitenoise
 django-admin-soft-dashboard==1.0.12
