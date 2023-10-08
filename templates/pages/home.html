@@ -192,43 +192,91 @@ hsl(12, 100%, 50%);
 </div>
 <br>
 <br>
-<h1 style="font-style:italic, font-weight: bold">TOP SELLING HEADPHONES</h1>
+<h1 style="font-style:italic, font-weight: bold, text-align:center">TOP SELLING HEADPHONES</h1>
+<style>
+    .card {
+  transition: background-color 0.3s ease;
+}
+
+.card:hover {
+  background-color: #4CAF50; /* Green color on hover */
+}
+
+.card-buttons {
+  display: none;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.card:hover .card-buttons {
+  display: flex;
+}
+
+</style>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const cards = document.querySelectorAll(".card");
+
+    cards.forEach((card) => {
+      card.addEventListener("click", function () {
+        // Toggle the visibility of the buttons within the clicked card
+        const buttons = card.querySelector(".card-buttons");
+        buttons.classList.toggle("show-buttons");
+      });
+    });
+  });
+</script>
+
 <div class="row row-cols-1 row-cols-md-2 g-4">
 
   <div class="col">
     <div class="card">
       <img src="https://down-sg.img.susercontent.com/file/sg-11134201-22110-cc3ayii6f2jv4c" class="card-img-top" alt="Hollywood Sign on The Hill"/>
       <div class="card-body">
-        <h5 class="card-title">Ocean Blue Headphones</h5>
+        <h5 class="card-title">White Glossy Headphones</h5>
         <p class="card-text">
           Rated highly for their professional-grade comfort, foldable versatility, strong construction and excellent sound design
         </p>
+
+            <div class="card-buttons">
+        <button class="btn btn-primary view-more">View More</button>
+        <button class="btn btn-danger cancel">Cancel</button>
+      </div>
+
       </div>
     </div>
   </div>
+
   <div class="col">
     <div class="card">
-      <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/042.webp" class="card-img-top" alt="Palm Springs Road"/>
+      <img src="https://down-sg.img.susercontent.com/file/677db4e0d140e4554ebd04e1d497b84e_tn" class="card-img-top" alt="Palm Springs Road"/>
       <div class="card-body">
-        <h5 class="card-title">White Glossy Headphones</h5>
+        <h5 class="card-title">Blush Pink Headphones</h5>
         <p class="card-text">
           Hi-Res Audio Certified: Enjoy more detailed music thanks to Edifier W820NB's 40 mm dynamic drivers. High-resolution Audio compatible.
         </p>
+
       </div>
     </div>
   </div>
+
   <div class="col">
     <div class="card">
-      <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/043.webp" class="card-img-top" alt="Los Angeles Skyscrapers"/>
+      <img src="https://down-sg.img.susercontent.com/file/02001d18e22705af211c099f1358c44d_tn" class="card-img-top" alt="Los Angeles Skyscrapers"/>
       <div class="card-body">
-        <h5 class="card-title">Blush Pink Headphones</h5>
+        <h5 class="card-title">Ocean Blue Headphones</h5>
         <p class="card-text"> Taoclear Hybrid noise canceling headphones integrate superb silence and amazing sound quality. Wireless headphone engineered with dual 40mm large-aperture drivers, delivery full-balanced bass, Hi-fi tunes with exceptional clarity.</p>
+          <div class="card-buttons">
+        <button class="btn btn-primary view-more">View More</button>
+        <button class="btn btn-danger cancel">Cancel</button>
+      </div>
       </div>
     </div>
   </div>
+
   <div class="col">
     <div class="card">
-      <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/044.webp" class="card-img-top" alt="Skyscrapers"/>
+      <img src="https://down-sg.img.susercontent.com/file/cn-11134207-7qukw-lfmi9a4ytrgrb4" class="card-img-top" alt="Skyscrapers"/>
       <div class="card-body">
         <h5 class="card-title">Linux Purple Headphones</h5>
         <p class="card-text">
