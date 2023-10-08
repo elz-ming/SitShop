@@ -1,7 +1,7 @@
 from django.urls import path, include
 from . import views
 from sitApp import views
-<<<<<<< HEAD
+
 urlpatterns = [
     path('', views.home, name='home'),                   # The URL and function to display home page
     path('comparison', views.compare, name='compare'),   # The URL and function to display compare page
@@ -13,7 +13,7 @@ urlpatterns = [
 ]
 
 
-=======
+
 
 urlpatterns = [
     path('', views.home, name='home'),                   # The URL and function to display home page
@@ -25,4 +25,4 @@ urlpatterns = [
 
     
 ]
->>>>>>> 522a7cb13142d4439269c3142f6e12d6c343a960
+
