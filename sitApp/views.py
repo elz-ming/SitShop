@@ -1,10 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-<<<<<<< HEAD
 from .models import Data
 from django.db.models import Q
-=======
->>>>>>> 522a7cb13142d4439269c3142f6e12d6c343a960
 
 # Create your views here.
 
