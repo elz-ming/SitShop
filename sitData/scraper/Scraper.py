@@ -187,7 +187,7 @@ while True:
 
                 review_output.append(review_obj)
 
-            review_page_controller   = driver.find_element(By.CSS_SELECTOR, "div[class='product-ratings']").find_element(By.CLASS_NAME, "shopee-page-controller")
+            review_page_controller   = driver.find_element(By.CLASS_NAME, "shopee-page-controller")
             review_page_list         = review_page_controller.find_elements(By.CSS_SELECTOR, "button")
             last_page_display        = review_page_list[-2].text
             next_page_button         = review_page_list[-1]
