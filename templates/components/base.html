@@ -13,12 +13,12 @@
     <link href="{% static 'css/bootstrap-reboot.css' %}" >
     <link href="{% static 'css/bootstrap-reboot.min.css' %}" >
 
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.bundle.js' %}"></script>
-    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.js' %}"></script>
+
+          {% block head %}
+    {% endblock %}
     </head>
     <body>
+
 
     {% block content%}
 
@@ -28,7 +28,10 @@
        </div>
 
    </div>
-    
+     <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
     {% endblock%}
     </body>
 </html>

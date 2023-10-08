@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Data
 from django.db.models import Q
 
@@ -23,8 +23,7 @@ def home(request):
 
 # JingYu, work on this more.
 # Additionally, look at templates/components/comparison.html
-def compare(request):
-    return render(request, "pages/comparison.html")
+
 
 
 def welcome(request):
@@ -40,6 +39,28 @@ def search(request):
     # defines what happens when there is a POST request
     else:
         return render(request, 'pages/home.html')
+
+
+
+def compare(request):
+    return render(request, "pages/comparison.html")
+
+def about(request):
+    return render(request, "pages/about.html")
+
+def contact(request):
+    return render(request, "pages/contact.html")
+
+
+def cards_view(request):
+    # Your view logic goes here if needed
+    return render(request, 'pages/cards.html')
+
+
+
+
+
+
 
 
 '''
@@ -63,3 +84,6 @@ the search bar in views.py
       </div>
 
 '''
+
+
+
