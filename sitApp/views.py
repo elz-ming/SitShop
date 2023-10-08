@@ -28,6 +28,9 @@ def home(request):
 # Additionally, look at templates/components/comparison.html
 
 
+def detail(request):
+    return render(request, "pages/detail.html")
+
 
 def welcome(request):
     return HttpResponse("Welcome to my app!")
@@ -106,16 +109,16 @@ cards = [
     {
         "id": 3,
         "name": "BMW 2er Gran Tourer",
-        "image": "https://i.auto-bild.de/mdb/extra_large/99/2ergrantourer-a02.png",
+        "image": "https://down-sg.img.susercontent.com/file/sg-11134201-22110-cc3ayii6f2jv4c",
         "description": "This is a beautiful BMW from autobild.de website.",
         "color": "blue",
     },
     {
         "id": 4,
-        "name": "Chevrolet Camaro",
+        "name": "BMW 2er Gran Tourer",
         "image": "https://down-sg.img.susercontent.com/file/sg-11134201-22110-cc3ayii6f2jv4c",
-        "description": "This is a Chevrolet Camaro 4th Generation.",
-        "color": "red",
+        "description": "This is a beautiful BMW from autobild.de website.",
+        "color": "blue",
     },
 ]
 

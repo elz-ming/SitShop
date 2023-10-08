@@ -53,80 +53,207 @@
             display: flex;
             flex-direction: column;
         }
+        @import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700");
+body {
+  background-color: #f8f8f8;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+}
+
+.row {
+  min-height: 100vh;
+}
+
+.card {
+  border: 0;
+  border-radius: 0px;
+  -webkit-box-shadow: 0 3px 0px 0 rgba(0, 0, 0, 0.08);
+  box-shadow: 0 3px 0px 0 rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease-in-out;
+  padding: 2.25rem 0;
+  position: relative;
+  will-change: transform;
+}
+.card:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 5px;
+  background-color: #57e2b2;
+  transition: 0.5s;
+}
+.card:hover {
+  transform: scale(1.05);
+  -webkit-box-shadow: 0 20px 35px 0 rgba(0, 0, 0, 0.08);
+  box-shadow: 0 20px 35px 0 rgba(0, 0, 0, 0.08);
+}
+.card:hover:after {
+  width: 100%;
+}
+.card .card-header {
+  background-color: white;
+  padding-left: 2rem;
+  border-bottom: 0px;
+}
+.card .card-title {
+  margin-bottom: 1rem;
+}
+.card .card-block {
+  padding-top: 0;
+}
+.card .list-group-item {
+  border: 0px;
+  padding: 0.25rem;
+  color: #808080;
+  font-weight: 300;
+}
+
+.display-2 {
+  font-size: 7rem;
+  letter-spacing: -0.5rem;
+}
+.display-2 .currency {
+  font-size: 2.75rem;
+  position: relative;
+  font-weight: 400;
+  top: -45px;
+  letter-spacing: 0px;
+}
+.display-2 .period {
+  font-size: 1rem;
+  color: #b3b3b3;
+  letter-spacing: 0px;
+}
+
+.btn {
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #a6a6a6;
+  border-radius: 0;
+  padding: 0.75rem 1.25rem;
+  letter-spacing: 1px;
+}
+
+.btn-gradient {
+  background-color: #f2f2f2;
+  transition: background 0.3s ease-in-out;
+}
+.btn-gradient:hover {
+  color: white;
+  background-color: #5788e2;
+}
 </style>
 </head>
 
 <body>
-
-  <div class="dropdown-container">
-    <select id="dropdown1">
-        <option value="Option 1">Option 1</option>
-        <option value="Option 2">Option 2</option>
-        <option value="Option 3">Option 3</option>
-    </select>
-
-    <select id="dropdown2">
-        <option value="Option A">Option A</option>
-        <option value="Option B">Option B</option>
-        <option value="Option C">Option C</option>
-    </select>
-
-    <select id="dropdown3">
-        <option value="Item X">Item X</option>
-        <option value="Item Y">Item Y</option>
-        <option value="Item Z">Item Z</option>
-    </select>
-
-    <select id="dropdown4">
-        <option value="Choice i">Choice i</option>
-        <option value="Choice ii">Choice ii</option>
-        <option value="Choice iii">Choice iii</option>
-    </select>
-  </div>
-
-
-<script>
-    // Function to display the selected element
-    function displaySelectedElement() {
-        var selectedElements = [];
-        var dropdowns = document.querySelectorAll('select');
-        
-        dropdowns.forEach(function(dropdown) {
-            var selectedOption = dropdown.options[dropdown.selectedIndex].value;
-            selectedElements.push(selectedOption);
-        });
-        
-    }
-
-    // Event listener to trigger displaySelectedElement when dropdown value changes
-    document.querySelectorAll('select').forEach(function(dropdown) {
-        dropdown.addEventListener('change', displaySelectedElement);
-    });
-
-    // Display selected element on page load
-    displaySelectedElement();
-</script>
-
-<div class="card-container">
-  {% for card in cards %}
-  <div class="card">
-      <img src="{{ card.image }}" class="card-img-top">
-      <div class="card-body">
-          <div style="display: flex; flex-direction: row; align-items: center;">
-              <h5 class="card-title">{{ card.name }}</h5>
-              <div class="card-color-circle"></div>
-          </div>
-          <p class="card-text">{{ card.description }}</p>
-          <ul class="list-group list-group-flush">
-              <li class="list-group-item">First Comparison</li>
-              <li class="list-group-item">Second Comparison</li>
-              <li class="list-group-item">Third Comparison</li>
-          </ul>
-      </div>
-  </div>
-  {% endfor %}
-</div>
   
+<div class="container">
+  <div class="row flex-items-xs-middle flex-items-xs-center">
+    {% for card in cards %}
+    <div class="col-xs-12 col-md-6 col-lg-4">
+      <div class="card text-xs-center">
+        <div>
+          <img src="{{ card.image }}" class="card-img-top">        </div>
+        <div class="card-block">
+          <h4 class="card-title">{{ card.name }}</h4>
+          <p class="card-text">{{ card.description }}</p>
+          <ul class="list-group">
+            <li class="list-group-item">{{ card.feature1 }}</li>
+            <li class="list-group-item">{{ card.feature2 }}</li>
+            <li class="list-group-item">{{ card.feature3 }}</li>
+            <li class="list-group-item">{{ card.feature4 }}</li>
+          </ul>
+            <ul class="list-group">
+            <li class="list-group-item">First Comparison</li>
+            <li class="list-group-item">Second Comparison</li>
+            <li class="list-group-item">Third Comparison</li>
+          </ul>
+          <a href="#" class="btn btn-gradient mt-2">View Product Details</a>
+          <br>
+          <a href="#" class="btn btn-gradient mt-2">Delete Product</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+
+  </div>
+</div>
+
+<div class="container">
+  <div class="row flex-items-xs-middle flex-items-xs-center">
+
+    <!-- Table #1  -->
+    <div class="col-xs-12 col-lg-4">
+      <div class="card text-xs-center">
+        <div class="card-header">
+          <h3 class="display-2"><span class="currency">$</span>19<span class="period">/month</span></h3>
+        </div>
+        <div class="card-block">
+          <h4 class="card-title"> 
+            Basic Plan
+          </h4>
+          <ul class="list-group">
+            <li class="list-group-item">Ultimate Features</li>
+            <li class="list-group-item">Responsive Ready</li>
+            <li class="list-group-item">Visual Composer Included</li>
+            <li class="list-group-item">24/7 Support System</li>
+          </ul>
+          <a href="#" class="btn btn-gradient mt-2">Choose Plan</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Table #1  -->
+    <div class="col-xs-12 col-lg-4">
+      <div class="card text-xs-center">
+        <div class="card-header">
+          <h3 class="display-2"><span class="currency">$</span>29<span class="period">/month</span></h3>
+        </div>
+        <div class="card-block">
+          <h4 class="card-title"> 
+            Regular Plan
+          </h4>
+          <ul class="list-group">
+            <li class="list-group-item">Ultimate Features</li>
+            <li class="list-group-item">Responsive Ready</li>
+            <li class="list-group-item">Visual Composer Included</li>
+            <li class="list-group-item">24/7 Support System</li>
+          </ul>
+          <a href="#" class="btn btn-gradient mt-2">Choose Plan</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Table #1  -->
+    <div class="col-xs-12 col-lg-4">
+      <div class="card text-xs-center">
+        <div class="card-header">
+          <h3 class="display-2"><span class="currency">$</span>39<span class="period">/month</span></h3>
+        </div>
+        <div class="card-block">
+          <h4 class="card-title"> 
+            Premium Plan
+          </h4>
+          <ul class="list-group">
+            <li class="list-group-item">Ultimate Features</li>
+            <li class="list-group-item">Responsive Ready</li>
+            <li class="list-group-item">Visual Composer Included</li>
+            <li class="list-group-item">24/7 Support System</li>
+          </ul>
+          <a href="#" class="btn btn-gradient mt-2">Choose Plan</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
 </body>
 
     <!-- <div class="card-body">
