@@ -3,7 +3,126 @@
 
 {% block content %}
 
-<h1>This is our comparison page.</h1>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0"
+        crossorigin="anonymous">
+  <h1 class="center">Compare Products</h1>
+  <style>
+    .center {
+      display: flex;
+      justify-content: center;
+    }
+
+    .dropdown-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    select{
+      width: 200px;
+    }
+
+    .card-container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            width: 18rem;
+            margin: 10px;
+        }
+
+        .card-body {
+            display: flex;
+            flex-direction: column;
+        }
+</style>
+</head>
+
+<body>
+
+  <div class="dropdown-container">
+    <select id="dropdown1">
+        <option value="Option 1">Option 1</option>
+        <option value="Option 2">Option 2</option>
+        <option value="Option 3">Option 3</option>
+    </select>
+
+    <select id="dropdown2">
+        <option value="Option A">Option A</option>
+        <option value="Option B">Option B</option>
+        <option value="Option C">Option C</option>
+    </select>
+
+    <select id="dropdown3">
+        <option value="Item X">Item X</option>
+        <option value="Item Y">Item Y</option>
+        <option value="Item Z">Item Z</option>
+    </select>
+
+    <select id="dropdown4">
+        <option value="Choice i">Choice i</option>
+        <option value="Choice ii">Choice ii</option>
+        <option value="Choice iii">Choice iii</option>
+    </select>
+  </div>
+
+
+<script>
+    // Function to display the selected element
+    function displaySelectedElement() {
+        var selectedElements = [];
+        var dropdowns = document.querySelectorAll('select');
+        
+        dropdowns.forEach(function(dropdown) {
+            var selectedOption = dropdown.options[dropdown.selectedIndex].value;
+            selectedElements.push(selectedOption);
+        });
+        
+    }
+
+    // Event listener to trigger displaySelectedElement when dropdown value changes
+    document.querySelectorAll('select').forEach(function(dropdown) {
+        dropdown.addEventListener('change', displaySelectedElement);
+    });
+
+    // Display selected element on page load
+    displaySelectedElement();
+</script>
+
+<div class="card-container">
+  {% for card in cards %}
+  <div class="card">
+      <img src="{{ card.image }}" class="card-img-top">
+      <div class="card-body">
+          <div style="display: flex; flex-direction: row; align-items: center;">
+              <h5 class="card-title">{{ card.name }}</h5>
+              <div class="card-color-circle"></div>
+          </div>
+          <p class="card-text">{{ card.description }}</p>
+          <ul class="list-group list-group-flush">
+              <li class="list-group-item">First Comparison</li>
+              <li class="list-group-item">Second Comparison</li>
+              <li class="list-group-item">Third Comparison</li>
+          </ul>
+      </div>
+  </div>
+  {% endfor %}
+</div>
+  
+</body>
+
+    <!-- <div class="card-body">
+      <a href="#" class="card-link">Card link</a>
+      <a href="#" class="card-link">Another link</a>
+    </div>
+  </div> -->
 {% comment %} 
     <div class="container-fluid py-4">
 
@@ -129,7 +248,7 @@
         </div>
         <div class="col-lg-5">
           <div class="card h-100 p-3">
-            <div class="overflow-hidden position-relative border-radius-lg bg-cover h-100" style="background-image: url('{% static 'img/ivancik.jpg' %}');">
+            <!-- <div class="overflow-hidden position-relative border-radius-lg bg-cover h-100" style="background-image: url('{% static 'img/ivancik.jpg' %}');"> -->
               <span class="mask bg-gradient-dark"></span>
               <div class="card-body position-relative z-index-1 d-flex flex-column h-100 p-3">
                 <h5 class="text-white font-weight-bolder mb-4 pt-2">Work with the rockets</h5>
