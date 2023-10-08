@@ -20,9 +20,10 @@ import os
 # ========================== #
 # ===== INITIALISATION 1 ===== #
 # ========================== #
-chromedriver_path = os.path.expanduser("~/GitLocal/SitShop/sitData/scraper/chromedriver_v117.exe")
-s = Service(chromedriver_path)
-driver = webdriver.Chrome(service = s)
+#chromedriver_path = os.path.expanduser("~/GitLocal/SitShop/sitData/scraper/chromedriver_v117.exe")
+#s = Service(chromedriver_path)
+#driver = webdriver.Chrome(service = s)
+driver = webdriver.Chrome()
 driver.get("https://shopee.sg/")
 
 # ============================ #
@@ -37,11 +38,11 @@ time.sleep(1)
 username_bar = WebDriverWait(driver, 20).until(
     EC.presence_of_element_located((By.NAME, "loginKey"))
 )
-username_bar.send_keys("linjericho")
+username_bar.send_keys("jeannie208")
 
 time.sleep(1)
 password_bar = driver.find_element(By.NAME, "password")
-password_bar.send_keys("Jericho1")
+password_bar.send_keys("Jean060606")
 
 time.sleep(1)
 password_bar.send_keys(Keys.RETURN)
@@ -140,21 +141,29 @@ while True:
         # Other info
         product_obj["price"] = product_info.find("div", class_="pqTWkA").text
         product_obj["fav_count"] = soup.select_one(".flex.items-center._3jkKrB .Ne7dEf").text
-        product_obj["quantity_available"] = product_info.find("section", class_="flex items-center _6lioXX").find_all("div")[-1].text
+        product_obj["qty_avail"] = product_info.find("section", class_="flex items-center _6lioXX").find_all("div")[-1].text
 
         # Description
-        desc_section = soup.find("div", class_='f7AU53')
-        sentence_list = desc_section.find_all('p')
-        sentence_list = [sentence.text for sentence in sentence_list]
-        product_obj['description'] = ' '.join(sentence_list)
+        try:
+            desc_section = soup.find("div", class_='f7AU53')
+            sentence_list = desc_section.find_all('p')
+            sentence_list = [sentence.text for sentence in sentence_list]
+            product_obj['description'] = ' '.join(sentence_list)
+        except:
+            product_output.append(product_obj)
 
-        product_output.append(product_obj)
+        # Product image src
+        try:
+            product_obj["img_src"] = soup.find("div", class_="LsMpPX").find("img")['src']
+        except:
+            product_obj["img_src"] = soup.find("div", class_="LmLCVP").find("picture").find("img")['src']
         
         # =================== #
         # ===== REVIEW ====== #
         # =================== #
         review_page = 0
         while True:
+            time.sleep(3)
             review_page += 1
             review_list = driver.find_elements(By.CLASS_NAME, "shopee-product-rating")
 
@@ -178,17 +187,33 @@ while True:
 
                 review_output.append(review_obj)
 
-            try:
-                review_next_page_button = driver.find_element(By.CSS_SELECTOR, ".shopee-icon-button--right")
-                review_next_page_button.click()
-            except:
+            review_page_controller   = driver.find_element(By.CSS_SELECTOR, "div[class='product-ratings']").find_element(By.CLASS_NAME, "shopee-page-controller")
+            review_page_list         = review_page_controller.find_elements(By.CSS_SELECTOR, "button")
+            last_page_display        = review_page_list[-2].text
+            next_page_button         = review_page_list[-1]
+
+            if last_page_display == '...':
+                next_page_button.click()
+
+            elif int(last_page_display) > review_page:
+                next_page_button.click()
+
+            else:
                 driver.back()
                 
-    try:
-        review_next_page_button = driver.find_element(By.CSS_SELECTOR, ".shopee-icon-button--right")
-        review_next_page_button.click()
-    except:
-        break
+    product_page_controller   = driver.find_element(By.CLASS_NAME, "shopee-page-controller")
+    product_page_list         = product_page_list.find_elements(By.CSS_SELECTOR, "button")
+    last_page_display         = product_page_list[-2].text
+    next_page_button          = product_page_list[-1]
+
+    if last_page_display == '...':
+        next_page_button.click()
+
+    elif int(last_page_display) > product_page:
+        next_page_button.click()
+
+    else:
+        break            
 
 # ======================== #
 # ===== OUTPUT FILE  ===== #
