@@ -1,19 +1,11 @@
-*.pyc
-*.DS_Store
-*.egg*
-/dist/
-/.idea
-/docs/_build/
-/node_modules/
-build/
-env
-/staticfiles/
-
 #src
 *.sqlite*
-
-.ipynb_checkpoints
+.idea
+.env
 yarn.lock
 
 sitEnv
 sitshop
+
+.ipynb_checkpoints
+*.pyc
