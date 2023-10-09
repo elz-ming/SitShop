@@ -12,9 +12,8 @@ env
 #src
 *.sqlite*
 
-.env
+.ipynb_checkpoints
 yarn.lock
 
 sitEnv
 sitshop
-sitEnv
