@@ -31,7 +31,7 @@ driver.get("https://shopee.sg/")
 # ============================ #
 time.sleep(2)
 search_bar = driver.find_element(By.CLASS_NAME, "shopee-searchbar-input__input")
-search_bar.send_keys("bottle")
+search_bar.send_keys("headphone")
 search_bar.send_keys(Keys.RETURN)
 
 time.sleep(1)
@@ -56,10 +56,10 @@ product_output  = []
 review_output   = []
 
 product_page    = 0
-product_counter = 0
 # 1st while loop to loop through all product pages
 while True:
     product_page += 1
+    product_counter = 0
     WebDriverWait(driver, 60).until(
         EC.presence_of_element_located((By.CLASS_NAME, "shopee-search-item-result__item"))
     )
@@ -69,8 +69,10 @@ while True:
     print(f"{len(product_list)} products on product page {product_page}!")
 
     for product in product_list:
-        product_counter += 1
         time.sleep(2)
+        #product_counter += 1
+        product = driver.find_elements(By.CLASS_NAME, "shopee-search-item-result__item")[product_counter]
+        time.sleep(5)
         product.click()
 
         time.sleep(2)
@@ -134,14 +136,25 @@ while True:
 
         # Ratings
         rating_section = product_info.find("div", class_="X5u-5c")
-        product_obj["avg_rating"]   = rating_section.find_all("div", class_="_1k47d8")[0].text
-        product_obj["total_rating"] = rating_section.find_all("div", class_="_1k47d8")[-1].text
-        product_obj["total_sold"]   = rating_section.find("div", class_="e9sAa2").text
+        try:
+            rating = rating_section.find_all("div", class_="_1k47d8")
+            product_obj["avg_rating"]   = rating[0].text
+            product_obj["total_rating"] = rating[-1].text
+        except:
+            product_obj["avg_rating"]   = None
+            product_obj["total_rating"] = None
 
+        try:
+            product_obj["total_sold"]  = rating_section.find("div", class_="e9sAa2").text
+        except:
+            product_obj["total_sold"]  = 0
         # Other info
         product_obj["price"] = product_info.find("div", class_="pqTWkA").text
-        product_obj["fav_count"] = soup.select_one(".flex.items-center._3jkKrB .Ne7dEf").text
         product_obj["qty_avail"] = product_info.find("section", class_="flex items-center _6lioXX").find_all("div")[-1].text
+        try:
+            product_obj["fav_count"]   = soup.select_one(".flex.items-center._3jkKrB .Ne7dEf").text
+        except:
+            product_obj["fav_count"]   = 0
 
         # Description
         try:
@@ -150,57 +163,82 @@ while True:
             sentence_list = [sentence.text for sentence in sentence_list]
             product_obj['description'] = ' '.join(sentence_list)
         except:
-            product_output.append(product_obj)
+            product_obj['description'] = None
 
         # Product image src
         try:
             product_obj["img_src"] = soup.find("div", class_="LsMpPX").find("img")['src']
         except:
             product_obj["img_src"] = soup.find("div", class_="LmLCVP").find("picture").find("img")['src']
-        
+
+        product_output.append(product_obj)
+
         # =================== #
         # ===== REVIEW ====== #
         # =================== #
         review_page = 0
         while True:
-            time.sleep(3)
+            time.sleep(1)
             review_page += 1
             review_list = driver.find_elements(By.CLASS_NAME, "shopee-product-rating")
 
-            # Sanity check 3 : Product List Page
-            (f"{len(review_list)} reviews for product_{product_counter}_reviewpage_{review_page}!")
+            if len(review_list) > 0:
+                # Sanity check 3 : Product List Page
+                (f"{len(review_list)} reviews for product_{product_counter}_reviewpage_{review_page}!")
 
-            for review in review_list:
-                review_obj =  {}
-                review_obj["review_id"]   = str(uuid.uuid4())
-                review_obj["username"]    = review.find_element(By.CSS_SELECTOR, ".shopee-product-rating__author-name").text
-                review_obj["merchant_id"] = merchant_id
-                review_obj["product_id"]  = product_id
+                for review in review_list:
+                    review_obj =  {}
+                    review_obj["review_id"]   = str(uuid.uuid4())
+                    review_obj["username"]    = review.find_element(By.CSS_SELECTOR, ".shopee-product-rating__author-name").text
+                    review_obj["merchant_id"] = merchant_id
+                    review_obj["product_id"]  = product_id
 
-                review_obj["date"]        = review.find_element(By.CSS_SELECTOR, "div[class='shopee-product-rating__time']").text.split(" | ")[0]
-                review_obj["rating"]      = len(review.find_elements(By.CSS_SELECTOR, ".icon-rating-solid--active"))
-                
-                try:
-                    review_obj["content"] = review.find_element(By.CSS_SELECTOR, "div[class='Rk6V+3']").text
-                except:
-                    review_obj["content"] = None
+                    review_obj["date"]        = review.find_element(By.CSS_SELECTOR, "div[class='shopee-product-rating__time']").text.split(" | ")[0]
+                    review_obj["rating"]      = len(review.find_elements(By.CSS_SELECTOR, ".icon-rating-solid--active"))
 
-                review_output.append(review_obj)
+                    try:
+                        review_obj["content"] = review.find_element(By.CSS_SELECTOR, "div[class='Rk6V+3']").text
+                    except:
+                        review_obj["content"] = None
 
-            review_page_controller   = driver.find_element(By.CSS_SELECTOR, "div[class='product-ratings']").find_element(By.CLASS_NAME, "shopee-page-controller")
-            review_page_list         = review_page_controller.find_elements(By.CSS_SELECTOR, "button")
-            last_page_display        = review_page_list[-2].text
-            next_page_button         = review_page_list[-1]
+                    review_output.append(review_obj)
 
-            if last_page_display == '...':
-                next_page_button.click()
+                review_page_controller   = driver.find_element(By.CLASS_NAME, "shopee-page-controller")
+                review_page_list         = review_page_controller.find_elements(By.CSS_SELECTOR, "button")
+                last_page_display        = review_page_list[-2].text
+                next_page_button         = review_page_list[-1]
 
-            elif int(last_page_display) > review_page:
-                next_page_button.click()
+                if last_page_display == '...':
+                    next_page_button.click()
 
+                elif int(last_page_display) > review_page:
+                    next_page_button.click()
+
+                else:
+                    driver.back()
+                    product_counter += 1
+
+                    merchant_table = pd.DataFrame(merchant_output)
+                    product_table = pd.DataFrame(product_output)
+                    review_table = pd.DataFrame(review_output)
+
+                    merchant_table.to_csv("newMerchant.csv", index=False)
+                    product_table.to_csv("newProduct.csv", index=False)
+                    review_table.to_csv("newReview.csv", index=False)
+                    break
             else:
                 driver.back()
-                
+                product_counter += 1
+
+                merchant_table = pd.DataFrame(merchant_output)
+                product_table = pd.DataFrame(product_output)
+                #review_table = pd.DataFrame(review_output)
+
+                merchant_table.to_csv("newMerchant.csv", index=False)
+                product_table.to_csv("newProduct.csv", index=False)
+                #review_table.to_csv("newReview.csv", index=False)
+                break
+
     product_page_controller   = driver.find_element(By.CLASS_NAME, "shopee-page-controller")
     product_page_list         = product_page_list.find_elements(By.CSS_SELECTOR, "button")
     last_page_display         = product_page_list[-2].text
