@@ -7,7 +7,7 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
+from selenium.webdriver.common.action_chains import ActionChains
 from bs4 import BeautifulSoup
 
 import pandas as pd
@@ -20,29 +20,30 @@ import os
 # ========================== #
 # ===== INITIALISATION 1 ===== #
 # ========================== #
-#chromedriver_path = os.path.expanduser("~/GitLocal/SitShop/sitData/scraper/chromedriver_v117.exe")
-#s = Service(chromedriver_path)
-#driver = webdriver.Chrome(service = s)
-driver = webdriver.Chrome()
+chromedriver_path = os.path.expanduser("~/GitLocal/SitShop/sitData/scraper/chromedriver_v117.exe")
+s = Service(chromedriver_path)
+driver = webdriver.Chrome(service = s)
+
 driver.get("https://shopee.sg/")
+actions = ActionChains(driver)
 
 # ============================ #
 # ===== INITIALISATION 2 ===== #
 # ============================ #
 time.sleep(2)
 search_bar = driver.find_element(By.CLASS_NAME, "shopee-searchbar-input__input")
-search_bar.send_keys("headphone")
+search_bar.send_keys("mouse")
 search_bar.send_keys(Keys.RETURN)
 
 time.sleep(1)
 username_bar = WebDriverWait(driver, 20).until(
     EC.presence_of_element_located((By.NAME, "loginKey"))
 )
-username_bar.send_keys("newsswen")
+username_bar.send_keys("jeannie208")
 
 time.sleep(1)
 password_bar = driver.find_element(By.NAME, "password")
-password_bar.send_keys("123NEWSabcSWEN")
+password_bar.send_keys("Jean060606")
 
 time.sleep(1)
 password_bar.send_keys(Keys.RETURN)
@@ -70,10 +71,16 @@ while True:
 
     for product in product_list:
         time.sleep(2)
-        #product_counter += 1
+
+        WebDriverWait(driver, 30).until(
+            EC.presence_of_element_located((By.CLASS_NAME, "shopee-search-item-result__item"))
+        )
+
         product = driver.find_elements(By.CLASS_NAME, "shopee-search-item-result__item")[product_counter]
-        time.sleep(5)
-        product.click()
+
+        actions.move_to_element(product).perform()
+        time.sleep(3)
+        actions.click(product).perform()
 
         time.sleep(2)
         page_source = driver.page_source
@@ -240,7 +247,7 @@ while True:
                 break
 
     product_page_controller   = driver.find_element(By.CLASS_NAME, "shopee-page-controller")
-    product_page_list         = product_page_list.find_elements(By.CSS_SELECTOR, "button")
+    product_page_list         = product_page_controller.find_elements(By.CSS_SELECTOR, "a")
     last_page_display         = product_page_list[-2].text
     next_page_button          = product_page_list[-1]
 
