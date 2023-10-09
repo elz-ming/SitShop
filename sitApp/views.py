@@ -1,10 +1,9 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-<<<<<<< HEAD
 from .models import Data
 from django.db.models import Q
-=======
->>>>>>> 522a7cb13142d4439269c3142f6e12d6c343a960
+from django.template.loader import get_template
+from xhtml2pdf import pisa
 
 # Create your views here.
 
@@ -26,11 +25,35 @@ def home(request):
 
 # JingYu, work on this more.
 # Additionally, look at templates/components/comparison.html
-
-
 def detail(request):
     return render(request, "pages/detail.html")
 
+
+# When we get the product id
+def product_detail(request, product_id):
+    # Your logic to retrieve product details based on product_id
+    return render(request, 'detail.html', {'product': product})
+
+# Export comparison page to pdf
+def export_to_pdf(request):
+    # Replace 'comparison.html' with your HTML template's path
+    template_path = 'pages/comparison.html'
+    context = {}  # Add any context data needed for rendering the template
+
+    # Create a Django response object with PDF content
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="comparison.pdf"'
+
+    # Find the template and render it to the response
+    template = get_template(template_path)
+    html = template.render(context)
+
+    # Create a PDF from the rendered HTML
+    pisa_status = pisa.CreatePDF(html, dest=response)
+    if pisa_status.err:
+        return HttpResponse('We had some errors <pre>' + html + '</pre>')
+
+    return response
 
 def welcome(request):
     return HttpResponse("Welcome to my app!")
