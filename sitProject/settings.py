@@ -57,7 +57,7 @@ ROOT_URLCONF = 'sitProject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR/'templates'],
+        'DIRS': [os.path.join(BASE_DIR,'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -76,14 +76,21 @@ WSGI_APPLICATION = 'sitProject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE'  : 'django.db.backends.postgresql',
+#         'NAME'    : 'railway',
+#         'USER'    : 'postgres',
+#         'PASSWORD': '5DGEjSlYNIYzTqAqiSx9',
+#         'HOST'    : 'containers-us-west-63.railway.app',
+#         'PORT'    : '6666',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE'  : 'django.db.backends.postgresql',
-        'NAME'    : 'railway',
-        'USER'    : 'postgres',
-        'PASSWORD': '5DGEjSlYNIYzTqAqiSx9',
-        'HOST'    : 'containers-us-west-63.railway.app',
-        'PORT'    : '6666',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
