@@ -30,18 +30,18 @@ driver.get("https://shopee.sg/")
 # ============================ #
 time.sleep(2)
 search_bar = driver.find_element(By.CLASS_NAME, "shopee-searchbar-input__input")
-search_bar.send_keys("bottle")
+search_bar.send_keys("headphone")
 search_bar.send_keys(Keys.RETURN)
 
 time.sleep(1)
 username_bar = WebDriverWait(driver, 20).until(
     EC.presence_of_element_located((By.NAME, "loginKey"))
 )
-username_bar.send_keys("linjericho")
+username_bar.send_keys("newsswen")
 
 time.sleep(1)
 password_bar = driver.find_element(By.NAME, "password")
-password_bar.send_keys("Jericho1")
+password_bar.send_keys("123NEWSabcSWEN")
 
 time.sleep(1)
 password_bar.send_keys(Keys.RETURN)
