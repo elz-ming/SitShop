@@ -3,15 +3,15 @@ from django.db import models
 # Create your models here.
 
 class Merchant(models.Model):
-    merchant_id   = models.CharField(max_length=255, primary_key=True)
+    merchant_id           = models.CharField(max_length=255, primary_key=True)
 
-    merchant_name = models.CharField(max_length=255, null=True)
-    rating        = models.FloatField(null=True)
-    response_rate = models.FloatField(null=True)
-    joined        = models.IntegerField(null=True)
-    no_products   = models.IntegerField(null=True)
-    response_time = models.CharField(max_length=50, null=True)
-    followers     = models.IntegerField(null=True)
+    merchant_name         = models.CharField(max_length=255, null=True)
+    total_rating          = models.FloatField(null=True)
+    response_rate_percent = models.FloatField(null=True)
+    days                  = models.IntegerField(null=True)
+    no_products           = models.IntegerField(null=True)
+    response_speed        = models.CharField(max_length=50, null=True)
+    no_follower           = models.IntegerField(null=True)
 
     def __str__(self):
         return self.name
@@ -24,9 +24,8 @@ class Product(models.Model):
         default=None
     )
 
+    category     = models.CharField(max_length=50, null=True)
     product_name = models.CharField(max_length=255, null=True)
-    preferred    = models.BooleanField(null=True)
-    mall         = models.BooleanField(null=True)
     avg_rating   = models.FloatField(null=True)
     total_rating = models.IntegerField(null=True)
     total_sold   = models.IntegerField(null=True)
@@ -60,11 +59,6 @@ class Review(models.Model):
         default=None
     )
     
-    merchant_id  = models.ForeignKey(
-        Merchant,
-        on_delete=models.PROTECT,
-        default=None
-    )
     product_id  = models.ForeignKey(
         Product,
         on_delete=models.PROTECT,
@@ -74,6 +68,7 @@ class Review(models.Model):
     date = models.DateTimeField(null=True)
     rating = models.FloatField(null=True)
     content = models.TextField(null=True)
+    location = models.CharField(max_length=50, null=True)
 
 
 class Data(models.Model):
