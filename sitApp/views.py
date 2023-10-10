@@ -5,7 +5,6 @@ from django.db.models import Q
 from django.template.loader import get_template
 
 
-
 # Create your views here.
 
 # Alenna, work on this more.
@@ -157,6 +156,7 @@ def command(request, id, cmd):
     return redirect("/")
 
 
-
+def test(request):
+    return render(request, "pages/test.html")
 
 
