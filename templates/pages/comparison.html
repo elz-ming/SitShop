@@ -1,56 +1,194 @@
-{% extends 'components/base.html' %}
+
 {% comment %} {% load static %} {% endcomment %}
 
 {% block content %}
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0"
+        crossorigin="anonymous">
+  <h1 class="center">Compare Products</h1>
+  <style>
+    .center {
+      display: flex;
+      justify-content: center;
+    }
+
+    .dropdown-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    select{
+      width: 200px;
+    }
+
+    .card-container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            width: 18rem;
+            margin: 10px;
+        }
+
+        .card-body {
+            display: flex;
+            flex-direction: column;
+        }
+    @import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700");
+    body {
+      background-color: #f8f8f8;
+      font-family: "Roboto", sans-serif;
+      font-weight: 300;
+    }
+
+    .row {
+      min-height: 100vh;
+    }
+
+    .card {
+      border: 0;
+      border-radius: 0px;
+      -webkit-box-shadow: 0 3px 0px 0 rgba(0, 0, 0, 0.08);
+      box-shadow: 0 3px 0px 0 rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease-in-out;
+      padding: 2.25rem 0;
+      position: relative;
+      will-change: transform;
+    }
+    .card:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 5px;
+      background-color: #57e2b2;
+      transition: 0.5s;
+    }
+    .card:hover {
+      transform: scale(1.05);
+      -webkit-box-shadow: 0 20px 35px 0 rgba(0, 0, 0, 0.08);
+      box-shadow: 0 20px 35px 0 rgba(0, 0, 0, 0.08);
+    }
+    .card:hover:after {
+      width: 100%;
+    }
+    .card .card-header {
+      background-color: white;
+      padding-left: 2rem;
+      border-bottom: 0px;
+    }
+    .card .card-title {
+      margin-bottom: 1rem;
+    }
+    .card .card-block {
+      padding-top: 0;
+    }
+    .card .list-group-item {
+      border: 0px;
+      padding: 0.25rem;
+      color: #808080;
+      font-weight: 300;
+    }
+
+    .display-2 {
+      font-size: 7rem;
+      letter-spacing: -0.5rem;
+    }
+
+    .display-2 .period {
+      font-size: 1rem;
+      color: #b3b3b3;
+      letter-spacing: 0px;
+    }
+
+    .btn {
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #a6a6a6;
+      border-radius: 0;
+      padding: 0.75rem 1.25rem;
+      letter-spacing: 1px;
+    }
+
+    .btn-gradient {
+      background-color: #f2f2f2;
+      transition: background 0.3s ease-in-out;
+    }
+    .btn-gradient:hover {
+      color: white;
+      background-color: #089232;
+    }
+
+    .cart-btn {
+        display: inline-block;
+        background-color: #7DC855;
+        border-radius: 6px;
+        font-size: 16px;
+        color: #FFFFFF;
+        text-decoration: none;
+        padding: 12px 30px;
+        transition: all .5s;
+        position:fixed;
+        bottom: 0;
+        right: 0;
+        margin: 10px;
+        }
+    .cart-btn:hover {
+        background-color: #64af3d;
+        }
+
+</style>
+</head>
+
 <body>
-  <div style="display: flex; flex-direction: row; flex-wrap: wrap">
-
-    <div class="row row-cols-1 row-cols-md-2 g-4">
-
-      <div class="col">
-        <div class="card">
-          <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/041.webp" class="card-img-top" alt="Hollywood Sign on The Hill"/>
-          <div class="card-body">
-            <h5 class="card-title">Ocean Blue Headphones</h5>
-            <p class="card-text">
-              Rated highly for their professional-grade comfort, foldable versatility, strong construction and excellent sound design
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card">
-          <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/042.webp" class="card-img-top" alt="Palm Springs Road"/>
-          <div class="card-body">
-            <h5 class="card-title">White Glossy Headphones</h5>
-            <p class="card-text">
-              Hi-Res Audio Certified: Enjoy more detailed music thanks to Edifier W820NB's 40 mm dynamic drivers. High-resolution Audio compatible.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card">
-          <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/043.webp" class="card-img-top" alt="Los Angeles Skyscrapers"/>
-          <div class="card-body">
-            <h5 class="card-title">Blush Pink Headphones</h5>
-            <p class="card-text"> Taoclear Hybrid noise canceling headphones integrate superb silence and amazing sound quality. Wireless headphone engineered with dual 40mm large-aperture drivers, delivery full-balanced bass, Hi-fi tunes with exceptional clarity.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card">
-          <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/044.webp" class="card-img-top" alt="Skyscrapers"/>
-          <div class="card-body">
-            <h5 class="card-title">Linux Purple Headphones</h5>
-            <p class="card-text">
-              Rock out with these Sony over-the-ear headphones, which feature a direct-vibe structure for sound isolation and urethane foam ear pads for listening comfort. Neodymium magnets and 30mm drivers deliver powerful bass.
-            </p>
-          </div>
+  
+<div class="container">
+  <div class="row flex-items-xs-middle flex-items-xs-center">
+    {% for card in cards %}
+    <div class="col-xs-12 col-md-6 col-lg-4">
+      <div class="card text-xs-center">
+        <div>
+          <img src="{{ card.image }}" class="card-img-top">        </div>
+        <div class="card-block">
+          <h4 class="card-title">{{ card.name }}</h4>
+          <p class="card-text">{{ card.description }}</p>
+          <ul class="list-group">
+            <li class="list-group-item">{{ card.feature1 }}</li>
+            <li class="list-group-item">{{ card.feature2 }}</li>
+            <li class="list-group-item">{{ card.feature3 }}</li>
+            <li class="list-group-item">{{ card.feature4 }}</li>
+          </ul>
+            <ul class="list-group">
+            <li class="list-group-item">First Comparison</li>
+            <li class="list-group-item">Second Comparison</li>
+            <li class="list-group-item">Third Comparison</li>
+          </ul>
+          <a href="{% url 'detail' %}" class="btn btn-gradient mt-2">View Product Details</a>
+          <br>
+          <a href="#" class="btn btn-gradient mt-2">Delete Product</a>
         </div>
       </div>
     </div>
-
+    {% endfor %}
   </div>
+</div>
+
+<a href="{% url 'export_to_pdf' %}" class="cart-btn">Export to PDF</a>
 </body>
+
+    <!-- <div class="card-body">
+      <a href="#" class="card-link">Card link</a>
+      <a href="#" class="card-link">Another link</a>
+    </div>
+  </div> -->
 {% endblock content %}
