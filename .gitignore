@@ -1,6 +1,6 @@
 #src
 *.sqlite*
-
+.idea
 .env
 yarn.lock
 
