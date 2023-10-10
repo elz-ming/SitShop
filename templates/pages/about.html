@@ -1,6 +1,7 @@
 {% extends 'components/base.html' %}
 
 {% block content %}
+<<<<<<< HEAD
 
 
 <html>
@@ -91,21 +92,8 @@ hsl(12, 100%, 50%);
 </head>
 <body>
 
-<div class="topnav">
 
-    <div class="container"></div>
-
-        <a class="active" href="{% url 'home' %}">The SIT Shop</a>
-
-        <a href="about/">About</a>
-        <a href="contact/">Contact</a>
-        <div class="search-container">
-            <form action="/action_page.php">
-                <input name="q" placeholder="Search.." aria-label="Search" type="text">
-                <button type="submit"><i class="fa fa-search"></i></button>
-            </form>
-        </div>
-    </div>
+  {% include 'components/navigation.html' %}
 
 <div class="container">
     <div style="padding-left:16px">
@@ -130,8 +118,10 @@ hsl(12, 100%, 50%);
           <br>
 
 
+=======
+>>>>>>> parent of 07bba52 (resolve merge-jy)
   
-
+  {% include 'components/navigation.html' %}
   <div class="container">
       <div style="padding-left:16px">
           <div class="row">
@@ -141,13 +131,17 @@ hsl(12, 100%, 50%);
           <br>
 
 
-
           <head>
               <meta content="width=device-width, initial-scale=1" name="viewport">
           </head>
           <body style="font-family: Arial, Helvetica, sans-serif; margin: 0;">
 
+          <div class="about-section" style="padding: 30px; text-align: center; background-color: #474e5d; color: white;">
+              <h1 style="font-weight: bold"> About Us Page</h1>
+              <h5 style="font-style:italic">We are the SIT Shop where we specialised in hosting our e-commerce platform for headphones!</h5>
 
+          <h3 style="text-align:center">Two Major Teams: Data Team and GUI Team</h3>
+          </div>
             <br>
 
           <div class="row">
@@ -223,47 +217,8 @@ hsl(12, 100%, 50%);
 
 
 
-
-</div>
-</div>
-<br>
-
-
-<script>
-
-
-
-</script>
-
-
-                    </div>
+  </div>
+  </div>
+  <br>
+  <br>
 {% endblock %}
-
-
-                    {% comment %}
-
-    {% include "includes/footer.html" %}
-
-
-                    {% endcomment %}
-
-
-
-
-<!-- Specific JS goes HERE -->
-{% comment %}
-{% block scripts %}
-
-<script src="{% static 'js/plugins/chartjs.min.js' %}"></script>
-<script>
-
-</script>
-
-{% endblock scripts %}
-{% endcomment %}
-
-
-                </div>
-
-
-</html>

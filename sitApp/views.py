@@ -5,7 +5,6 @@ from django.db.models import Q
 from django.template.loader import get_template
 from xhtml2pdf import pisa
 
-
 # Create your views here.
 
 # Alenna, work on this more.
