@@ -9,7 +9,7 @@ urlpatterns = [
     # retrieve product based on the product_id variable
     path('detail/<int:product_id>/', views.product_detail, name='product_detail'), 
     path('command/<int:id>/<cmd>', views.command, name="command"),
-    path('comparison/', views.compare, name='dropdown_example'),
+    path('comparison/', views.comparison, name='comparison'),
     # export pdf from comparison page
     path('export_pdf/', views.export_to_pdf, name='export_to_pdf'),
 ]

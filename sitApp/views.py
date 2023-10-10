@@ -69,11 +69,6 @@ def search(request):
     else:
         return render(request, 'pages/home.html')
 
-
-
-def compare(request):
-    return render(request, "pages/comparison.html")
-
 def about(request):
     return render(request, "pages/about.html")
 
@@ -146,7 +141,7 @@ cards = [
 ]
 
 
-def compare(request):
+def comparison(request):
     return render(request, "pages/comparison.html", context={"cards": cards})
 
 
@@ -160,13 +155,6 @@ def command(request, id, cmd):
                 card["color"] = colors[(colors.index(card["color"]) + 1) % len(colors)]
     return redirect("/")
 
-
-def dropdown_example(request):
-    if request.method == 'POST':
-        # Process form data here if needed
-        pass
-
-    return render(request, 'pages/comparison.html')
 
 
 
