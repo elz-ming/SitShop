@@ -1,10 +1,8 @@
 {% extends 'components/base.html' %}
-{% comment %} {% load static %} {% endcomment %}
-
-{% block searchbar %}
 
 {% block content %}
 
+<<<<<<< HEAD
 <html>
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -108,92 +106,46 @@ hsl(12, 100%, 50%);
             </form>
         </div>
     </div>
+=======
+  {% include 'components/navigation.html' %}
+>>>>>>> 5142655847effa8c81815c7b7cbfca30788aefb2
 <div class="container">
     <div style="padding-left:16px">
-        <div class = "row">
-   </div>
-            <br>
-            <br>
-            <br>
-
-            <table class="table table-dark">
-                <style>
-
-                    .table {
-                      width: 95%;
-                      border-collapse: collapse;
-                      background-color: #333;
-                      color: white;
-                    }
-
-                    /* Style the table header */
-                    .table thead {
-                      background-color: #111;
-                    }
-
-                    .table th {
-                      padding: 10px;
-                      text-align: left;
-                    }
-
-                    /* Style alternating rows */
-                    .table tbody tr:nth-child(even) {
-                      background-color: #444;
-                    }
-
-                    /* Style table cells */
-                    .table td, .table th {
-                      padding: 10px;
-                      border: 1px solid #666;
-                    }
-
-                    /* Style the first column (index column) */
-                    .table th:#111, .table td:first-child {
-                      background-color: #444;
-                      font-weight: bold;
-                    }
-
-                    /* Add hover effect to rows */
-                    .table tbody tr:hover {
-                      background-color: #555;
-                    }
-                </style>
-                  <thead>
-                    <tr>
-
-                      <th scope="col">First Name</th>
-                      <th scope="col">Last Name</th>
-                      <th scope="col">Age</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-
-                      <td>Mark</td>
-                      <td>Ottis</td>
-                      <td>20</td>
-                    </tr>
-                    <tr>
-
-                      <td>Jacob</td>
-                      <td>Flaye</td>
-                      <td>29</td>
-                    </tr>
-                    <tr>
-                      <td>Larry</td>
-                      <td>Schmeger</td>
-                      <td>21</td>
-                    </tr>
-                  </tbody>
-                </table>
-
-
-
+      <br>
+      <br>
+      <br>
+      <table class="table table-dark">
+        <thead>
+          <tr>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Age</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Mark</td>
+            <td>Ottis</td>
+            <td>20</td>
+          </tr>
+          <tr>
+            <td>Jacob</td>
+            <td>Flaye</td>
+            <td>29</td>
+          </tr>
+          <tr>
+            <td>Larry</td>
+            <td>Schmeger</td>
+            <td>21</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 </div>
 <br>
 <br>
 <h1 style="font-style:italic, font-weight: bold, text-align:center">TOP SELLING HEADPHONES</h1>
+<<<<<<< HEAD
 <style>
     .card {
   transition: background-color 0.3s ease;
@@ -218,6 +170,8 @@ hsl(12, 100%, 50%);
 #more {display: none;}
 
 </style>
+=======
+>>>>>>> 5142655847effa8c81815c7b7cbfca30788aefb2
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     const cards = document.querySelectorAll(".card");
@@ -291,6 +245,7 @@ hsl(12, 100%, 50%);
     </div>
   </div>
 </div>
+<<<<<<< HEAD
 
 </body>
 {% endblock %}
@@ -318,3 +273,6 @@ hsl(12, 100%, 50%);
 {% endblock scripts %}
 {% endcomment %}
 </html>
+=======
+{% endblock content %}
+>>>>>>> 5142655847effa8c81815c7b7cbfca30788aefb2
