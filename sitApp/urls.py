@@ -12,6 +12,8 @@ urlpatterns = [
     path('comparison/', views.comparison, name='comparison'),
     # export pdf from comparison page
     path('export_pdf/', views.export_to_pdf, name='export_to_pdf'),
+
+    path('test/', views.test, name='test'),
 ]
 
 

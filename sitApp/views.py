@@ -157,6 +157,7 @@ def command(request, id, cmd):
     return redirect("/")
 
 
-
+def test(request):
+    return render(request, "pages/test.html")
 
 
