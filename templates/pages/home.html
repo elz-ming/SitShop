@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<<<<<<< HEAD
+
 <html>
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -91,24 +91,10 @@ hsl(12, 100%, 50%);
 </head>
 <body>
 
-<div class="topnav">
 
-    <div class="container"></div>
 
-        <a class="active" href="{% url 'home' %}">The SIT Shop</a>
-
-        <a href="about/">About</a>
-        <a href="contact/">Contact</a>
-        <div class="search-container">
-            <form action="/action_page.php">
-                <input name="q" placeholder="Search.." aria-label="Search" type="text">
-                <button type="submit"><i class="fa fa-search"></i></button>
-            </form>
-        </div>
-    </div>
-=======
   {% include 'components/navigation.html' %}
->>>>>>> 5142655847effa8c81815c7b7cbfca30788aefb2
+
 <div class="container">
     <div style="padding-left:16px">
       <br>
@@ -145,7 +131,7 @@ hsl(12, 100%, 50%);
 <br>
 <br>
 <h1 style="font-style:italic, font-weight: bold, text-align:center">TOP SELLING HEADPHONES</h1>
-<<<<<<< HEAD
+
 <style>
     .card {
   transition: background-color 0.3s ease;
@@ -170,8 +156,7 @@ hsl(12, 100%, 50%);
 #more {display: none;}
 
 </style>
-=======
->>>>>>> 5142655847effa8c81815c7b7cbfca30788aefb2
+
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     const cards = document.querySelectorAll(".card");
@@ -198,7 +183,7 @@ hsl(12, 100%, 50%);
         <h5 class="card-title">White Glossy Headphones</h5>
         <p class="card-text">Rated highly for their professional-grade comfort, foldable versatility, strong construction and excellent sound design</p>
          <div class="card-buttons">
-        <button class="btn btn-primary view-more">View More</button>
+        <button class="btn btn-primary view-more" value="View">View More</button>
         <button class="btn btn-danger cancel">Cancel</button>
       </div>
       </div>
@@ -245,7 +230,7 @@ hsl(12, 100%, 50%);
     </div>
   </div>
 </div>
-<<<<<<< HEAD
+
 
 </body>
 {% endblock %}
@@ -258,7 +243,7 @@ hsl(12, 100%, 50%);
 
 {% endcomment %}
 
-{% endblock searchbar %}
+
 
 
 <!-- Specific JS goes HERE -->
@@ -273,6 +258,5 @@ hsl(12, 100%, 50%);
 {% endblock scripts %}
 {% endcomment %}
 </html>
-=======
-{% endblock content %}
->>>>>>> 5142655847effa8c81815c7b7cbfca30788aefb2
+
+
