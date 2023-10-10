@@ -1,5 +1,9 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
+
+
+
+
 from .models import Data
 from django.db.models import Q
 from django.template.loader import get_template
