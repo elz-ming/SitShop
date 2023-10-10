@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .models import Data
+from .models import Product
 from django.db.models import Q
 from django.template.loader import get_template
 from xhtml2pdf import pisa
@@ -159,4 +160,7 @@ def command(request, id, cmd):
 def test(request):
     return render(request, "pages/test.html")
 
+def product_comparison_table(request):
+    products = Product.objects.all()
+    return render(request, 'pages/test.html', {'products': products})
 
