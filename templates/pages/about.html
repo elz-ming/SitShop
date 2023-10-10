@@ -91,21 +91,8 @@ hsl(12, 100%, 50%);
 </head>
 <body>
 
-<div class="topnav">
 
-    <div class="container"></div>
-
-        <a class="active" href="{% url 'home' %}">The SIT Shop</a>
-
-        <a href="about/">About</a>
-        <a href="contact/">Contact</a>
-        <div class="search-container">
-            <form action="/action_page.php">
-                <input name="q" placeholder="Search.." aria-label="Search" type="text">
-                <button type="submit"><i class="fa fa-search"></i></button>
-            </form>
-        </div>
-    </div>
+  {% include 'components/navigation.html' %}
 
 <div class="container">
     <div style="padding-left:16px">
