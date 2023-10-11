@@ -14,6 +14,7 @@ urlpatterns = [
     path('export_pdf/', views.export_to_pdf, name='export_to_pdf'),
 
     path('test/', views.test, name='test'),
+    
 ]
 
 

@@ -247,6 +247,7 @@
             <tbody>
                 <tr>
                     <td class="zui-sticky-col">Application</td>
+
                     <td><strong>For Research Use</strong></td>
                     <td><strong>For Research Use</strong></td>
                     <td><strong>For IVD use</strong></td>
@@ -277,6 +278,7 @@
                 </tr>
                 <tr>
                     <td class="zui-sticky-col">Bar Code Reader</td>
+
                     <td><i class="far fa-plus-circle"></i>Optional</td>
                     <td><i class="far fa-check-circle"></i>Included</td>
                     <td><i class="far fa-check-circle"></i>Included</td>
@@ -310,6 +312,47 @@
                     <td><i class="far fa-times-circle"></i>Not Available</td>
                 </tr>
             </tbody>
+        </table>
+    </div>
+
+    <div id="container" class="zui-scroller">
+        <table class="zui-table">
+            <thead></thead>
+            <tbody>
+                <tr><td class="zui-sticky-col"></td></tr>
+                <tr><td class="zui-sticky-col zui-stripe-row">Product Name</td></tr>
+                <tr><td class="zui-sticky-col">Description</td></tr>
+                <tr><td class="zui-sticky-col zui-stripe-row">Average Rating</td></tr>
+                <tr><td class="zui-sticky-col">Total Rating</td></tr>
+                <tr><td class="zui-sticky-col zui-stripe-row">Total Sold</td></tr>
+                <tr><td class="zui-sticky-col">Price</td></tr>
+                <tr><td class="zui-sticky-col zui-stripe-row">Qty Available</td></tr>
+                <tr><td class="zui-sticky-col">Fav Count</td></tr>
+            </tbody>
+            {% for product in products %}
+            <thead>
+                <tr>
+                    <th class="zui-sticky-col">&nbsp;</th>
+                    <th id="product-col" class="table-col">
+                      <img class="product-img" src="{{product.img_src}}">
+                      <h5>
+                        <a href="{% url 'detail' %}" class="product-link">{{product.name}}</a>
+                      </h5>
+                    </th> 
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>{{product.description}}</td></tr>
+                <tr><td>{{product.avg_rating}}</td></tr>
+                <tr><td>{{product.total_rating}}</td></tr>
+                <tr><td>{{product.total_sold}}</td></tr>
+                <tr><td>{{product.price}}</td></tr>
+                <tr><td>{{product.qty_avail}}</td></tr>
+                <tr><td>{{product.fav_count}}</td></tr>
+                <tr><td>{{product.x}}</td></tr>
+                <tr><td>{{product.x}}</td></tr>
+            </tbody>
+            {% endfor %}
         </table>
     </div>
 </body>
