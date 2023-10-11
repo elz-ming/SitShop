@@ -10,17 +10,17 @@ from django.template.loader import get_template
 # Alenna, work on this more.
 # Additionally, look at templates/components/searchbar.html & templates/pages
 def home(request):
-    if 'q' in request.GET:
-        q = request.GET['q']
-        #data = Data.objects.filter(first_name__icontains=q)
-        multiple_q = Q(Q(first_name__icontains=q) | Q(last_name__icontains=q))
-        data = Data.objects.filter(multiple_q)
-    else:
-        data = Data.objects.all()
-    context = {
-        'data': data
-    }
-    return render(request, "pages/home.html", context)
+    # if 'q' in request.GET:
+    #     q = request.GET['q']
+    #     #data = Data.objects.filter(first_name__icontains=q)
+    #     multiple_q = Q(Q(first_name__icontains=q) | Q(last_name__icontains=q))
+    #     data = Data.objects.filter(multiple_q)
+    # else:
+    #     data = Data.objects.all()
+    # context = {
+    #     'data': data
+    # }
+    return render(request, "pages/home.html")
 
 
 # JingYu, work on this more.
