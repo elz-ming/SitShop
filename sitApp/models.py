@@ -3,6 +3,10 @@ from django.db import models
 # Create your models here.
 
 class Merchant(models.Model):
+
+    class Meta:
+        app_label = 'sitApp'
+
     merchant_id           = models.CharField(max_length=255, primary_key=True)
 
     merchant_name         = models.CharField(max_length=255, null=True)
@@ -17,6 +21,10 @@ class Merchant(models.Model):
         return self.name
 
 class Product(models.Model):
+
+    class Meta:
+        app_label = 'sitApp'
+
     product_id   = models.CharField(max_length=255, primary_key=True)
     merchant_id  = models.ForeignKey(
         Merchant,
@@ -38,13 +46,17 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
-class Customer(models.Model):
-    user_name = models.CharField(max_length=255, primary_key=True)
+class User(models.Model):
 
-    no_reviews   = models.IntegerField(null=True)
-    review_list  = models.JSONField(null=True)
-    no_products  = models.IntegerField(null=True)
-    product_dict = models.JSONField(null=True)
+    class Meta:
+        app_label = 'sitApp'
+
+    username    = models.CharField(max_length=255, primary_key=True)
+
+    no_review    = models.IntegerField(null=True)
+    review_list  = models.TextField(null=True)
+    no_product   = models.IntegerField(null=True)
+    product_dict = models.TextField(null=True)
     mean_rating  = models.FloatField(null=True)
 
     
@@ -52,9 +64,13 @@ class Customer(models.Model):
         return self.name
     
 class Review(models.Model):
+    
+    class Meta:
+        app_label = 'sitApp'
+
     review_id   = models.CharField(max_length=255, primary_key=True)
-    user_name   = models.ForeignKey(
-        Customer,
+    username   = models.ForeignKey(
+        User,
         on_delete=models.PROTECT,
         default=None
     )
@@ -65,7 +81,7 @@ class Review(models.Model):
         default=None
     )
 
-    date = models.DateTimeField(null=True)
+    date = models.CharField(max_length=50, null=True)
     rating = models.FloatField(null=True)
     content = models.TextField(null=True)
     location = models.CharField(max_length=50, null=True)
