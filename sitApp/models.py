@@ -70,17 +70,3 @@ class Review(models.Model):
     content = models.TextField(null=True)
     location = models.CharField(max_length=50, null=True)
 
-
-class Data(models.Model):
-
-
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
-    age = models.PositiveIntegerField(default=0)
-
-
-
-    def __str__(self):
-        return self.first_name
-
-
