@@ -18,7 +18,7 @@ class Merchant(models.Model):
     no_follower           = models.IntegerField(null=True)
 
     def __str__(self):
-        return self.name
+        return self.merchant_id
 
 class Product(models.Model):
 
@@ -44,7 +44,7 @@ class Product(models.Model):
     img_src      = models.CharField(max_length=255, null=True)
 
     def __str__(self):
-        return self.name
+        return self.product_id
 
 class User(models.Model):
 
@@ -61,7 +61,7 @@ class User(models.Model):
 
     
     def __str__(self):
-        return self.name
+        return self.username
     
 class Review(models.Model):
     
@@ -86,3 +86,5 @@ class Review(models.Model):
     content = models.TextField(null=True)
     location = models.CharField(max_length=50, null=True)
 
+    def __str__(self):
+        return self.review_id
