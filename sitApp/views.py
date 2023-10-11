@@ -1,6 +1,7 @@
 from django.http import HttpResponse
+from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
-# from .models import Product
+from .models import Product
 from django.db.models import Q
 from django.template.loader import get_template
 
@@ -10,6 +11,16 @@ from django.template.loader import get_template
 # Alenna, work on this more.
 # Additionally, look at templates/components/searchbar.html & templates/pages
 def home(request):
+    all_products  = Product.objects.all()
+    search_query  = request.GET.get('q')
+
+    if search_query:
+        all_products = all_products.filter(product_name__icontains=search_query)
+
+    paginator =  Paginator(all_products, 60)
+    
+    page = request.GET.get('page')
+    products = paginator.get_page(page)
     # if 'q' in request.GET:
     #     q = request.GET['q']
     #     #data = Data.objects.filter(first_name__icontains=q)
@@ -20,8 +31,10 @@ def home(request):
     # context = {
     #     'data': data
     # }
-    return render(request, "pages/home.html")
+    return render(request, "pages/home.html", {'products':products, 'search_query':search_query})
 
+def comparison(request, product_list=None):
+    return render(request, "pages/comparison.html")
 
 # JingYu, work on this more.
 # Additionally, look at templates/components/comparison.html
@@ -109,40 +122,7 @@ the search bar in views.py
 
 '''
 
-cards = [
-    {
-        "id": 1,
-        "name": "Mercedes A Class",
-        "image": "https://i.auto-bild.de/mdb/extra_large/62/aklasse-bb5.png",
-        "description": "This is a Mercedess A-Class from autobild.de website.",
-        "color": "silver",
-    },
-    {
-        "id": 2,
-        "name": "Audi A1",
-        "image": "https://i.auto-bild.de/mdb/extra_large/65/a1-e91.png",
-        "description": "This is an Audi A1 from autobild.de website.",
-        "color": "brown",
-    },
-    {
-        "id": 3,
-        "name": "BMW 2er Gran Tourer",
-        "image": "https://down-sg.img.susercontent.com/file/sg-11134201-22110-cc3ayii6f2jv4c",
-        "description": "This is a beautiful BMW from autobild.de website.",
-        "color": "blue",
-    },
-    {
-        "id": 4,
-        "name": "BMW 2er Gran Tourer",
-        "image": "https://down-sg.img.susercontent.com/file/sg-11134201-22110-cc3ayii6f2jv4c",
-        "description": "This is a beautiful BMW from autobild.de website.",
-        "color": "blue",
-    },
-]
 
-
-def comparison(request):
-    return render(request, "pages/comparison.html", context={"cards": cards})
 
 
 def command(request, id, cmd):
