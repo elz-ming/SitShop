@@ -6,7 +6,7 @@ class Merchant(models.Model):
     merchant_id   = models.CharField(max_length=255, primary_key=True)
 
     merchant_name = models.CharField(max_length=255, null=True)
-    rating        = models.FloatField(null=True)
+    total_rating  = models.FloatField(null=True)
     response_rate = models.FloatField(null=True)
     joined        = models.IntegerField(null=True)
     no_products   = models.IntegerField(null=True)
