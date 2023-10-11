@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from .models import Product
 from django.db.models import Q
 from django.template.loader import get_template
-
+from xhtml2pdf import pisa
 
 # Create your views here.
 
@@ -50,7 +50,7 @@ def product_detail(request, product_id):
 # Export comparison page to pdf
 def export_to_pdf(request):
     # Replace 'comparison.html' with your HTML template's path
-    template_path = 'pages/comparison.html'
+    template_path = 'pages/test.html'
     context = {}  # Add any context data needed for rendering the template
 
     # Create a Django response object with PDF content
@@ -67,6 +67,8 @@ def export_to_pdf(request):
         return HttpResponse('We had some errors <pre>' + html + '</pre>')
 
     return response
+
+
 
 def welcome(request):
     return HttpResponse("Welcome to my app!")
