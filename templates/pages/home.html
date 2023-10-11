@@ -1,90 +1,95 @@
 {% extends 'components/base.html' %}
+{% load static %}
 
 {% block content %}
 
   {% include 'components/navigation.html' %}
-<div class="container">
-    <div style="padding-left:16px">
-      <br>
-      <br>
-      <br>
-      
-    </div>
-</div>
-<br>
-<br>
-<h1 style="font-style:italic; font-weight: bold; text-align:center">TOP SELLING HEADPHONES</h1>
+
+  <form method="get">
+    <input type="text" name="q" placeholder="Search for products" value="{{ search_query }}">
+    <button type="submit">Search</button>
+  </form>
+
+  <div class="pagination">
+    <span class="step-links">
+        {% if products.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ products.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current-page">
+            Page {{ products.number }} of {{ products.paginator.num_pages }}.
+        </span>
+
+        {% if products.has_next %}
+            <a href="?page={{ products.next_page_number }}">next</a>
+            <a href="?page={{ products.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+  </div>
+
+  <div class="product-cards">
+    {% for product in products %}
+        <div class="product-card">
+          <div class="image-container">
+            {% if product.img_src == 'no_src' %}
+              <img src="{% static 'img/NoImage.jpg' %}" alt="Default Image">
+            {% else %}
+            <img src="{{ product.img_src }}" alt="{{ product.product_name }}">
+            {% endif %}
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">{{ product.category }}</h3>
+            <p class="product-name">{{ product.product_name }}</p>
+            <p class="card-text">Price: ${{ product.price }}</p>
+          </div>
+        </div>
+    {% endfor %}
+  </div>
+
 <script>
+  const productCards = document.querySelectorAll('.product-card');
+  const maxItems = 4;
+  let selectedProducts = [];
+  
+  productCards.forEach(card => {
+    card.addEventListener('click', () ==> {
+      const productId = card.getAttribute('data-product-id');
+
+      if (selectedProducts.includes(productId)) {
+        // Deselect Product
+        selectedProducts = selectedProducts.filter(id => id !== productId);
+        card.classList.remove('selected');
+        card.style.backgroundColor = '';
+      } else if {
+        // Select Product
+        selectedProducts.push(productId);
+        card.classList.add('selected');
+        card.style.backgroundColor = 'lightblue';
+      }
+    })
+  })
+
+  const compareButton = document.getElementById('checkout-button');
+  compareButton.addEventListener('click', () => {
+      if (selectedProducts.length > 0) {
+          const selectedProductIds = selectedProducts.join(',');
+          window.location.href = `/comparison/${selectedProductIds}`;
+      } else {
+          alert('Please select at least one product before proceeding to checkout.');
+      }
+  });
+
   document.addEventListener("DOMContentLoaded", function () {
-    const cards = document.querySelectorAll(".card");
+    const cards = document.querySelectorAll(".product-card");
 
     cards.forEach((card) => {
       card.addEventListener("click", function () {
         // Toggle the visibility of the buttons within the clicked card
-        const buttons = card.querySelector(".card-buttons");
+        const buttons = card.querySelector(".card");
         buttons.classList.toggle("show-buttons");
       });
     });
   });
 </script>
-
-<div class="row row-cols-1 row-cols-md-2 g-4">
-
-  <div class="col">
-    <div class="card">
-      <img src="https://down-sg.img.susercontent.com/file/sg-11134201-22110-cc3ayii6f2jv4c" class="card-img-top" alt="Hollywood Sign on The Hill"/>
-      <div class="card-body">
-        <h5 class="card-title">White Glossy Headphones</h5>
-        <p class="card-text">
-          Rated highly for their professional-grade comfort, foldable versatility, strong construction and excellent sound design
-        </p>
-
-            <div class="card-buttons">
-        <button class="btn btn-primary view-more">View More</button>
-        <button class="btn btn-danger cancel">Cancel</button>
-      </div>
-
-      </div>
-    </div>
-  </div>
-
-  <div class="col">
-    <div class="card">
-      <img src="https://down-sg.img.susercontent.com/file/677db4e0d140e4554ebd04e1d497b84e_tn" class="card-img-top" alt="Palm Springs Road"/>
-      <div class="card-body">
-        <h5 class="card-title">Blush Pink Headphones</h5>
-        <p class="card-text">
-          Hi-Res Audio Certified: Enjoy more detailed music thanks to Edifier W820NB's 40 mm dynamic drivers. High-resolution Audio compatible.
-        </p>
-
-      </div>
-    </div>
-  </div>
-
-  <div class="col">
-    <div class="card">
-      <img src="https://down-sg.img.susercontent.com/file/02001d18e22705af211c099f1358c44d_tn" class="card-img-top" alt="Los Angeles Skyscrapers"/>
-      <div class="card-body">
-        <h5 class="card-title">Ocean Blue Headphones</h5>
-        <p class="card-text"> Taoclear Hybrid noise canceling headphones integrate superb silence and amazing sound quality. Wireless headphone engineered with dual 40mm large-aperture drivers, delivery full-balanced bass, Hi-fi tunes with exceptional clarity.</p>
-          <div class="card-buttons">
-        <button class="btn btn-primary view-more">View More</button>
-        <button class="btn btn-danger cancel">Cancel</button>
-      </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="col">
-    <div class="card">
-      <img src="https://down-sg.img.susercontent.com/file/cn-11134207-7qukw-lfmi9a4ytrgrb4" class="card-img-top" alt="Skyscrapers"/>
-      <div class="card-body">
-        <h5 class="card-title">Linux Purple Headphones</h5>
-        <p class="card-text">
-          Rock out with these Sony over-the-ear headphones, which feature a direct-vibe structure for sound isolation and urethane foam ear pads for listening comfort. Neodymium magnets and 30mm drivers deliver powerful bass.
-        </p>
-      </div>
-    </div>
-  </div>
-</div>
 {% endblock content %}

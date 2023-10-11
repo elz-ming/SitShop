@@ -1,3 +1,42 @@
+.product-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 0 50px;
+}
+
+.product-card {
+  /* Card styles */
+  width: calc(50% - 20px); /* For 2 cards per row on phones */
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  /* Add other styles like padding, background, etc. */
+}
+
+/* Media query for computer screens */
+@media (min-width: 768px) {
+  .product-card {
+      width: calc(20% - 20px); /* For 5 cards per row on computers */
+  }
+}
+
+.image-container {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid #ccc;
+}
+
+.image-container img {
+  max-width: 100%;
+  max-height: auto;
+}
+
+.product-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 * {
   box-sizing: border-box;
 }
