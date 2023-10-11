@@ -6,6 +6,8 @@ sys.path.append(project_root)
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'sitProject.settings')
 django.setup()
 
+import time
+
 import pandas as pd
 from sitApp.models import Merchant, Product, User, Review
 from django.db import IntegrityError
@@ -16,6 +18,8 @@ user_df     = pd.read_csv("./sitData/asset/etlUser.csv")
 review_df   = pd.read_csv("./sitData/asset/etlReview.csv")
 
 def input_merchant():
+    start_time = time.time()
+
     for index, merchant in merchant_df.iterrows():
         try:
             Merchant.objects.create(
@@ -31,8 +35,13 @@ def input_merchant():
         
         except IntegrityError:
             pass
+    
+    end_time = time.time()
+    execution_time = end_time - start_time
+    print(f"Finish Inputting Merchant Data in {execution_time} seconds!")
 
 def input_product():
+    start_time = time.time()
     for index, product in product_df.iterrows():
         try:
             merchant = Merchant.objects.get(merchant_id=product['merchant_id'])
@@ -55,33 +64,36 @@ def input_product():
         
         except IntegrityError:
             pass
+    
+    end_time = time.time()
+    execution_time = end_time - start_time
+    print(f"Finish Inputting Product Data in {execution_time} seconds!")
 
 def input_user():
+    start_time = time.time()
     for index, user in user_df.iterrows():
         try:
             User.objects.create(
                 username     = user['username'],
                 no_review    = user['no_review'],
-                review_list  = user['review_id'],
+                review_list  = user['review_list'],
                 no_product   = user['no_product'],
-                product_dict = user['product_id'],
+                product_dict = user['product_dict'],
                 mean_rating  = user['mean_rating']
             )
         
         except IntegrityError:
             pass
-
+    
+    end_time = time.time()
+    execution_time = end_time - start_time
+    print(f"Finish Inputting User Data in {execution_time} seconds!")
 def input_review():
+    start_time = time.time()
+    counter = 0
     for index, review in review_df.iterrows():
-        try:
-            user    = User.objects.get(username=review['username'])
-        except:
-            user    = None
-
-        try:
-            product = Product.objects.get(product_id=review['product_id'])
-        except:
-            product = None
+        user    = User.objects.get(username=review['username'])
+        product = Product.objects.get(product_id=review['product_id'])
 
         try:
             Review.objects.create(
@@ -98,10 +110,18 @@ def input_review():
         except IntegrityError:
             pass
 
+        counter += 1
+        if counter%1000 == 0:
+            print(f"Inputted {counter} rows of data.")
+
+    end_time = time.time()
+    execution_time = end_time - start_time
+    print(f"Finish Inputting Review Data in {execution_time} seconds!")
+
 def main():
-    # input_merchant()
-    # input_product()
-    # input_user()
+    input_merchant()
+    input_product()
+    input_user()
     input_review()
 
 if __name__ == '__main__':
