@@ -1,0 +1,139 @@
+{% extends 'components/base.html' %}
+
+{% block content %}
+
+  {% include 'components/navigation.html' %}
+  <div class="container">
+    <br>
+    <div class="about-section" style="padding: 20px; text-align: center; background-color: #474e5d; color: white;">
+      <h1 style="font-weight: bold"> Contact Us Page</h1>
+      <h5 style="font-style:italic">We are the SIT Shop where we specialised in hosting our e-commerce platform for headphones!</h5>
+      <h3 style="text-align:center"></h3>
+    </div>
+
+  <div class="grid-container">
+    <div class="card">6 Shenton Way, #12-11C Tower Two, Singapore 068809</div>
+    <div class="card">+65 6319 0842</div>
+    <div class="card">TheSITshop101@gmail.com</div>
+  </div>
+<style>
+    body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
+
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type=submit] {
+  background-color: #04AA6D;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}          
+</style>
+<div class="container">
+  <form action="comparison.html">
+    <label for="fname">First Name</label>
+    <input type="text" id="fname" name="firstname" placeholder="Enter first name..">
+
+    <label for="lname">Last Name</label>
+    <input type="text" id="lname" name="lastname" placeholder="Enter last name..">
+
+    <label for="queryselect">Preferred contact Method</label>
+    <select id="queryselect" name="queryselect">
+      <option value="Email">Email</option>
+      <option value="Phone">Phone</option>
+      
+    </select>
+
+    <label for="subject">Matter of concern</label>
+    <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+
+    <input type="submit" value="Submit">
+  </form>
+</div>
+</div>
+</body>
+
+<style>
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+}
+
+
+.card {
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0,100,0,0.1);
+
+}
+
+
+</style>
+
+
+
+
+
+
+</form>
+</div>
+</div>
+<br>
+
+
+<script>
+
+
+
+</script>
+
+
+</body>
+{% endblock %}
+
+{% comment %}
+
+    {% include "includes/footer.html" %}
+
+</div>
+
+{% endcomment %}
+
+
+
+
+<!-- Specific JS goes HERE -->
+{% comment %}
+{% block scripts %}
+
+
+
+{% endblock scripts %}
+{% endcomment %}
+</div>
+
+                    </div>
+            
+            </html>
