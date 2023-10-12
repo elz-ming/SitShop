@@ -43,8 +43,8 @@ def comparison(request, product_list=None):
 # JingYu, work on this more.
 # Additionally, look at templates/components/comparison.html
 
-def product_detail(request, product_id):
-    product = get_object_or_404(Product, product_id=product_id)
+def detail(request, pid):
+    product = get_object_or_404(Product, product_id=pid)
     return render(request, 'pages/detail.html', {'product': product})
 
 # Export comparison page to pdf

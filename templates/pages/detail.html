@@ -1,9 +1,8 @@
 {% extends 'components/base.html' %}
-{% comment %} {% load static %} {% endcomment %}
+{% load static %}
 
 {% block content %}
 
-{{ product.name }}
 <header>
     <style>
         /* Basic Styling */
@@ -151,69 +150,67 @@
 </header>
   
 <body>
-    <main class="container">
-      {% for product in products %}
-        <!-- Left Column / Headphones Image -->
-        <div class="left-column">
-          {% if product.img_src == 'no_src' %}
-            <img src="{% static 'img/NoImage.jpg' %}" alt="Default Image">
-          {% else %}
-            <img src="{{ product.img_src }}" alt="{{ product.product_name }}">
-          {% endif %}
+  <main class="container">
+    <!-- Left Column / Headphones Image -->
+    <div class="left-column">
+      {% if product.img_src == 'no_src' %}
+        <img src="{% static 'img/NoImage.jpg' %}" alt="Default Image">
+      {% else %}
+        <img src="{{ product.img_src }}" alt="{{ product.product_name }}">
+      {% endif %}
+    </div>
+    
+    
+    <!-- Right Column -->
+    <div class="right-column">
+    
+      <!-- Product Description -->
+      <div class="product-description">
+        <span>{{product.category}}</span>
+        <h1>{{product.product_name}}</h1>
+        <p>{{product.description}}</p>
+      </div>
+    
+      <!-- Product Configuration -->
+      <div class="product-configuration">
+    
+        <!-- Product Color -->
+        <div class="product-color">
+          <span>Specification</span>   
         </div>
-       
-       
-        <!-- Right Column -->
-        <div class="right-column">
-       
-          <!-- Product Description -->
-          <div class="product-description">
-            <span>{{product.category}}</span>
-            <h1>{{product.product_name}}</h1>
-            <p>{{product.description}}</p>
-          </div>
-       
-          <!-- Product Configuration -->
-          <div class="product-configuration">
-       
-            <!-- Product Color -->
-            <div class="product-color">
-              <span>Specification</span>   
-            </div>
-       
-            <!-- Cable Configuration -->
-            <div class="cable-config">
-                <table>
-                    <tr>
-                      <td>Total Rating :</td>
-                      <td>{{product.total_rating}}</td>
-                    </tr>
-                    <tr>
-                      <td>Average Rating:</td>
-                      <td>{{product.avg_rating}}</td>
-                    </tr>
-                    <tr>
-                      <td>Total Sold:</td>
-                      <td>{{product.total_sold}}</td>
-                    </tr>
-                    <tr>
-                      <td>Quantity Available:</td>
-                      <td>{{product.qty_avail}}</td>
-                    </tr>
-                    <tr>
-                      <td>Fav Count:</td>
-                      <td>{{product.fav_count}}</td>
-                    </tr>
-                </table>
-            </div>
-          </div>
-       
-          <!-- Product Pricing -->
-          <div class="product-price">
-            <span>${{product.price}}</span>
-          </div>
+    
+        <!-- Cable Configuration -->
+        <div class="cable-config">
+            <table>
+                <tr>
+                  <td>Total Rating :</td>
+                  <td>{{product.total_rating}}</td>
+                </tr>
+                <tr>
+                  <td>Average Rating:</td>
+                  <td>{{product.avg_rating}}</td>
+                </tr>
+                <tr>
+                  <td>Total Sold:</td>
+                  <td>{{product.total_sold}}</td>
+                </tr>
+                <tr>
+                  <td>Quantity Available:</td>
+                  <td>{{product.qty_avail}}</td>
+                </tr>
+                <tr>
+                  <td>Fav Count:</td>
+                  <td>{{product.fav_count}}</td>
+                </tr>
+            </table>
         </div>
-      </main>
-      {% endfor %} 
+      </div>
+    
+      <!-- Product Pricing -->
+      <div class="product-price">
+        <span>${{product.price}}</span>
+      </div>
+    </div>
+  </main>
 </body>
 {% endblock %}
