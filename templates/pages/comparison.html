@@ -26,8 +26,8 @@
         }
 
         .card {
-            width: 18rem;
-            margin: 10px;
+            width: 250px;
+            margin: 20px;
         }
 
         .card-body {
@@ -42,7 +42,7 @@
     }
 
     .row {
-      min-height: 100vh;
+      min-height: 10vh;
     }
 
     .card {
@@ -112,15 +112,6 @@
       letter-spacing: 1px;
     }
 
-    .btn-gradient {
-      background-color: #f2f2f2;
-      transition: background 0.3s ease-in-out;
-    }
-    .btn-gradient:hover {
-      color: white;
-      background-color: #089232;
-    }
-
     .cart-btn {
         display: inline-block;
         background-color: #7DC855;
@@ -135,21 +126,75 @@
         right: 0;
         margin: 10px;
         }
-    .cart-btn:hover {
-        background-color: #64af3d;
-        }
 
 </style>
 
-  <div class="4-products-for-you-to-work-with-JingYu product-cards">
+<div class="container">
+  <div class="row">
     {% for product in products %}
-      <div class="product-card" data-product-id="{{ product.product_id }}">
-        <div class="image-container">
-          {% if product.img_src == 'no_src' %}
-            <img src="{% static 'img/NoImage.jpg' %}" alt="Default Image">
-          {% else %}
-            <img src="{{ product.img_src }}" alt="{{ product.product_name }}">
-          {% endif %}
+      <div class="col-lg-3 col-md-4 col-sm-6"> <!-- Adjusted column classes for responsiveness -->
+        <div class="product-cardview" data-product-id="{{ product.product_id }}">
+          <div class="productimage">
+            {% if product.img_src == 'no_src' %}
+              <img src="{% static 'img/NoImage.jpg' %}" alt="Default Image">
+            {% else %}
+              <img src="{{ product.img_src }}" alt="{{ product.product_name }}">
+            {% endif %}
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">{{ product.category }}</h3>
+            <p class="product-name">{{ product.product_name }}</p>
+            <p class="card-text">Price: ${{ product.price }}</p>
+            
+            <!-- First row with 2 columns -->
+            <div class="row">
+              <div class="col-6">Average Rating: {{product.avg_rating}}</div>
+              <div class="col-6">Total Rating: {{product.total_rating}}</div>
+            </div>
+            
+            <button href="{% url 'product_detail' product_id=product.product_id %}">
+              View Details
+            </button>
+          
+            
+            <!-- Second row with 3 columns -->
+            <div class="row">
+              <div class="col-4">Column 1</div> 
+              <div class="col-4">Column 2</div>
+              <div class="col-4">Column 3</div>
+            </div>
+
+            <!-- Third row with 3 columns -->
+            <div class="row">
+              <div class="col-4">Column 1</div>
+              <div class="col-4">Column 2</div>
+              <div class="col-4">Column 3</div>
+            </div>
+
+            <!-- Container for "Reviews Credibility" -->
+            <div class="container mt-3">
+              <p class="center">Reviews Credibility</p>
+              <div>
+                <!-- Leave this empty for now -->
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+
+
+<div class="container">
+  <div class="row flex-items-xs-middle flex-items-xs-center">
+    {% for card in cards %}
+    <div class="col-xs-12 col-md-6 col-lg-4">
+      <div class="card text-xs-center">
+        <div>
+          <img src="{{ card.image }}" class="card-img-top">        
         </div>
         <div class="card-body">
           <h3 class="card-title">{{ product.category }}</h3>
