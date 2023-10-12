@@ -1,7 +1,7 @@
 from itertools import product
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.paginator import Paginator
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Product
 from django.db.models import Q
 from django.template.loader import get_template
@@ -24,31 +24,29 @@ def home(request):
     
     page = request.GET.get('page')
     products = paginator.get_page(page)
-    # if 'q' in request.GET:
-    #     q = request.GET['q']
-    #     #data = Data.objects.filter(first_name__icontains=q)
-    #     multiple_q = Q(Q(first_name__icontains=q) | Q(last_name__icontains=q))
-    #     data = Data.objects.filter(multiple_q)
-    # else:
-    #     data = Data.objects.all()
-    # context = {
-    #     'data': data
-    # }
+
     return render(request, "pages/home.html", {'products':products, 'search_query':search_query})
 
-def comparison(request, product_list=None):
-    return render(request, "pages/comparison.html")
+def about(request):
+    return render(request, "pages/about.html")
+
+def contact(request):
+    return render(request, "pages/contact.html")
 
 # JingYu, work on this more.
 # Additionally, look at templates/components/comparison.html
-def detail(request):
-    return render(request, "pages/detail.html")
+def comparison(request, product_list=None):
+    products = product_list.split(',')
+    products = [Product.objects.get(product_id=x) for x in products]
 
+    return render(request, "pages/comparison.html", {'products':products})
 
-# When we get the product id
-def product_detail(request, product_id):
-    # Your logic to retrieve product details based on product_id
-    return render(request, 'detail.html', {'product': product})
+# JingYu, work on this more.
+# Additionally, look at templates/components/comparison.html
+
+def detail(request, pid):
+    product = get_object_or_404(Product, product_id=pid)
+    return render(request, 'pages/detail.html', {'product': product})
 
 # Export comparison page to pdf
 def export_to_pdf(request, pisa=None):
@@ -70,13 +68,6 @@ def export_to_pdf(request, pisa=None):
         return HttpResponse('We had some errors <pre>' + html + '</pre>')
 
     return response
-
-
-
-def welcome(request):
-    return HttpResponse("Welcome to my app!")
-
-
 def search(request):
     # defines what happens when there is a GET request
 
@@ -86,13 +77,6 @@ def search(request):
     # defines what happens when there is a POST request
     else:
         return render(request, 'pages/home.html')
-
-def about(request):
-    return render(request, "pages/about.html")
-
-def contact(request):
-    return render(request, "pages/contact.html")
-
 
 def cards_view(request):
     # Your view logic goes here if needed
@@ -137,17 +121,6 @@ the search bar in views.py
 def product_comparison_table(request):
     products = Product.objects.all()
     return render(request, 'pages/test.html', {'products': products})
-
-def command(request, id, cmd):
-    for card in cards:
-        if id == card["id"]:
-            if cmd == "delete":
-                cards.remove(card)
-            if cmd == "color":
-                colors = ["red", "blue", "green", "silver", "brown"]
-                card["color"] = colors[(colors.index(card["color"]) + 1) % len(colors)]
-    return redirect("/")
-
 
 def test(request):
     return render(request, "pages/test.html")
