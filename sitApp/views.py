@@ -32,13 +32,7 @@ def home(request):
     # context = {
     #     'data': data
     # }
-<<<<<<< HEAD
-    #products = Product.objects.all()
-    #return render(request, 'pages/test.html', {'products': products})
-    return render(request, "pages/home.html")
-=======
     return render(request, "pages/home.html", {'products':products, 'search_query':search_query})
->>>>>>> 5c1ceba0b22d03834c59c4315d35e615e95ad40c
 
 def comparison(request, product_list=None):
     return render(request, "pages/comparison.html")
@@ -135,15 +129,12 @@ the search bar in views.py
 
 
 
-<<<<<<< HEAD
 def comparison(request):
     return render(request, "pages/comparison.html", context={"cards": cards})
 
 def product_comparison_table(request):
     products = Product.objects.all()
     return render(request, 'pages/test.html', {'products': products})
-=======
->>>>>>> 5c1ceba0b22d03834c59c4315d35e615e95ad40c
 
 def command(request, id, cmd):
     for card in cards:
