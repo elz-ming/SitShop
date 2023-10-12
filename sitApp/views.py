@@ -21,20 +21,14 @@ def home(request):
     
     page = request.GET.get('page')
     products = paginator.get_page(page)
-    # if 'q' in request.GET:
-    #     q = request.GET['q']
-    #     #data = Data.objects.filter(first_name__icontains=q)
-    #     multiple_q = Q(Q(first_name__icontains=q) | Q(last_name__icontains=q))
-    #     data = Data.objects.filter(multiple_q)
-    # else:
-    #     data = Data.objects.all()
-    # context = {
-    #     'data': data
-    # }
+
     return render(request, "pages/home.html", {'products':products, 'search_query':search_query})
 
 def comparison(request, product_list=None):
-    return render(request, "pages/comparison.html")
+    products = product_list.split(',')
+    products = [Product.objects.get(product_id=x) for x in products]
+
+    return render(request, "pages/comparison.html", {'products':products})
 
 # JingYu, work on this more.
 # Additionally, look at templates/components/comparison.html

@@ -35,7 +35,7 @@
             {% if product.img_src == 'no_src' %}
               <img src="{% static 'img/NoImage.jpg' %}" alt="Default Image">
             {% else %}
-            <img src="{{ product.img_src }}" alt="{{ product.product_name }}">
+              <img src="{{ product.img_src }}" alt="{{ product.product_name }}">
             {% endif %}
           </div>
           <div class="card-body">
@@ -86,17 +86,5 @@
           alert('Please select at least one product before proceeding to checkout.');
       }
   });
-
-  {% comment %} document.addEventListener("DOMContentLoaded", function () {
-    const cards = document.querySelectorAll(".product-card");
-
-    cards.forEach((card) => {
-      card.addEventListener("click", function () {
-        // Toggle the visibility of the buttons within the clicked card
-        const buttons = card.querySelector(".card");
-        buttons.classList.toggle("show-buttons");
-      });
-    });
-  }); {% endcomment %}
 </script>
 {% endblock content %}

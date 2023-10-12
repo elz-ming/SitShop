@@ -1,15 +1,7 @@
-
-{% comment %} {% load static %} {% endcomment %}
+{% extends 'components/base.html' %}
+{% load static %}
 
 {% block content %}
-
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-        integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0"
-        crossorigin="anonymous">
   <h1 class="center">Compare Products</h1>
   <style>
     .center {
@@ -148,10 +140,26 @@
         }
 
 </style>
-</head>
 
-<body>
-  
+<div class="4-products-for-you-to-work-with-JingYu product-cards">
+  {% for product in products %}
+    <div class="product-card" data-product-id="{{ product.product_id }}">
+      <div class="image-container">
+        {% if product.img_src == 'no_src' %}
+          <img src="{% static 'img/NoImage.jpg' %}" alt="Default Image">
+        {% else %}
+          <img src="{{ product.img_src }}" alt="{{ product.product_name }}">
+        {% endif %}
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">{{ product.category }}</h3>
+        <p class="product-name">{{ product.product_name }}</p>
+        <p class="card-text">Price: ${{ product.price }}</p>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
 <div class="container">
   <div class="row flex-items-xs-middle flex-items-xs-center">
     {% for card in cards %}
@@ -185,13 +193,4 @@
 </div>
 
 <a href="{% url 'export_to_pdf' %}" class="cart-btn">Export to PDF</a>
-
-
-</body>
-
-    <!-- <div class="card-body">
-      <a href="#" class="card-link">Card link</a>
-      <a href="#" class="card-link">Another link</a>
-    </div>
-  </div> -->
 {% endblock content %}
