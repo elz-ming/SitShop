@@ -1,3 +1,4 @@
+from itertools import product
 from django.http import HttpResponse
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
@@ -42,7 +43,7 @@ def product_detail(request, product_id):
     return render(request, 'detail.html', {'product': product})
 
 # Export comparison page to pdf
-def export_to_pdf(request):
+def export_to_pdf(request, pisa=None):
     # Replace 'comparison.html' with your HTML template's path
     template_path = 'pages/test.html'
     context = {}  # Add any context data needed for rendering the template
@@ -89,6 +90,8 @@ def cards_view(request):
     # Your view logic goes here if needed
     return render(request, 'pages/cards.html')
 
+import cgi
+
 
 
 
@@ -120,6 +123,12 @@ the search bar in views.py
 
 
 
+def comparison(request):
+    return render(request, "pages/comparison.html", context={"cards": cards})
+
+def product_comparison_table(request):
+    products = Product.objects.all()
+    return render(request, 'pages/test.html', {'products': products})
 
 def command(request, id, cmd):
     for card in cards:
@@ -135,7 +144,4 @@ def command(request, id, cmd):
 def test(request):
     return render(request, "pages/test.html")
 
-def product_comparison_table(request):
-    products = Product.objects.all()
-    return render(request, 'pages/test.html', {'products': products})
 

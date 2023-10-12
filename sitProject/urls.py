@@ -19,9 +19,12 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+from sitApp import views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('sitApp.urls')),
+   path('product_comparison_table/', views.product_comparison_table, name='product_comparison_table')
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
