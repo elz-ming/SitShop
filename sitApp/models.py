@@ -2,6 +2,7 @@ from django.db import models
 
 # Create your models here.
 
+
 class Merchant(models.Model):
 
     class Meta:
@@ -21,6 +22,8 @@ class Merchant(models.Model):
         return self.name
 
 class Product(models.Model):
+
+
 
     class Meta:
         app_label = 'sitApp'
@@ -85,4 +88,3 @@ class Review(models.Model):
     rating = models.FloatField(null=True)
     content = models.TextField(null=True)
     location = models.CharField(max_length=50, null=True)
-

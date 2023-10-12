@@ -1,8 +1,10 @@
+from itertools import product
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-# from .models import Product
-from django.db.models import Q
+from .models import Product
 from django.template.loader import get_template
+
+#from .models import Product
 
 
 # Create your views here.
@@ -20,6 +22,8 @@ def home(request):
     # context = {
     #     'data': data
     # }
+    #products = Product.objects.all()
+    #return render(request, 'pages/test.html', {'products': products})
     return render(request, "pages/home.html")
 
 
@@ -35,7 +39,7 @@ def product_detail(request, product_id):
     return render(request, 'detail.html', {'product': product})
 
 # Export comparison page to pdf
-def export_to_pdf(request):
+def export_to_pdf(request, pisa=None):
     # Replace 'comparison.html' with your HTML template's path
     template_path = 'pages/comparison.html'
     context = {}  # Add any context data needed for rendering the template
@@ -79,6 +83,8 @@ def contact(request):
 def cards_view(request):
     # Your view logic goes here if needed
     return render(request, 'pages/cards.html')
+
+import cgi
 
 
 
@@ -144,6 +150,9 @@ cards = [
 def comparison(request):
     return render(request, "pages/comparison.html", context={"cards": cards})
 
+def product_comparison_table(request):
+    products = Product.objects.all()
+    return render(request, 'pages/test.html', {'products': products})
 
 def command(request, id, cmd):
     for card in cards:
@@ -159,7 +168,4 @@ def command(request, id, cmd):
 def test(request):
     return render(request, "pages/test.html")
 
-def product_comparison_table(request):
-    products = Product.objects.all()
-    return render(request, 'pages/test.html', {'products': products})
 
