@@ -14,9 +14,7 @@
         }
         
         .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 15px;
+        max-width: 1300px;
         display: flex;
         }
 
@@ -33,17 +31,13 @@
 
         /* Left Column */
         .left-column img {
-        width: 100%;
+        width: 80%;
+        height: auto;
         position: absolute;
-        left: 0;
-        top: 0;
-        opacity: 0;
-        transition: all 0.3s ease;
+        padding-left: 30px;
+        padding-top: 80px;
         }
         
-        .left-column img.active {
-        opacity: 1;
-        }
 
         /* Product Description */
         .product-description {
@@ -145,21 +139,27 @@
         text-align: left;
         padding: 8px;
         }
+
+        .descri {
+        word-wrap: break-word; /* Enable word wrapping */
+        max-height: 250px; /* Adjust the max height as needed */
+        overflow: hidden; /* Hide overflowed content */
+      }
     </style>
     
 </header>
   
 <body>
+  <h3 style="text-align: center;">Product Detail</h3>
   <main class="container">
     <!-- Left Column / Headphones Image -->
-    <div class="left-column">
-      {% if product.img_src == 'no_src' %}
-        <img src="{% static 'img/NoImage.jpg' %}" alt="Default Image">
-      {% else %}
-        <img src="{{ product.img_src }}" alt="{{ product.product_name }}">
-      {% endif %}
-    </div>
-    
+      <div class="left-column">
+        {% if product.img_src == 'no_src' %}
+          <img src="{% static 'img/NoImage.jpg' %}" alt="Default Image">
+        {% else %}
+          <img src="{{ product.img_src }}" alt="{{ product.product_name }}">
+        {% endif %}
+      </div>
     
     <!-- Right Column -->
     <div class="right-column">
@@ -167,8 +167,8 @@
       <!-- Product Description -->
       <div class="product-description">
         <span>{{product.category}}</span>
-        <h1>{{product.product_name}}</h1>
-        <p>{{product.description}}</p>
+        <h5>{{product.product_name}}</h5>
+        <p class="descri">{{product.description}}</p>
       </div>
     
       <!-- Product Configuration -->

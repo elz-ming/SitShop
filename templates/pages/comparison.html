@@ -183,24 +183,8 @@
       {% endfor %}
     </div>
   </div>
-  <div class="container">
-    <div class="row flex-items-xs-middle flex-items-xs-center">
-      {% for card in cards %}
-      <div class="col-xs-12 col-md-6 col-lg-4">
-        <div class="card text-xs-center">
-          <div>
-            <img src="{{ card.image }}" class="card-img-top">        
-          </div>
-          <div class="card-body">
-            <h3 class="card-title">{{ product.category }}</h3>
-            <p class="product-name">{{ product.product_name }}</p>
-            <p class="card-text">Price: ${{ product.price }}</p>
-          </div>
-        </div>
-      {% endfor %}
-    </div>
 
-  <a href="{% url 'export_to_pdf' %}" class="cart-btn">Export to PDF</a>
+  <a href="{% url 'generate_pdf' %}" class="cart-btn">Export to PDF</a>
 
   const compareButton = document.querySelector('.compare-button');
   compareButton.addEventListener('click', () => {

@@ -9,7 +9,7 @@ urlpatterns = [
     path('detail/<str:pid>/', views.detail, name='detail'), 
     path('comparison/<str:product_list>', views.comparison, name='comparison'),
     # export pdf from comparison page
-    path('export_pdf/', views.export_to_pdf, name='export_to_pdf'),
+    path('generate-pdf/', views.generate_pdf, name='generate_pdf'),
 ]
 
 
