@@ -169,3 +169,15 @@ input[type=submit]:hover {
   background-color: #f2f2f2;
   padding: 20px;
 }
+
+.product-cardview {
+  border: 1px solid #ccc; /* Add a border for the card */
+  border-radius: 10px; /* Add border-radius for rounded corners */
+  padding: 20px; /* Add padding to increase card size */
+  margin-bottom: 10px; /* Add margin between cards */
+}
+
+.productimage{
+  width: 100%; /* Make the image fill the container */
+  overflow: hidden;
+}

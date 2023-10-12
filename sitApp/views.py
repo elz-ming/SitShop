@@ -1,11 +1,12 @@
 from itertools import product
 from django.http import HttpResponse
 from django.core.paginator import Paginator
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Product
 from django.db.models import Q
 from django.template.loader import get_template
 from xhtml2pdf import pisa
+import cgi
 
 # Create your views here.
 
@@ -33,14 +34,10 @@ def comparison(request, product_list=None):
 
 # JingYu, work on this more.
 # Additionally, look at templates/components/comparison.html
-def detail(request):
-    return render(request, "pages/detail.html")
 
-
-# When we get the product id
 def product_detail(request, product_id):
-    # Your logic to retrieve product details based on product_id
-    return render(request, 'detail.html', {'product': product})
+    product = get_object_or_404(Product, product_id=product_id)
+    return render(request, 'pages/detail.html', {'product': product})
 
 # Export comparison page to pdf
 def export_to_pdf(request, pisa=None):
@@ -90,7 +87,7 @@ def cards_view(request):
     # Your view logic goes here if needed
     return render(request, 'pages/cards.html')
 
-import cgi
+
 
 
 
@@ -121,25 +118,9 @@ the search bar in views.py
 
 '''
 
-
-
-def comparison(request):
-    return render(request, "pages/comparison.html", context={"cards": cards})
-
 def product_comparison_table(request):
     products = Product.objects.all()
     return render(request, 'pages/test.html', {'products': products})
-
-def command(request, id, cmd):
-    for card in cards:
-        if id == card["id"]:
-            if cmd == "delete":
-                cards.remove(card)
-            if cmd == "color":
-                colors = ["red", "blue", "green", "silver", "brown"]
-                card["color"] = colors[(colors.index(card["color"]) + 1) % len(colors)]
-    return redirect("/")
-
 
 def test(request):
     return render(request, "pages/test.html")
