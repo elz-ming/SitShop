@@ -3,55 +3,44 @@
 {% block content %}
 
   {% include 'components/navigation.html' %}
+ 
+  <div class="search-container">
+    <form method="get">
+      <input type="text" placeholder="Type something..." name="q" value="{{ search_query }}">
+        <button  type="submit"><i class="fa fa-search"></i></button>
+    </form>
+  </div>
+  </div>
+</div>
+  
+
+  
+
+  <br>
   <div class="container">
     <br>
     <div class="about-section" style="padding: 20px; text-align: center; background-color: #474e5d; color: white;">
-      <h1 style="font-weight: bold"> Contact Us Page</h1>
-      <h5 style="font-style:italic">We are the SIT Shop where we specialised in hosting our e-commerce platform for headphones!</h5>
-      <h3 style="text-align:center"></h3>
+      <h1 style="font-weight: bold"> Contact SIT Shop</h1>
+      <h3 style="font-style:italic; text-align:center">We specialize in hosting e-commerce platforms for electronic accessories.</p>
+      <h3 style="text-align:center">Get in Touch</h3>
+ 
     </div>
 
-  <div class="grid-container">
-    <div class="card">6 Shenton Way, #12-11C Tower Two, Singapore 068809</div>
-    <div class="card">+65 6319 0842</div>
-    <div class="card">TheSITshop101@gmail.com</div>
+    <div class="grid-container">
+      <div class="card">
+          <img src="pages/addressicon.png" alt="Address Icon"><br>Office Address: 6 Shenton Way, #12-11C Tower Two, Singapore 068809
+      </div>
+      <div class="card">
+          <img src="pages/phoneicon.png" alt="Phone Icon"><br>Phone: +65 6819 0913
+      </div>
+      <div class="card">
+          <img src="pages/emailicon.png" alt="Email Icon"><br>Email: TheSITshop101@gmail.com
+          
+      </div>
   </div>
-<style>
-    body {font-family: Arial, Helvetica, sans-serif;}
-* {box-sizing: border-box;}
 
-input[type=text], select, textarea {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  margin-top: 6px;
-  margin-bottom: 16px;
-  resize: vertical;
-}
-
-input[type=submit] {
-  background-color: #04AA6D;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-input[type=submit]:hover {
-  background-color: #45a049;
-}
-
-.container {
-  border-radius: 5px;
-  background-color: #f2f2f2;
-  padding: 20px;
-}          
-</style>
 <div class="container">
-  <form action="mailto:alenna.se@gmail.com" method="post">
+  <form action="mailto:TheSITshop101@gmail.com" method="post">
     <label for="fname">First Name</label>
     <input type="text" id="fname" name="firstname" placeholder="Enter first name..">
 
@@ -67,8 +56,15 @@ input[type=submit]:hover {
 
     <label for="subject">Matter of concern (Please indicate your preferred contact)</label>
     <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
-   <h6>Please email us your response. Thank you.</h6>
-  <input type="submit" name="submit_button" value="Submit">
+    
+
+  <input type="submit" value="Submit Your Enquiry">
+  
+
+  {% comment %} {% if message %}
+  <div class="error">{{ message }}</div>
+{% endif %} {% endcomment %}
+
 </form>
   </form>
 </div>

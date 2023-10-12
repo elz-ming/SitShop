@@ -1,12 +1,14 @@
 from itertools import product
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 from .models import Product
 from django.db.models import Q
 from django.template.loader import get_template
 from xhtml2pdf import pisa
-
+import requests
+import uuid
+challenge = uuid.uuid4().hex
 # Create your views here.
 
 # Alenna, work on this more.
@@ -129,8 +131,8 @@ the search bar in views.py
 
 
 
-def comparison(request):
-    return render(request, "pages/comparison.html", context={"cards": cards})
+# def comparison(request):
+#     return render(request, "pages/comparison.html", context={"cards": cards})
 
 def product_comparison_table(request):
     products = Product.objects.all()
@@ -149,5 +151,83 @@ def command(request, id, cmd):
 
 def test(request):
     return render(request, "pages/test.html")
+
+def form_view(request):
+  # Validate the form
+  if contact.is_valid():
+    # Redirect the user to the challenge response test view
+    return HttpResponseRedirect('/challenge_response_test')
+
+  # Display the form again
+  return render(request, 'contact.html', {'contact':contact})
+
+
+def challenge_response_test_view(request):
+  # Generate a random challenge
+  challenge = uuid.uuid4().hex
+  # Save the challenge in the session
+  request.session['challenge'] = challenge
+  # Get the user's response
+  response = request.POST.get('response')
+   # If the response is correct, allow the user to submit the form
+  if response == challenge:
+    # Process the form submission
+    return HttpResponseRedirect('/success')
+   # Otherwise, display an error message
+  return render(request, 'error.html', message='Challenge-response test failed.')
+
+
+def verify_challenge_response(request):
+  # Get the challenge from the session
+  challenge = request.session.get('challenge')
+
+  # Get the user's response
+  response = request.POST.get('response')
+
+  # If the response is correct, allow the user to submit the form
+  if response == challenge:
+    return HttpResponseRedirect('/success')
+
+  # Otherwise, display an error message
+  return render(request, 'pages/error.html', message='Challenge-response test failed.')
+
+def contact_form_view(request):
+  # Validate the form
+  if contact.is_valid():
+    # Redirect the user to the challenge response test view
+    return HttpResponseRedirect('/challenge_response_test')
+
+  # Display the form again
+  return render(request, 'contact_form.html', {'contact': contact})
+
+
+#   if not request.form.get('not_a_bot'):
+#     return render(request, 'error.html', message='You must agree that you are not a bot to proceed.')
+
+#   # Verify that the user is human using a CAPTCHA service
+
+#   # If the CAPTCHA verification is successful, allow the user to proceed
+#   return HttpResponseRedirect('/success')
+
+#   # Otherwise, display an error message and prevent the user from proceeding
+#   return render(request, 'error.html', message='CAPTCHA verification failed.')
+
+# def verify_captcha(captcha_response):
+#   # Replace this with the URL of your CAPTCHA service
+#   captcha_url = 'https://example.com/captcha/verify'
+
+#   # Replace this with your CAPTCHA service's API key
+#   captcha_api_key = 'YOUR_API_KEY'
+
+#   response = requests.post(captcha_url, data={
+#     'response': captcha_response,
+#     'api_key': captcha_api_key
+#   })
+
+#   if response.status_code == 200:
+#     return response.json()['success']
+#   else:
+#     return False
+  
 
 

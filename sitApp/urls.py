@@ -15,6 +15,9 @@ urlpatterns = [
     
 
     path('test/', views.test, name='test'),
+    path('challenge_response_test_view', views.challenge_response_test_view, name='challenge_response_test_view'),
+    path('verify_challenge_response', views.verify_challenge_response, name='verify_challenge_response'),
+    path('form_view', views.form_view, name='form_view'),
     
 ]
 
