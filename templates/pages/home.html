@@ -4,7 +4,7 @@
 {% block content %}
 
   {% include 'components/navigation.html' %}
-
+  
   <form method="get">
     <input type="text" name="q" placeholder="Search for products" value="{{ search_query }}">
     <button type="submit">Search</button>
@@ -30,7 +30,7 @@
 
   <div class="product-cards">
     {% for product in products %}
-        <div class="product-card">
+        <div class="product-card" data-product-id="{{ product.product_id }}">
           <div class="image-container">
             {% if product.img_src == 'no_src' %}
               <img src="{% static 'img/NoImage.jpg' %}" alt="Default Image">
@@ -47,30 +47,37 @@
     {% endfor %}
   </div>
 
+  <div class="compare-button">
+    Compare
+  </div>
+
 <script>
   const productCards = document.querySelectorAll('.product-card');
   const maxItems = 4;
   let selectedProducts = [];
   
   productCards.forEach(card => {
-    card.addEventListener('click', () ==> {
+    card.addEventListener('click', () => {
       const productId = card.getAttribute('data-product-id');
+      const cardBody = card.querySelector('.card-body');
 
       if (selectedProducts.includes(productId)) {
         // Deselect Product
         selectedProducts = selectedProducts.filter(id => id !== productId);
         card.classList.remove('selected');
-        card.style.backgroundColor = '';
-      } else if {
+        cardBody.style.backgroundColor = '';
+        cardBody.style.border  = '';
+      } else if (selectedProducts.length < maxItems) {
         // Select Product
         selectedProducts.push(productId);
         card.classList.add('selected');
-        card.style.backgroundColor = 'lightblue';
+        cardBody.style.backgroundColor = 'lightblue';
+        cardBody.style.border  = '2px solid blue';
       }
     })
   })
 
-  const compareButton = document.getElementById('checkout-button');
+  const compareButton = document.querySelector('.compare-button');
   compareButton.addEventListener('click', () => {
       if (selectedProducts.length > 0) {
           const selectedProductIds = selectedProducts.join(',');
@@ -80,7 +87,7 @@
       }
   });
 
-  document.addEventListener("DOMContentLoaded", function () {
+  {% comment %} document.addEventListener("DOMContentLoaded", function () {
     const cards = document.querySelectorAll(".product-card");
 
     cards.forEach((card) => {
@@ -90,6 +97,6 @@
         buttons.classList.toggle("show-buttons");
       });
     });
-  });
+  }); {% endcomment %}
 </script>
 {% endblock content %}

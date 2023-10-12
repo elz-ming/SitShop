@@ -37,6 +37,22 @@
   text-overflow: ellipsis;
 }
 
+.selected {
+  border: 2px solid blue;
+}
+
+.compare-button {
+  position: fixed;
+  bottom: 20px; /* Adjust the distance from the bottom as needed */
+  right: 20px; /* Adjust the distance from the right as needed */
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
 * {
   box-sizing: border-box;
 }
