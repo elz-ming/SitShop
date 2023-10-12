@@ -141,56 +141,24 @@
 
 </style>
 
-<div class="4-products-for-you-to-work-with-JingYu product-cards">
-  {% for product in products %}
-    <div class="product-card" data-product-id="{{ product.product_id }}">
-      <div class="image-container">
-        {% if product.img_src == 'no_src' %}
-          <img src="{% static 'img/NoImage.jpg' %}" alt="Default Image">
-        {% else %}
-          <img src="{{ product.img_src }}" alt="{{ product.product_name }}">
-        {% endif %}
-      </div>
-      <div class="card-body">
-        <h3 class="card-title">{{ product.category }}</h3>
-        <p class="product-name">{{ product.product_name }}</p>
-        <p class="card-text">Price: ${{ product.price }}</p>
-      </div>
-    </div>
-  {% endfor %}
-</div>
-
-<div class="container">
-  <div class="row flex-items-xs-middle flex-items-xs-center">
-    {% for card in cards %}
-    <div class="col-xs-12 col-md-6 col-lg-4">
-      <div class="card text-xs-center">
-        <div>
-          <img src="{{ card.image }}" class="card-img-top">        
+  <div class="4-products-for-you-to-work-with-JingYu product-cards">
+    {% for product in products %}
+      <div class="product-card" data-product-id="{{ product.product_id }}">
+        <div class="image-container">
+          {% if product.img_src == 'no_src' %}
+            <img src="{% static 'img/NoImage.jpg' %}" alt="Default Image">
+          {% else %}
+            <img src="{{ product.img_src }}" alt="{{ product.product_name }}">
+          {% endif %}
         </div>
-        <div class="card-block">
-          <h4 class="card-title">{{ card.name }}</h4>
-          <p class="card-text">{{ card.description }}</p>
-          <ul class="list-group">
-            <li class="list-group-item">{{ card.feature1 }}</li>
-            <li class="list-group-item">{{ card.feature2 }}</li>
-            <li class="list-group-item">{{ card.feature3 }}</li>
-            <li class="list-group-item">{{ card.feature4 }}</li>
-          </ul>
-            <ul class="list-group">
-            <li class="list-group-item">First Comparison</li>
-            <li class="list-group-item">Second Comparison</li>
-            <li class="list-group-item">Third Comparison</li>
-          </ul>
-          <a href="{% url 'detail' %}" class="btn btn-gradient mt-2">View Product Details</a>
-          <br>
-          <a href="#" class="btn btn-gradient mt-2">Delete Product</a>
+        <div class="card-body">
+          <h3 class="card-title">{{ product.category }}</h3>
+          <p class="product-name">{{ product.product_name }}</p>
+          <p class="card-text">Price: ${{ product.price }}</p>
         </div>
       </div>
-    </div>
     {% endfor %}
   </div>
-</div>
 
 <a href="{% url 'export_to_pdf' %}" class="cart-btn">Export to PDF</a>
 {% endblock content %}

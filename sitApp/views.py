@@ -6,6 +6,7 @@ from .models import Product
 from django.db.models import Q
 from django.template.loader import get_template
 from xhtml2pdf import pisa
+import cgi
 
 # Create your views here.
 
@@ -25,16 +26,23 @@ def home(request):
 
     return render(request, "pages/home.html", {'products':products, 'search_query':search_query})
 
+def about(request):
+    return render(request, "pages/about.html")
+
+def contact(request):
+    return render(request, "pages/contact.html")
+
+# JingYu, work on this more.
+# Additionally, look at templates/components/comparison.html
 def comparison(request, product_list=None):
     products = product_list.split(',')
     products = [Product.objects.get(product_id=x) for x in products]
 
     return render(request, "pages/comparison.html", {'products':products})
 
-# JingYu, work on this more.
-# Additionally, look at templates/components/comparison.html
-def detail(request):
-    return render(request, "pages/detail.html")
+def detail(request, pid=None):
+    product = Product.objects.get(product_id=pid)
+    return render(request, "pages/detail.html", {'product':product})
 
 
 # When we get the product id
@@ -62,13 +70,6 @@ def export_to_pdf(request, pisa=None):
         return HttpResponse('We had some errors <pre>' + html + '</pre>')
 
     return response
-
-
-
-def welcome(request):
-    return HttpResponse("Welcome to my app!")
-
-
 def search(request):
     # defines what happens when there is a GET request
 
@@ -79,52 +80,9 @@ def search(request):
     else:
         return render(request, 'pages/home.html')
 
-def about(request):
-    return render(request, "pages/about.html")
-
-def contact(request):
-    return render(request, "pages/contact.html")
-
-
 def cards_view(request):
     # Your view logic goes here if needed
     return render(request, 'pages/cards.html')
-
-import cgi
-
-
-
-
-
-
-
-
-'''
-def search_view(request):
-    query = request.GET.get('q')
-    results = []
-
-    if query:
-        results = 'YourModel.objects.filter(your_field__icontains=query)'
-
-    return render(request, 'base.html', {'results': results})
-    # Rest of the view code
-'''
-
-'''
-the search bar in views.py
-<div class="input-group">
-          <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
-          <input type="text" class="form-control" placeholder="Type here...">
-        </div>
-      </div>
-
-'''
-
-
-
-def comparison(request):
-    return render(request, "pages/comparison.html", context={"cards": cards})
 
 def product_comparison_table(request):
     products = Product.objects.all()
@@ -143,5 +101,3 @@ def command(request, id, cmd):
 
 def test(request):
     return render(request, "pages/test.html")
-
-

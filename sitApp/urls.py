@@ -7,15 +7,10 @@ urlpatterns = [
     path('contact/', views.contact, name='contact'),     # The URL and function to display contacts page
     path('detail', views.detail, name='detail'),
     # retrieve product based on the product_id variable
-    path('detail/<int:product_id>/', views.product_detail, name='product_detail'), 
-    path('command/<int:id>/<cmd>', views.command, name="command"),
+    path('detail/<str:pid>/', views.product_detail, name='product_detail'), 
     path('comparison/<str:product_list>', views.comparison, name='comparison'),
     # export pdf from comparison page
     path('export_pdf/', views.export_to_pdf, name='export_to_pdf'),
-    
-
-    path('test/', views.test, name='test'),
-    
 ]
 
 
