@@ -9,7 +9,7 @@
   <div class="container">
     <div class="row">
       {% for product in products %}
-        <div class="col-lg-3 col-md-4 col-sm-6"> <!-- Adjusted column classes for responsiveness -->
+        <div class="col-lg-3 col-md-4 col-sm-6 col-12"> <!-- Adjusted column classes for responsiveness -->
           <div class="product-cardview" data-product-id="{{ product.product_id }}">
             <div class="productimage">
               {% if product.img_src == 'no_src' %}
