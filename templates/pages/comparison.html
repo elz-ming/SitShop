@@ -21,12 +21,12 @@
             <div class="card-body">
               <h3 class="card-title">{{ product.category }}</h3>
               <p class="product-name">{{ product.product_name }}</p>
-              <p class="card-text">Price: ${{ product.price }}</p>
+              <p class="card-text">${{ product.price }}</p>
               
               <!-- First row with 2 columns -->
               <div class="row">
-                <div class="col-6">Average Rating: {{product.avg_rating}}</div>
-                <div class="col-6">Total Rating: {{product.total_rating}}</div>
+                <div class="col-6">Avg: {{product.avg_rating}}</div>
+                <div class="col-6">Norm: {{product.avg_norm_rating}} ({{product.count_norm_rating}})</div>
               </div>
               
               <button onclick="location.href='{% url 'detail' pid=product.product_id %}'">
@@ -35,24 +35,30 @@
             
               
               <!-- Second row with 3 columns -->
-              <div class="row">
-                <div class="col-4">Column 1</div> 
-                <div class="col-4">Column 2</div>
-                <div class="col-4">Column 3</div>
+              <div class="row keywords-sect">
+                <p class="center">Top 3 Positive Words</p>
+                <div class="col-4 keyword pos">{{product.pos_1}}</div> 
+                <div class="col-4 keyword pos">{{product.pos_2}}</div>
+                <div class="col-4 keyword pos">{{product.pos_3}}</div>
               </div>
 
               <!-- Third row with 3 columns -->
-              <div class="row">
-                <div class="col-4">Column 1</div>
-                <div class="col-4">Column 2</div>
-                <div class="col-4">Column 3</div>
+              <div class="row keywords-sect">
+                <p class="center">Top 3 Negative Words</p>
+                <div class="col-4 keyword neg">{{product.neg_1}}</div>
+                <div class="col-4 keyword neg">{{product.neg_2}}</div>
+                <div class="col-4 keyword neg">{{product.neg_3}}</div>
               </div>
 
               <!-- Container for "Reviews Credibility" -->
               <div class="container mt-3">
                 <p class="center">Reviews Credibility</p>
-                <div>
-                  <!-- Leave this empty for now -->
+                <div class="circle-container">
+                  <div class="outer-circle" style="width: 100px; height: 100px; background: conic-gradient(#4CAF50 0% {{ product.credibility_score }}%, transparent 0% 100%);">
+                    <div class="inner-circle">
+                      <div class="circle-text">{{product.credibility_score}}%</div>
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -64,14 +70,5 @@
   </div>
 
   <a href="{% url 'generate_pdf' %}" class="cart-btn">Export to PDF</a>
-
-  <!-- const compareButton = document.querySelector('.compare-button');
-  compareButton.addEventListener('click', () => {
-      if (selectedProducts.length > 0) {
-          const selectedProductIds = selectedProducts.join(',');
-          window.location.href = `/comparison/${selectedProductIds}`;
-      } else {
-          alert('Please select at least one product before proceeding to checkout.');
-      }
-  }); -->
+  
 {% endblock content %}
