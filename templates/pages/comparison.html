@@ -1,197 +1,74 @@
-
-{% comment %} {% load static %} {% endcomment %}
+{% extends 'components/base.html' %}
+{% load static %}
 
 {% block content %}
-
-<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-        integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0"
-        crossorigin="anonymous">
-  <h1 class="center">Compare Products</h1>
-  <style>
-    .center {
-      display: flex;
-      justify-content: center;
-    }
-
-    .dropdown-container {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      margin-bottom: 20px;
-    }
-
-    select{
-      width: 200px;
-    }
-
-    .card-container {
-            display: flex;
-            flex-wrap: wrap;
-        }
-
-        .card {
-            width: 18rem;
-            margin: 10px;
-        }
-
-        .card-body {
-            display: flex;
-            flex-direction: column;
-        }
-    @import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700");
-    body {
-      background-color: #f8f8f8;
-      font-family: "Roboto", sans-serif;
-      font-weight: 300;
-    }
-
-    .row {
-      min-height: 100vh;
-    }
-
-    .card {
-      border: 0;
-      border-radius: 0px;
-      -webkit-box-shadow: 0 3px 0px 0 rgba(0, 0, 0, 0.08);
-      box-shadow: 0 3px 0px 0 rgba(0, 0, 0, 0.08);
-      transition: all 0.3s ease-in-out;
-      padding: 2.25rem 0;
-      position: relative;
-      will-change: transform;
-    }
-    .card:after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 0%;
-      height: 5px;
-      background-color: #57e2b2;
-      transition: 0.5s;
-    }
-    .card:hover {
-      transform: scale(1.05);
-      -webkit-box-shadow: 0 20px 35px 0 rgba(0, 0, 0, 0.08);
-      box-shadow: 0 20px 35px 0 rgba(0, 0, 0, 0.08);
-    }
-    .card:hover:after {
-      width: 100%;
-    }
-    .card .card-header {
-      background-color: white;
-      padding-left: 2rem;
-      border-bottom: 0px;
-    }
-    .card .card-title {
-      margin-bottom: 1rem;
-    }
-    .card .card-block {
-      padding-top: 0;
-    }
-    .card .list-group-item {
-      border: 0px;
-      padding: 0.25rem;
-      color: #808080;
-      font-weight: 300;
-    }
-
-    .display-2 {
-      font-size: 7rem;
-      letter-spacing: -0.5rem;
-    }
-
-    .display-2 .period {
-      font-size: 1rem;
-      color: #b3b3b3;
-      letter-spacing: 0px;
-    }
-
-    .btn {
-      text-transform: uppercase;
-      font-size: 0.75rem;
-      font-weight: 500;
-      color: #a6a6a6;
-      border-radius: 0;
-      padding: 0.75rem 1.25rem;
-      letter-spacing: 1px;
-    }
-
-    .btn-gradient {
-      background-color: #f2f2f2;
-      transition: background 0.3s ease-in-out;
-    }
-    .btn-gradient:hover {
-      color: white;
-      background-color: #089232;
-    }
-
-    .cart-btn {
-        display: inline-block;
-        background-color: #7DC855;
-        border-radius: 6px;
-        font-size: 16px;
-        color: #FFFFFF;
-        text-decoration: none;
-        padding: 12px 30px;
-        transition: all .5s;
-        position:fixed;
-        bottom: 0;
-        right: 0;
-        margin: 10px;
-        }
-    .cart-btn:hover {
-        background-color: #64af3d;
-        }
-
-</style>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/comparison.css' %}">
 </head>
+  <h1 class="center">Compare Products</h1>
+  <div class="container">
+    <div class="row">
+      {% for product in products %}
+        <div class="col-lg-3 col-md-4 col-sm-6 col-12" style="background-color:white"> <!-- Adjusted column classes for responsiveness -->
+          <div class="product-cardview" data-product-id="{{ product.product_id }}">
+            <div class="productimage">
+              {% if product.img_src == 'no_src' %}
+                <img src="{% static 'img/NoImage.jpg' %}" alt="Default Image">
+              {% else %}
+                <img src="{{ product.img_src }}" alt="{{ product.product_name }}">
+              {% endif %}
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">{{ product.category }}</h3>
+              <p class="product-name">{{ product.product_name }}</p>
+              <p class="card-text">${{ product.price }}</p>
+              
+              <!-- First row with 2 columns -->
+              <div class="row rating">
+                <div class="col-12">Shopee Rating: {{product.avg_rating}}</div>
+                <div class="col-12">Normalized Rating: {{product.avg_norm_rating}} ({{product.count_norm_rating}})</div>
+              </div>
+              
+              <button onclick="location.href='{% url 'detail' pid=product.product_id %}'">
+                View Details
+              </button>
+            
+              
+              <!-- Second row with 3 columns -->
+              <div class="row keywords-sect">
+                <p class="center">Top 3 Positive Words</p>
+                <div class="col-4 keyword pos">{{product.pos_1}}</div> 
+                <div class="col-4 keyword pos">{{product.pos_2}}</div>
+                <div class="col-4 keyword pos">{{product.pos_3}}</div>
+              </div>
 
-<body>
-  
-<div class="container">
-  <div class="row flex-items-xs-middle flex-items-xs-center">
-    {% for card in cards %}
-    <div class="col-xs-12 col-md-6 col-lg-4">
-      <div class="card text-xs-center">
-        <div>
-          <img src="{{ card.image }}" class="card-img-top">        
+              <!-- Third row with 3 columns -->
+              <div class="row keywords-sect">
+                <p class="center">Top 3 Negative Words</p>
+                <div class="col-4 keyword neg">{{product.neg_1}}</div>
+                <div class="col-4 keyword neg">{{product.neg_2}}</div>
+                <div class="col-4 keyword neg">{{product.neg_3}}</div>
+              </div>
+
+              <!-- Container for "Reviews Credibility" -->
+              <div class="container mt-3">
+                <p class="center">Reviews Credibility</p>
+                <div class="circle-container">
+                  <div class="outer-circle" style="width: 100px; height: 100px; background: conic-gradient(#4CAF50 0% {{ product.credibility_score }}%, transparent 0% 100%);">
+                    <div class="inner-circle">
+                      <div class="circle-text">{{product.credibility_score}}%</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
         </div>
-        <div class="card-block">
-          <h4 class="card-title">{{ card.name }}</h4>
-          <p class="card-text">{{ card.description }}</p>
-          <ul class="list-group">
-            <li class="list-group-item">{{ card.feature1 }}</li>
-            <li class="list-group-item">{{ card.feature2 }}</li>
-            <li class="list-group-item">{{ card.feature3 }}</li>
-            <li class="list-group-item">{{ card.feature4 }}</li>
-          </ul>
-            <ul class="list-group">
-            <li class="list-group-item">First Comparison</li>
-            <li class="list-group-item">Second Comparison</li>
-            <li class="list-group-item">Third Comparison</li>
-          </ul>
-          <a href="{% url 'detail' %}" class="btn btn-gradient mt-2">View Product Details</a>
-          <br>
-          <a href="#" class="btn btn-gradient mt-2">Delete Product</a>
-        </div>
-      </div>
+      {% endfor %}
     </div>
-    {% endfor %}
   </div>
-</div>
 
-<a href="{% url 'export_to_pdf' %}" class="cart-btn">Export to PDF</a>
-
-
-</body>
-
-    <!-- <div class="card-body">
-      <a href="#" class="card-link">Card link</a>
-      <a href="#" class="card-link">Another link</a>
-    </div>
-  </div> -->
+  <a href="{% url 'generate_pdf' %}" class="cart-btn">Export to PDF</a>
+  
 {% endblock content %}

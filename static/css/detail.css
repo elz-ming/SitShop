@@ -1,0 +1,151 @@
+/* Basic Styling */
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+.container {
+    max-width: 1300px;
+    display: flex;
+    margin: 0 auto; /* Center the content */
+    padding: 20px;
+}
+
+/* Columns */
+.left-column {
+    width: 65%;
+    position: relative;
+}
+
+.right-column {
+    width: 35%;
+    margin-top: 60px;
+}
+
+/* Left Column */
+.left-column img {
+  width: 100%; /* Adjusted for responsiveness */
+  max-width: 80%; /* Limit the maximum width */
+  padding-top: 60px;
+  height: auto;
+  position: relative;
+  margin-bottom: 20px; /* Adjusted for spacing */
+}
+
+/* Product Description */
+.product-description {
+    border-bottom: 1px solid #E1E8EE;
+    margin-bottom: 20px;
+}
+
+.product-description span {
+    font-size: 12px;
+    color: #358ED7;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.product-description h5 {
+    font-size: 24px; /* Adjusted for responsiveness */
+    color: #43484D;
+    margin-bottom: 10px; /* Adjusted for spacing */
+}
+
+.product-description p {
+    font-size: 16px;
+    color: #86939E;
+    line-height: 24px;
+}
+
+/* Product Color */
+.product-color {
+    margin-bottom: 20px;
+}
+
+/* Cable Configuration */
+.cable-config {
+    border-bottom: 1px solid #E1E8EE;
+    margin-bottom: 20px;
+}
+
+/* Product Price */
+.product-price {
+    font-size: 22px; /* Adjusted for responsiveness */
+    font-weight: 500; /* Adjusted for emphasis */
+    color: #43474D;
+    margin-bottom: 20px; /* Adjusted for spacing */
+}
+
+.cart-btn {
+    display: inline-block;
+    background-color: #7DC855;
+    border-radius: 6px;
+    font-size: 16px;
+    color: #FFFFFF;
+    text-decoration: none;
+    padding: 12px 30px;
+    transition: all .5s;
+}
+
+.cart-btn:hover {
+    background-color: #64af3d;
+}
+
+/* Responsive */
+@media (max-width: 940px) {
+    .container {
+        flex-direction: column;
+        margin-top: 20px; /* Adjusted for spacing */
+    }
+
+    .left-column,
+    .right-column {
+        width: 100%;
+    }
+
+    .left-column img {
+        width: 100%;
+        top: 0;
+    }
+
+    .product-description h5 {
+        font-size: 20px; /* Adjusted for responsiveness */
+    }
+
+    .product-price {
+        font-size: 18px; /* Adjusted for responsiveness */
+    }
+}
+
+@media (max-width: 535px) {
+    .left-column img {
+        width: 100%;
+    }
+
+    .product-description h5 {
+        font-size: 18px; /* Adjusted for responsiveness */
+    }
+
+    .product-price {
+        font-size: 16px; /* Adjusted for responsiveness */
+    }
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+.product-description p.descri {
+    display: none;
+}

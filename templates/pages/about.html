@@ -1,84 +1,81 @@
 {% extends 'components/base.html' %}
 
 {% block content %}
-  
-  {% include 'components/navigation.html' %}
-  <div class="container">
-      <div style="padding-left:16px">
-	<br>
-	<br>
-	<br>
-          
-	<div class="about-section" style="padding: 30px; text-align: center; background-color: #474e5d; color: white;">
-		<h1 style="font-weight: bold"> About Us Page</h1>
-		<h5 style="font-style:italic">We are the SIT Shop where we specialised in hosting our e-commerce platform for headphones!</h5>
 
-		<h3 style="text-align:center">Two Major Teams: Data Team and GUI Team</h3>
-	</div>
-  
-	<br>
+{% include 'components/navigation.html' %}
 
-	<div class="row">
-		<div class="column" style="float: left; width: 33.3%; margin-bottom: 16px; padding: 0 8px;">
-			<div class="card" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); margin: 8px;">
-				<img alt="Edmund" src="/w3images/team1.jpg" style="width:100%">
-				<div class="container" style="padding: 0 16px;">
-					<h2>Edmund Lin</h2>
-					<p class="title">Project Leader</p>
-					<p>Overseeing of responsibilities of the GUI Team and Data Team</p>
-					<p>Lizhenming32@example.com</p>
-				</div>
-			</div>
-		</div>
+  <br>
+  <div class="hero-section">
+    <h1> About Shopee Zero</h1>
+    <h3> Inspired by GPT-Zero and Mule-Zero</h3>
+    <br>
+    
+  </div>
 
-		<div class="column" style="float: left; width: 33.3%; margin-bottom: 16px; padding: 0 8px;">
-			<div class="card" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); margin: 8px;">
-				<img alt="Rachel" src="/w3images/team2.jpg" style="width:100%">
-				<div class="container" style="padding: 0 16px;">
-					<h2>Rachel Wan</h2>
-					<p class="title">Data Team</p>
-					<p>Web scraping, data analysis and data visualization</p>
-					<p>Rachel54@example.com</p>
-				</div>
-			</div>
-		</div>
+  <div class="about-section">
+    <h2>Our Story</h2>
+    <br>
+    <p>Shopee Zero was founded in 2023 by a team of passionate entrepreneurs from SIT who want to make it easier for e-commerce businesses. 
+      We believe that everyone should have access to high-quality electronic accessories, and we are committed to providing our customers with the best possible shopping experience.</p>
+    <br>
+    <br>
+    <br>
+    <h2>Our Team</h2>
+    <br>
+    
+    <div class="row">
 
-		<div class="column" style="float: left; width: 33.3%; margin-bottom: 16px; padding: 0 8px;">
-			<div class="card" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); margin: 8px;">
-				<img alt="Brendan" src="/w3images/team3.jpg" style="width:100%">
-				<div class="container" style="padding: 0 16px;">
-					<h2>Brendan Edward</h2>
-					<p class="title">Data Team</p>
-					<p>Web scraping, data analysis and data visualization</p>
-					<p>Brendan71@example.com</p>
-				</div>
-			</div>
-		</div>
-	</div>
+      <div class="column">
+        <div class="cardcolumn">
+          <img src="rachel.jpg" alt="Rachel Wan Image">
+          <h3 id="user">Rachel Wan</h3>
+          <p class="title">Data Head</p>
+          <h4>Web Scraping Specialist and Sentiment Analyst</h4>
+        </div>
+      </div>
 
-	<div class="row">
-		<div class="column" style="float: left; width: 33.3%; margin-bottom: 16px; padding: 0 8px;">
-			<div class="card" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); margin: 8px;">
-				<img alt="Alenna" src="/w3images/team2.jpg" style="width:100%">
-				<div class="container" style="padding: 0 16px;">
-					<h2>Alenna New</h2>
-					<p class="title">Graphical User Interface Team</p>
-					<p>Web application development and database integration</p>
-					<p>Alenna11@example.com</p>
-				</div>
-			</div>
-		</div>
-	
-		<div class="column" style="float: left; width: 33.3%; margin-bottom: 16px; padding: 0 8px;">
-			<div class="card" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); margin: 8px;">
-				<img alt="JingYu" src="/w3images/team2.jpg" style="width:100%">
-				<div class="container" style="padding: 0 16px;">
-					<h2>Jing Yu</h2>
-					<p class="title">Graphical User Interface Team</p>
-					<p>Web application development and database integration</p>
-					<p>Jingyu34@example.com</p>
-				</div>
-			</div>
-		</div>
-	</div>
+      <div class="column">
+        <div class="cardcolumn">
+          <img src="edmund.jpg" alt="Edmund Lin Image">
+          <h3 id="user">Edmund Lin</h3>
+          <p class="title">Project Leader</p>
+          <h4>Full Stack Generalist and Data Science and Analysis</h4>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="cardcolumn">
+          <img src="brendan.jpg" alt="Brendan Edward Image">
+          <h3 id="user">Brendan Edward</h3>
+          <p class="title">Data Assistant</p>
+          <h4>Web Scraping Specialist and Data Analyst</h4>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="cardcolumn">
+          <img src="alenna.jpg" alt="Alenna New Image">
+          <h3 id="user">Alenna New</h3>
+          <p class="title">Graphical User Interface Developer</p>
+          <h4>Front End Developer and Database Developer</h4>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="cardcolumn">
+          <img src="jingyu.jpg" alt="Jing Yu Image">
+          <h3 id="user">Jing Yu</h3>
+          <p class="title">Graphical User Interface Developer</p>
+          <h4>Front End Developer and Back End Developer</h4>
+        </div>
+      </div>
+    </div>
+    <br>
+   
+   
+    <br>
+    <h2>Contact Us</h2>
+    <br>
+    <p>If you have any questions or would like to learn more about Shopee Zero, please feel free to contact us at <a href="mailto:shopeezero101@gmail.com">shopeezero101@gmail.com</a></p>
+  </div>
 {% endblock %}
