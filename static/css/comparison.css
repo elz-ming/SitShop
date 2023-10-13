@@ -3,6 +3,7 @@
   justify-content: center;
 }
 
+
 .dropdown-container {
   display: flex;
   flex-direction: row;
@@ -37,7 +38,7 @@ body {
 }
 
 .row {
-  min-height: 10vh;
+  min-height: 5vh;
 }
 
 .card {
@@ -195,4 +196,8 @@ body {
 
 .neg {
   background-color: #F44336;
+}
+
+.rating {
+  font-size: small;
 }
