@@ -1,4 +1,3 @@
-{% extends 'components/base.html' %}
 {% load static %}
 
 {% block content %}
@@ -20,15 +19,12 @@
     	 <div class="well profile">
             <div class="col-sm-12">
                 <div class="col-xs-12 col-sm-8">
-                    <h3>Nicole Pearson</h3>
-                    <p><strong>About: </strong> Web Designer / UI. </p>
-                    <p><strong>Hobbies: </strong> Read, out with friends, listen to music, draw and learn new things. </p>
-                    <p><strong>Skills: </strong>
-                        <span class="tags">html5</span> 
-                        <span class="tags">css3</span>
-                        <span class="tags">jquery</span>
-                        <span class="tags">bootstrap3</span>
-                    </p>
+                    <h3>{{ user.username }}</h3>
+                    <p><strong>Number of Reviews: </strong>{{user.no_review}}</p>
+                    <p><strong>Review List: </strong>{{user.review_list}}</p>
+                    <p><strong>Number of Product: </strong>{{user.no_product}}</p>
+                    <p><strong>Product Dictionary: </strong>{{user.product_dict}}</p>
+                    <p><strong>Mean Rating: </strong>{{user.mean_rating}}</p>
                 </div>             
             </div>            
     	 </div>                 

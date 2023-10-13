@@ -146,8 +146,6 @@ td {
     padding: 8px;
 }
 
-.descri {
-    word-wrap: break-word;
-    max-height: 250px;
-    overflow: hidden;
+.product-description p.descri {
+    display: none;
 }

@@ -24,7 +24,8 @@
             <div class="product-description">
                 <span>{{product.category}}</span>
                 <h5>{{product.product_name}}</h5>
-                <p class="descri">{{product.description}}</p>
+                <p class="descri" id="product-description">{{ product.description|truncatechars:10000 }}</p>
+                <button onclick="toggleDescription()">View More</button>
             </div>
 
             <!-- Product Configuration -->
@@ -68,4 +69,19 @@
         </div>
     </main>
 </body>
+
+<script>
+    function toggleDescription() {
+        var description = document.getElementById('product-description');
+        var button = document.querySelector('button');
+    
+        if (description.style.display === 'none' || description.style.display === '') {
+            description.style.display = 'block';
+            button.textContent = 'View Less';
+        } else {
+            description.style.display = 'none';
+            button.textContent = 'View More';
+        }
+    }
+</script>
 {% endblock %}

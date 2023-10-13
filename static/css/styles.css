@@ -132,3 +132,10 @@ input[type=submit]:hover {
   width: 100%; /* Make the image fill the container */
   overflow: hidden;
 }
+
+.usernametitle {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 200px; /* Adjust the max-width as needed */
+}
