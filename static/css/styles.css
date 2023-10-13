@@ -1,3 +1,4 @@
+/* home.html */
 .product-cards {
   display: flex;
   flex-wrap: wrap;
@@ -53,19 +54,24 @@
   cursor: pointer;
 }
 
+
+/* navigation.html */
 .topnav {
   overflow: hidden;
-  background-color: rgb(201,76,76);
+  background-color: #333;
+  /* background-color: rgb(201,76,76); */
 }
 
 .topnav a {
   float: left;
   display: block;
-  color: black;
+  color: white; 
+  /* color: black; */
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
   font-size: 17px;
+  margin: 0 10px;
 }
 
 .topnav a:hover {
@@ -128,23 +134,13 @@ header {
   align-items: center; /* Center vertically if needed */
 }
 
-.topnav {
-  background-color: #333; /* Change this to your desired background color */
-  /* Add any other styling properties for the topnav */
-}
-
 .nav-container {
   display: flex;
   justify-content: center; /* Center the navigation items horizontally within the container */
   /* Add any other styling properties for the nav-container */
 }
 
-.topnav a {
-  color: white; /* Change the link color to your preference */
-  text-decoration: none; /* Remove underlines from links */
-  margin: 0 10px; /* Add spacing between the links */
-  /* Add any other styling properties for the links */
-}
+
 
 .search-input-container {
   display: flex;
@@ -276,18 +272,19 @@ button#searchbtn {
 }
 
 /* Style for buttons when they are shown */
-.product-buttons.show-buttons {
+.product-buttons {
   display: flex;
   justify-content: space-between; /* Adjust this as needed */
 }
 
 /* Style for the individual buttons */
-.view-details-button {
+.detail-button {
   padding: 5px 10px;
   background-color: #007bff;
   color: #fff;
   border: none;
   cursor: pointer;
+  display: none;
 }
 
 .cancel-button {
@@ -296,6 +293,7 @@ button#searchbtn {
   color: #fff;
   border: none;
   cursor: pointer;
+  display: none;
 }
 
 /* Add more styles as needed */
