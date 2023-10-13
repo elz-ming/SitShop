@@ -25,8 +25,8 @@
               
               <!-- First row with 2 columns -->
               <div class="row rating">
-                <div class="col-4">Avg: {{product.avg_rating}}</div>
-                <div class="col-8">Norm: {{product.avg_norm_rating}} ({{product.count_norm_rating}})</div>
+                <div class="col-12">Shopee Rating: {{product.avg_rating}}</div>
+                <div class="col-12">Normalized Rating: {{product.avg_norm_rating}} ({{product.count_norm_rating}})</div>
               </div>
               
               <button onclick="location.href='{% url 'detail' pid=product.product_id %}'">
