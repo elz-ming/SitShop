@@ -195,5 +195,8 @@ def contact_form_view(request):
 #   else:
 #     return False
   
+def userdetail(request):
+    return render(request, "pages/userdetail.html")
 
-
+def alluser(request):
+    return render(request, "pages/alluser.html")
