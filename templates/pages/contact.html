@@ -3,132 +3,61 @@
 {% block content %}
 
   {% include 'components/navigation.html' %}
- 
-  <div class="search-container">
-    <form method="get">
-      <input type="text" placeholder="Type something..." name="q" value="{{ search_query }}">
-        <button  type="submit"><i class="fa fa-search"></i></button>
-    </form>
-  </div>
-  </div>
-</div>
-  
-
-  
 
   <br>
   <div class="container">
-    <br>
-    <div class="about-section" style="padding: 20px; text-align: center; background-color: #474e5d; color: white;">
-      <h1 style="font-weight: bold"> Contact SIT Shop</h1>
-      <h3 style="font-style:italic; text-align:center">We specialize in hosting e-commerce platforms for electronic accessories.</p>
-      <h3 style="text-align:center">Get in Touch</h3>
- 
-    </div>
 
+    <div class="about-section">
+      <h1> Contact Shopee Zero</h1>
+      <h3>We specialize in hosting e-commerce platforms for electronic accessories.</p>
+     
+    </div>
     <div class="grid-container">
       <div class="card">
-          <img src="pages/addressicon.png" alt="Address Icon"><br>Office Address: 6 Shenton Way, #12-11C Tower Two, Singapore 068809
+          Office Address: 6 Shenton Way, #12-11C Tower Two, Singapore 068809
       </div>
       <div class="card">
-          <img src="pages/phoneicon.png" alt="Phone Icon"><br>Phone: +65 6819 0913
+          Phone: +65 6819 0913
       </div>
       <div class="card">
-          <img src="pages/emailicon.png" alt="Email Icon"><br>Email: TheSITshop101@gmail.com
+          Email: shopeezero101@gmail.com
           
       </div>
   </div>
 
 <div class="container">
-  <form action="mailto:TheSITshop101@gmail.com" method="post">
+  <form action="mailto:shopeezero101@gmail.com" method="post">
     <label for="fname">First Name</label>
     <input type="text" id="fname" name="firstname" placeholder="Enter first name..">
 
     <label for="lname">Last Name</label>
     <input type="text" id="lname" name="lastname" placeholder="Enter last name..">
 
-    <label for="queryselect">Preferred contact Method</label>
+    <label for="queryselect">Preferred Contact Method</label>
     <select id="queryselect" name="queryselect">
       <option value="Email">Email</option>
       <option value="Phone">Phone</option>
       
     </select>
 
-    <label for="subject">Matter of concern (Please indicate your preferred contact)</label>
+    <label for="subject">Matter of concern (Please indicate your preferred contact method)</label>
     <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
     
 
   <input type="submit" value="Submit Your Enquiry">
-  
-
-  {% comment %} {% if message %}
-  <div class="error">{{ message }}</div>
-{% endif %} {% endcomment %}
+ 
 
 </form>
   </form>
 </div>
 </div>
 </body>
-
-<style>
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 20px;
-}
-
-
-.card {
-  background-color: #fff;
-  padding: 20px;
-  box-shadow: 0 0 10px rgba(0,100,0,0.1);
-
-}
-
-
-</style>
-
-
-
-
-
-
 </form>
-</div>
-</div>
+
 <br>
-
-
-<script>
-
-
-
-</script>
-
-
 </body>
 {% endblock %}
 
-{% comment %}
-
-    {% include "includes/footer.html" %}
-
-</div>
-
-{% endcomment %}
-
-
-
-
-<!-- Specific JS goes HERE -->
-{% comment %}
-{% block scripts %}
-
-
-
-{% endblock scripts %}
-{% endcomment %}
 </div>
 
                     </div>
