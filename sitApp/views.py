@@ -1,10 +1,11 @@
+from io import BytesIO
 from itertools import product
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Product
 from django.db.models import Q
-from django.template.loader import get_template
+from django.template.loader import get_template, render_to_string
 from xhtml2pdf import pisa
 import requests
 import uuid
@@ -43,33 +44,52 @@ def comparison(request, product_list=None):
 
     return render(request, "pages/comparison.html", {'products':products})
 
-# JingYu, work on this more.
-# Additionally, look at templates/components/comparison.html
-
 def detail(request, pid):
     product = get_object_or_404(Product, product_id=pid)
     return render(request, 'pages/detail.html', {'product': product})
 
-# Export comparison page to pdf
-def export_to_pdf(request, pisa=None):
-    # Replace 'comparison.html' with your HTML template's path
-    template_path = 'pages/test.html'
-    context = {}  # Add any context data needed for rendering the template
+def render_to_pdf(request, context):
+    html_content = render_to_string('pages/comparison.html', context)
+    result = BytesIO()
+    pdf = pisa.pisaDocument(BytesIO(html_content.encode("UTF-8")), result)
+    if not pdf.err:
+        return result.getvalue()
+    return None
 
-    # Create a Django response object with PDF content
-    response = HttpResponse(content_type='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename="comparison.pdf"'
+def generate_pdf(request, product_ids):
+    # Split the product_ids string into a list of individual IDs
+    product_ids = product_ids.split(',')
 
-    # Find the template and render it to the response
-    template = get_template(template_path)
-    html = template.render(context)
+    # Retrieve products from the database based on the provided product_ids
+    products = [Product.objects.get(product_id=product_id) for product_id in product_ids]
 
-    # Create a PDF from the rendered HTML
-    pisa_status = pisa.CreatePDF(html, dest=response)
-    if pisa_status.err:
-        return HttpResponse('We had some errors <pre>' + html + '</pre>')
+    # Convert queryset to a list of dictionaries
+    products_data = [{'product_id': product.product_id,
+                      'category': product.category,
+                      'product_name': product.product_name,
+                      'avg_rating': product.avg_rating,
+                      'total_rating': product.total_rating,
+                      'total_sold': product.total_sold,
+                      'price': product.price,
+                      'fav_count': product.fav_count,
+                      'qty_avail': product.qty_avail,
+                      'description': product.description,
+                      'img_src': product.img_src} for product in products]
 
-    return response
+    context = {'products': products_data}
+
+    # Generate PDF
+    pdf = render_to_pdf(request, context)
+    if pdf:
+        response = HttpResponse(pdf, content_type='application/pdf')
+        filename = "comparison.pdf"
+        content = "attachment; filename=%s" % filename
+        response['Content-Disposition'] = content
+        return response
+    return HttpResponse("Error generating PDF", status=400)
+
+
+
 def search(request):
     # defines what happens when there is a GET request
 
