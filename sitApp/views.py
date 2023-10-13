@@ -194,9 +194,10 @@ def contact_form_view(request):
 #     return response.json()['success']
 #   else:
 #     return False
-  
-def userdetail(request):
-    return render(request, "pages/userdetail.html")
+
+def userdetail(request, userid):
+    user = get_object_or_404(User, username=userid)
+    return render(request, 'pages/userdetail.html', {'user': user})
 
 def alluser(request):
     all_users  = User.objects.all()
