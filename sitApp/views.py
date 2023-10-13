@@ -3,7 +3,7 @@ from itertools import product
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Product
+from .models import Product, User
 from django.db.models import Q
 from django.template.loader import get_template, render_to_string
 from xhtml2pdf import pisa
@@ -199,4 +199,25 @@ def userdetail(request):
     return render(request, "pages/userdetail.html")
 
 def alluser(request):
-    return render(request, "pages/alluser.html")
+    all_users  = User.objects.all()
+    search_query  = request.GET.get('q')
+
+    if search_query:
+        all_users = all_users.filter(username__icontains=search_query)
+
+    paginator =  Paginator(all_users, 60)
+    
+    page = request.GET.get('page')
+    users = paginator.get_page(page)
+
+    return render(request, "pages/alluser.html", {'users':users, 'search_query':search_query})
+
+def search1(request):
+    # defines what happens when there is a GET request
+
+    if request.method == "GET":
+        title = request.GET.get("q")
+        return render(request, 'pages/alluser.html')
+    # defines what happens when there is a POST request
+    else:
+        return render(request, 'pages/alluser.html')

@@ -1,0 +1,115 @@
+{% extends 'components/base.html' %}
+{% load static %}
+
+{% block content %}
+  {% include 'components/navigation.html' %}
+  
+  {% comment %} <form method="get">
+    <input id ="searchbar" type="text" name="q" placeholder="Type something.." value="{{ search_query }}">
+    <button id="searchbtn" type="submit">Search</button>
+  </form> {% endcomment %}
+
+
+  {% comment %} <div class="search-container">
+    <form method="get">
+        <div class="search-input-container">
+            <input id="searchbar" type="text" name="q" placeholder="Type something.." value="{{ search_query }}">
+            <button id="searchbtn" type="submit" class="fa fa-search"></button>
+        </div>
+    </form> {% endcomment %}
+
+    <div class="search-container">
+      <form method="get">
+        <input type="text" placeholder="Type something..." name="q" value="{{ search_query }}">
+          <button  type="submit"><i class="fa fa-search"></i></button>
+      </form>
+    </div>
+    </div>
+</div>
+
+  <div class="pagination">
+    <span class="step-links">
+        {% if users.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ users.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current-page">
+            Page {{ users.number }} of {{ users.paginator.num_pages }}.
+        </span>
+
+        {% if users.has_next %}
+            <a href="?page={{ users.next_page_number }}">next</a>
+            <a href="?page={{ users.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+  </div>
+
+  <div class="product-cards">
+    {% for user in users %}
+        <div class="product-card" data-product-id="{{ user.username }}">
+          <div class="card-body">
+            <h3 class="card-title" style="text-wrap: wrap;">{{ user.username }}</h3>
+            <p class="product-name">{{ user.no_review }}</p>
+            <p class="card-text">Price: ${{ product.price }}</p>
+            <!-- Add buttons here (hidden by default) -->
+            <div class="product-buttons">
+              <button class="detail-button" onclick="location.href='{% url 'detail' pid=user.username %}'">View Details</button>
+              <button class="cancel-button">Cancel</button>
+            </div>
+          </div>
+        </div>
+    {% endfor %}
+  </div>
+
+  <div class="compare-button">
+    Compare
+  </div>
+
+<script>
+  const productCards = document.querySelectorAll('.product-card');
+  const maxItems = 4;
+  let selectedProducts = [];
+  
+  productCards.forEach(card => {
+    card.addEventListener('click', () => {
+      const productId = card.getAttribute('data-product-id');
+      const cardBody = card.querySelector('.card-body');
+
+      if (selectedProducts.includes(productId)) {
+        // Deselect Product
+        selectedProducts = selectedProducts.filter(id => id !== productId);
+        card.classList.remove('selected');
+        cardBody.style.backgroundColor = '';
+        cardBody.style.border  = '';
+      } else if (selectedProducts.length < maxItems) {
+        // Select Product
+        selectedProducts.push(productId);
+        card.classList.add('selected');
+        cardBody.style.backgroundColor = 'lightblue';
+        cardBody.style.border  = '2px solid blue';
+      }
+      
+      const detailButton = card.querySelector('.detail-button');
+      const cancelButton = card.querySelector('.cancel-button');
+
+      if (selectedProducts.includes(productId)) {
+        detailButton.style.display = 'block';
+        cancelButton.style.display = 'block';
+      } else {
+        detailButton.style.display = 'none';
+        cancelButton.style.display = 'none';
+      }
+    });
+  });
+  const compareButton = document.querySelector('.compare-button');
+  compareButton.addEventListener('click', () => {
+      if (selectedProducts.length > 0) {
+          const selectedProductIds = selectedProducts.join(',');
+          window.location.href = `/comparison/${selectedProductIds}`;
+      } else {
+          alert('Please select at least one product before proceeding to checkout.');
+      }
+  });
+</script>
+{% endblock content %}
