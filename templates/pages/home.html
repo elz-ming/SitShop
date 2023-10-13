@@ -61,9 +61,9 @@
             <p class="card-text">Price: ${{ product.price }}</p>
             <!-- Add buttons here (hidden by default) -->
             <div class="product-buttons">
-              <button class="view-details-button">View Details</button>
+              <button class="detail-button" onclick="location.href='{% url 'detail' pid=product.product_id %}'">View Details</button>
               <button class="cancel-button">Cancel</button>
-          </div>
+            </div>
           </div>
         </div>
     {% endfor %}
@@ -96,11 +96,19 @@
         cardBody.style.backgroundColor = 'lightblue';
         cardBody.style.border  = '2px solid blue';
       }
-    })
-  })
+      
+      const detailButton = card.querySelector('.detail-button');
+      const cancelButton = card.querySelector('.cancel-button');
 
-  
-
+      if (selectedProducts.includes(productId)) {
+        detailButton.style.display = 'block';
+        cancelButton.style.display = 'block';
+      } else {
+        detailButton.style.display = 'none';
+        cancelButton.style.display = 'none';
+      }
+    });
+  });
   const compareButton = document.querySelector('.compare-button');
   compareButton.addEventListener('click', () => {
       if (selectedProducts.length > 0) {
