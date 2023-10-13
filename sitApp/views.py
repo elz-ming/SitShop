@@ -8,6 +8,8 @@ from django.template.loader import get_template
 from xhtml2pdf import pisa
 import requests
 import uuid
+import cgi
+
 challenge = uuid.uuid4().hex
 # Create your views here.
 
@@ -82,36 +84,7 @@ def cards_view(request):
     # Your view logic goes here if needed
     return render(request, 'pages/cards.html')
 
-import cgi
 
-
-
-
-
-
-
-
-'''
-def search_view(request):
-    query = request.GET.get('q')
-    results = []
-
-    if query:
-        results = 'YourModel.objects.filter(your_field__icontains=query)'
-
-    return render(request, 'base.html', {'results': results})
-    # Rest of the view code
-'''
-
-'''
-the search bar in views.py
-<div class="input-group">
-          <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
-          <input type="text" class="form-control" placeholder="Type here...">
-        </div>
-      </div>
-
-'''
 
 
 
