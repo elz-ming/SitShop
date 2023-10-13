@@ -2,215 +2,70 @@
 {% load static %}
 
 {% block content %}
-
 <header>
-    <style>
-        /* Basic Styling */
-        html, body {
-        height: 100%;
-        width: 100%;
-        margin: 0;
-        font-family: 'Roboto', sans-serif;
-        }
-        
-        .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 15px;
-        display: flex;
-        }
-
-        /* Columns */
-        .left-column {
-        width: 65%;
-        position: relative;
-        }
-        
-        .right-column {
-        width: 35%;
-        margin-top: 60px;
-        }
-
-        /* Left Column */
-        .left-column img {
-        width: 100%;
-        position: absolute;
-        left: 0;
-        top: 0;
-        opacity: 0;
-        transition: all 0.3s ease;
-        }
-        
-        .left-column img.active {
-        opacity: 1;
-        }
-
-        /* Product Description */
-        .product-description {
-        border-bottom: 1px solid #E1E8EE;
-        margin-bottom: 20px;
-        }
-        .product-description span {
-        font-size: 12px;
-        color: #358ED7;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        text-decoration: none;
-        }
-        .product-description h1 {
-        font-weight: 300;
-        font-size: 52px;
-        color: #43484D;
-        letter-spacing: -2px;
-        }
-        .product-description p {
-        font-size: 16px;
-        font-weight: 300;
-        color: #86939E;
-        line-height: 24px;
-        }
-
-        /* Product Color */
-        .product-color {
-        margin-bottom: 20px;
-        }
-
-        
-        .cable-config {
-        border-bottom: 1px solid #E1E8EE;
-        margin-bottom: 20px;
-        }
-        
-        /* Product Price */
-        .product-price {
-        display: flex;
-        align-items: center;
-        }
-        
-        .product-price span {
-        font-size: 26px;
-        font-weight: 300;
-        color: #43474D;
-        margin-right: 20px;
-        }
-        
-        .cart-btn {
-        display: inline-block;
-        background-color: #7DC855;
-        border-radius: 6px;
-        font-size: 16px;
-        color: #FFFFFF;
-        text-decoration: none;
-        padding: 12px 30px;
-        transition: all .5s;
-        }
-        .cart-btn:hover {
-        background-color: #64af3d;
-        }
-
-        /* Responsive */
-        @media (max-width: 940px) {
-        .container {
-            flex-direction: column;
-            margin-top: 60px;
-        }
-        
-        .left-column,
-        .right-column {
-            width: 100%;
-        }
-        
-        .left-column img {
-            width: 300px;
-            right: 0;
-            top: -65px;
-            left: initial;
-        }
-        }
-        
-        @media (max-width: 535px) {
-        .left-column img {
-            width: 220px;
-            top: -85px;
-        }
-        }
-        table {
-        font-family: arial, sans-serif;
-        border-collapse: collapse;
-        width: 100%;
-        }
-
-        td {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
-        }
-    </style>
-    
+  <link rel="stylesheet" type="text/css" href="{% static 'css/detail.css' %}">
 </header>
-  
+
 <body>
-  <main class="container">
-    <!-- Left Column / Headphones Image -->
-    <div class="left-column">
-      {% if product.img_src == 'no_src' %}
-        <img src="{% static 'img/NoImage.jpg' %}" alt="Default Image">
-      {% else %}
-        <img src="{{ product.img_src }}" alt="{{ product.product_name }}">
-      {% endif %}
-    </div>
-    
-    
-    <!-- Right Column -->
-    <div class="right-column">
-    
-      <!-- Product Description -->
-      <div class="product-description">
-        <span>{{product.category}}</span>
-        <h1>{{product.product_name}}</h1>
-        <p>{{product.description}}</p>
-      </div>
-    
-      <!-- Product Configuration -->
-      <div class="product-configuration">
-    
-        <!-- Product Color -->
-        <div class="product-color">
-          <span>Specification</span>   
+    <h3 style="text-align: center;">Product Detail</h3>
+    <main class="container">
+        <!-- Left Column / Headphones Image -->
+        <div class="left-column">
+            {% if product.img_src == 'no_src' %}
+                <img src="{% static 'img/NoImage.jpg' %}" alt="Default Image">
+            {% else %}
+                <img src="{{ product.img_src }}" alt="{{ product.product_name }}">
+            {% endif %}
         </div>
-    
-        <!-- Cable Configuration -->
-        <div class="cable-config">
-            <table>
-                <tr>
-                  <td>Total Rating :</td>
-                  <td>{{product.total_rating}}</td>
-                </tr>
-                <tr>
-                  <td>Average Rating:</td>
-                  <td>{{product.avg_rating}}</td>
-                </tr>
-                <tr>
-                  <td>Total Sold:</td>
-                  <td>{{product.total_sold}}</td>
-                </tr>
-                <tr>
-                  <td>Quantity Available:</td>
-                  <td>{{product.qty_avail}}</td>
-                </tr>
-                <tr>
-                  <td>Fav Count:</td>
-                  <td>{{product.fav_count}}</td>
-                </tr>
-            </table>
+
+        <!-- Right Column -->
+        <div class="right-column">
+            <!-- Product Description -->
+            <div class="product-description">
+                <span>{{product.category}}</span>
+                <h5>{{product.product_name}}</h5>
+                <p class="descri">{{product.description}}</p>
+            </div>
+
+            <!-- Product Configuration -->
+            <div class="product-configuration">
+                <!-- Product Pricing -->
+                <div class="product-price">
+                    <span>Price: ${{product.price}}</span>
+                </div>
+
+                <!-- Product Color -->
+                <div class="product-color">
+                    <span>Product Details</span>   
+                </div>
+
+                <!-- Cable Configuration -->
+                <div class="cable-config">
+                    <table>
+                        <tr>
+                            <td>Total Rating :</td>
+                            <td>{{product.total_rating}}</td>
+                        </tr>
+                        <tr>
+                            <td>Average Rating:</td>
+                            <td>{{product.avg_rating}}</td>
+                        </tr>
+                        <tr>
+                            <td>Total Sold:</td>
+                            <td>{{product.total_sold}}</td>
+                        </tr>
+                        <tr>
+                            <td>Quantity Available:</td>
+                            <td>{{product.qty_avail}}</td>
+                        </tr>
+                        <tr>
+                            <td>Fav Count:</td>
+                            <td>{{product.fav_count}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
         </div>
-      </div>
-    
-      <!-- Product Pricing -->
-      <div class="product-price">
-        <span>${{product.price}}</span>
-      </div>
-    </div>
-  </main>
+    </main>
 </body>
 {% endblock %}
