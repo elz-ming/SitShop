@@ -50,8 +50,12 @@ class Product(models.Model):
     count_norm_rating = models.IntegerField(null=True)
     merchant_class    = models.CharField(max_length=50, null=True)
     credibility_score = models.IntegerField(null=True)
-    pos_words         = models.TextField(null=True)
-    neg_words         = models.TextField(null=True)
+    pos_1             = models.CharField(max_length=20, null=True)
+    pos_2             = models.CharField(max_length=20, null=True)
+    pos_3             = models.CharField(max_length=20, null=True)
+    neg_1             = models.CharField(max_length=20, null=True)
+    neg_2             = models.CharField(max_length=20, null=True)
+    neg_3             = models.CharField(max_length=20, null=True)
 
 
     def __str__(self):

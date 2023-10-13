@@ -143,8 +143,12 @@ def add_product():
             p.count_norm_rating = product['count_norm_rating']
             p.merchant_class    = product['merchant_class']
             p.credibility_score = product['credibility_score']
-            p.pos_words         = product['positive_keywords']
-            p.neg_words         = product['negative_keywords']
+            p.pos_1             = product['pos_1']
+            p.pos_2             = product['pos_2']
+            p.pos_3             = product['pos_3']    
+            p.neg_1             = product['neg_1']
+            p.neg_2             = product['neg_2']
+            p.neg_3             = product['neg_3']
             p.save()
         except IntegrityError:
             pass
