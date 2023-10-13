@@ -4,10 +4,28 @@
 {% block content %}
   {% include 'components/navigation.html' %}
   
-  <form method="get">
-    <input type="text" name="q" placeholder="Search for products" value="{{ search_query }}">
-    <button type="submit">Search</button>
-  </form>
+  {% comment %} <form method="get">
+    <input id ="searchbar" type="text" name="q" placeholder="Type something.." value="{{ search_query }}">
+    <button id="searchbtn" type="submit">Search</button>
+  </form> {% endcomment %}
+
+
+  {% comment %} <div class="search-container">
+    <form method="get">
+        <div class="search-input-container">
+            <input id="searchbar" type="text" name="q" placeholder="Type something.." value="{{ search_query }}">
+            <button id="searchbtn" type="submit" class="fa fa-search"></button>
+        </div>
+    </form> {% endcomment %}
+
+    <div class="search-container">
+      <form method="get">
+        <input type="text" placeholder="Type something..." name="q" value="{{ search_query }}">
+          <button  type="submit"><i class="fa fa-search"></i></button>
+      </form>
+    </div>
+    </div>
+</div>
 
   <div class="pagination">
     <span class="step-links">
@@ -41,6 +59,11 @@
             <h3 class="card-title">{{ product.category }}</h3>
             <p class="product-name">{{ product.product_name }}</p>
             <p class="card-text">Price: ${{ product.price }}</p>
+            <!-- Add buttons here (hidden by default) -->
+            <div class="product-buttons">
+              <button class="detail-button" onclick="location.href='{% url 'detail' pid=product.product_id %}'">View Details</button>
+              <button class="cancel-button">Cancel</button>
+            </div>
           </div>
         </div>
     {% endfor %}
@@ -73,9 +96,19 @@
         cardBody.style.backgroundColor = 'lightblue';
         cardBody.style.border  = '2px solid blue';
       }
-    })
-  })
+      
+      const detailButton = card.querySelector('.detail-button');
+      const cancelButton = card.querySelector('.cancel-button');
 
+      if (selectedProducts.includes(productId)) {
+        detailButton.style.display = 'block';
+        cancelButton.style.display = 'block';
+      } else {
+        detailButton.style.display = 'none';
+        cancelButton.style.display = 'none';
+      }
+    });
+  });
   const compareButton = document.querySelector('.compare-button');
   compareButton.addEventListener('click', () => {
       if (selectedProducts.length > 0) {

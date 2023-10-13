@@ -1,87 +1,74 @@
 {% extends 'components/base.html' %}
 
 {% block content %}
-  
-  {% include 'components/navigation.html' %}
-  <div class="container">
-      <div style="padding-left:16px">
-          <div class="row">
-          </div>
-          <br>
-          <div class="about-section" style="padding: 30px; text-align: center; background-color: #474e5d; color: white;">
-              <h1 style="font-weight: bold"> About Us Page</h1>
-              <h5 style="font-style:italic">We are the SIT Shop where we specialised in hosting our e-commerce platform for headphones!</h5>
 
-          <h3 style="text-align:center">Two Major Teams: Data Team and GUI Team</h3>
-          </div>
-            <br>
+{% include 'components/navigation.html' %}
 
-          <div class="row">
-              <div class="column" style="float: left; width: 33.3%; margin-bottom: 16px; padding: 0 8px;">
-                  <div class="card" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); margin: 8px;">
-                      <img alt="Edmund" src="/w3images/team1.jpg" style="width:100%">
-                      <div class="container" style="padding: 0 16px;">
-                          <h2>Edmund Lin</h2>
-                          <p class="title">Project Leader</p>
-                          <p>Overseeing of responsibilities of the GUI Team and Data Team</p>
-                          <p>Lizhenming32@example.com</p>
-
-                      </div>
-                  </div>
-              </div>
-
-              <div class="column" style="float: left; width: 33.3%; margin-bottom: 16px; padding: 0 8px;">
-                  <div class="card" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); margin: 8px;">
-                      <img alt="Rachel" src="/w3images/team2.jpg" style="width:100%">
-                      <div class="container" style="padding: 0 16px;">
-                          <h2>Rachel Wan</h2>
-                          <p class="title">Data Team</p>
-                          <p>Web scraping, data analysis and data visualization</p>
-                          <p>Rachel54@example.com</p>
-
-                      </div>
-                  </div>
-              </div>
-
-              <div class="column" style="float: left; width: 33.3%; margin-bottom: 16px; padding: 0 8px;">
-                  <div class="card" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); margin: 8px;">
-                      <img alt="Brendan" src="/w3images/team3.jpg" style="width:100%">
-                      <div class="container" style="padding: 0 16px;">
-                          <h2>Brendan Edward</h2>
-                          <p class="title">Data Team</p>
-                          <p>Web scraping, data analysis and data visualization</p>
-                          <p>Brendan71@example.com</p>
-
-                      </div>
-                  </div>
-              </div>
-          </div>
-
-          <div class="column" style="float: left; width: 33.3%; margin-bottom: 16px; padding: 0 8px;">
-                  <div class="card" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); margin: 8px;">
-                      <img alt="Alenna" src="/w3images/team2.jpg" style="width:100%">
-                      <div class="container" style="padding: 0 16px;">
-                          <h2>Alenna New</h2>
-                          <p class="title">Graphical User Interface Team</p>
-                          <p>Web application development and database integration</p>
-                          <p>Alenna11@example.com</p>
-
-                      </div>
-                  </div>
-              </div>
-
-          <div class="column" style="float: left; width: 33.3%; margin-bottom: 16px; padding: 0 8px;">
-                  <div class="card" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); margin: 8px;">
-                      <img alt="JingYu" src="/w3images/team2.jpg" style="width:100%">
-                      <div class="container" style="padding: 0 16px;">
-                          <h2>Jing Yu</h2>
-                          <p class="title">Graphical User Interface Team</p>
-                          <p>Web application development and database integration</p>
-                          <p>Jingyu34@example.com</p>
-
-                      </div>
-                  </div>
-              </div>
+<div class="search-container">
+    <form method="get">
+      <input type="text" placeholder="Type something..." name="q" value="{{ search_query }}">
+        <button  type="submit"><i class="fa fa-search"></i></button>
+    </form>
   </div>
+  </div>
+</div>
+
+
+  <br>
+  <div class="hero-section">
+    <h1 style="font-weight: bold; text-align:center"> About SIT Shop</h1>
+    <h3 style="font-style:italic; text-align:center">We specialize in hosting e-commerce platforms for electronic accessories.</p>
+    
+  </div>
+
+  <div class="about-section" style="padding: 30px; text-align: center; background-color: #474e5d; color: white;">
+    <h2>Our story</h2>
+    <p style="font-style:italic">The SIT Shop was founded in 2023 by a team of passionate entrepreneurs who wanted to make it easier for e commerce businesses online. We believe that everyone should have access to high-quality electronic accesories, and we are committed to providing our customers with the best possible shopping experience.</p>
+    <br>
+    <br>
+    <h2>Our team</h2>
+    <br>
+    
+    <div class="row">
+      <div class="column"style="float: left; width: 33.3%; margin-bottom: 16px; padding: 0 8px;">
+        
+        <h3>Edmund Lin</h3>
+        <p class="title">Project Leader</p>
+        <h4 style="font-weight:bold">Full Stack Generalist and Data Science and Analysis</h4>
+      </div>
+
+      <div class="column"style="float: left; width: 33.3%; margin-bottom: 16px; padding: 0 8px;">
+       
+        <h3>Rachel Wan</h3>
+        <p class="title">Data Head</p>
+        <h4 style="font-weight:bold">Web Scraping Specialist and Sentiment Analyst</h4>
+      </div>
+
+      <div class="column"style="float: left; width: 33.3%; margin-bottom: 16px; padding: 0 8px;">
+       
+        <h3>Brendan Edward</h3>
+        <p class="title">Data Assistant</p>
+        <h4 style="font-weight:bold">Web Scraping Specialist and Data Analyst</h4>
+      </div>
+
+      <div class="column"style="float: left; width: 33.3%; margin-bottom: 16px; padding: 0 8px;">
+        
+        <h3>Alenna New</h3>
+        <p class="title">Graphical User Interface Developer</p>
+        <h4 style="font-weight:bold">Front End Developer and Database Developer</h4>
+      </div>
+
+      <div class="column"style="float: left; width: 33.3%; margin-bottom: 16px; padding: 0 8px;">
+      
+        <h3>Jing Yu</h3>
+        <p class="title">Graphical User Interface Developer</p>
+        <h4 style="font-weight:bold">Front End Developer and Back End Developer</h4>
+       <br>
+    </div>
+    <br>
+    <br>
+    <br>
+    <h2>Contact us</h2>
+    <p>If you have any questions or would like to learn more about the SIT Shop, please feel free to contact us at <a href="mailto:info@sitshop.com">TheSITshop101@gmail.com</a></p>
   </div>
 {% endblock %}
