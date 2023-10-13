@@ -88,6 +88,7 @@ def input_user():
     end_time = time.time()
     execution_time = end_time - start_time
     print(f"Finish Inputting User Data in {execution_time} seconds!")
+
 def input_review():
     start_time = time.time()
     counter = 0
@@ -118,11 +119,25 @@ def input_review():
     execution_time = end_time - start_time
     print(f"Finish Inputting Review Data in {execution_time} seconds!")
 
+def update_product():
+    start_time = time.time()
+    for index, product in product_df.iterrows():
+        try:
+            p = Product.objects.get(product_id=product['product_id'])
+            p.img_src = product['img_src']
+            p.save()
+        except IntegrityError:
+            pass
+    end_time = time.time()
+    execution_time = end_time - start_time
+    print(f"Finish Updating Product Data in {execution_time} seconds!")
+
 def main():
-    input_merchant()
-    input_product()
-    input_user()
-    input_review()
+    # input_merchant()
+    # input_product()
+    # input_user()
+    # input_review()
+    update_product()
 
 if __name__ == '__main__':
     main()

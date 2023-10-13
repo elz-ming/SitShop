@@ -1,25 +1,77 @@
-* {
-  box-sizing: border-box;
+/* home.html */
+.product-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 0 50px;
 }
 
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
+.product-card {
+  /* Card styles */
+  width: calc(50% - 20px); /* For 2 cards per row on phones */
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  /* Add other styles like padding, background, etc. */
 }
 
+/* Media query for computer screens */
+@media (min-width: 768px) {
+  .product-card {
+      width: calc(20% - 20px); /* For 5 cards per row on computers */
+  }
+}
+
+.image-container {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid #ccc;
+}
+
+.image-container img {
+  max-width: 100%;
+  max-height: auto;
+}
+
+.product-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.selected {
+  border: 2px solid blue;
+} 
+
+.compare-button {
+  position: fixed;
+  bottom: 20px; /* Adjust the distance from the bottom as needed */
+  right: 20px; /* Adjust the distance from the right as needed */
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+/* navigation.html */
 .topnav {
   overflow: hidden;
-  background-color: rgb(201,76,76);
+  background-color: #333;
+  /* background-color: rgb(201,76,76); */
 }
 
 .topnav a {
   float: left;
   display: block;
-  color: black;
+  color: white; 
+  /* color: black; */
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
   font-size: 17px;
+  margin: 0 10px;
 }
 
 .topnav a:hover {
@@ -74,6 +126,92 @@ body {
   .topnav input[type=text] {
     border: 1px solid #ccc;
   }
+}
+
+header {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically if needed */
+}
+
+.nav-container {
+  display: flex;
+  justify-content: center; /* Center the navigation items horizontally within the container */
+  /* Add any other styling properties for the nav-container */
+}
+
+
+
+.search-input-container {
+  display: flex;
+  align-items: center; /* Vertically align input and button */
+  gap: 10px; /* Adjust the spacing between input and button */
+}
+
+
+.search-container {
+  margin: 0 auto;
+  
+  text-align: center;
+}
+input[type="text"] {
+  width: 100%;
+  max-width: 400px;
+}
+.search-container button{
+
+  position: absolute;
+  right: 20;
+  bottom:15;
+  margin: 0;
+  background: #ddd;
+  font-size: 30px;
+  border: none;
+  cursor: pointer;
+}
+
+input#searchbar {
+  width: 100%;
+  text-align: center;
+}
+
+button#searchbtn {
+  margin-left: 10px;
+}
+
+#searchbar{
+  font-size: inherit;
+  border: 0.2em solid #094609;
+  border-radius: 0.2em 0 0 0.2em;
+  
+  outline: 0;
+
+}
+
+
+#searchbtn{
+  border-radius: 3px;
+  background-color: #d31717;
+  color: #fff;
+  font-size: 16px;
+  font-weight:100;
+  padding: 10px 20px;
+  cursor: pointer;
+  width:50%;
+  height:70%;
+}
+#searchbtn:hover{
+  background-color: #176331;
+}
+
+.pagination {
+  margin: 0 auto;
+  justify-content: center;
+}
+
+.pagination .current-page {
+  display: block;
+  margin-top: 10px;
 }
 
 .table {
@@ -133,6 +271,33 @@ body {
   display: flex;
 }
 
+/* Style for buttons when they are shown */
+.product-buttons {
+  display: flex;
+  justify-content: space-between; /* Adjust this as needed */
+}
+
+/* Style for the individual buttons */
+.detail-button {
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  display: none;
+}
+
+.cancel-button {
+  padding: 5px 10px;
+  background-color: #bc510e;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  display: none;
+}
+
+/* Add more styles as needed */
+
 input[type=text], select, textarea {
   width: 100%;
   padding: 12px;
@@ -161,4 +326,50 @@ input[type=submit]:hover {
   border-radius: 5px;
   background-color: #f2f2f2;
   padding: 20px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+}
+
+
+.about {
+  background-color: #474e5d;
+  color: white;
+  padding: 30px;
+  text-align: center;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  margin: 8px;
+}
+
+.header {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.p {
+  font-size: 16px;
+}
+
+.button {
+  background-color: #000;
+  color: white;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+.product-cardview {
+  border: 1px solid #ccc; /* Add a border for the card */
+  border-radius: 10px; /* Add border-radius for rounded corners */
+  padding: 20px; /* Add padding to increase card size */
+  margin-bottom: 10px; /* Add margin between cards */
+}
+
+.productimage{
+  width: 100%; /* Make the image fill the container */
+  overflow: hidden;
 }
