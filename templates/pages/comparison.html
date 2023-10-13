@@ -21,7 +21,7 @@
             <div class="card-body">
               <h3 class="card-title">{{ product.category }}</h3>
               <p class="product-name">{{ product.product_name }}</p>
-              <p class="card-text">Price: ${{ product.price }}</p>
+              <p class="card-text">${{ product.price }}</p>
               
               <!-- First row with 2 columns -->
               <div class="row">
@@ -36,9 +36,9 @@
               
               <!-- Second row with 3 columns -->
               <div class="row">
-                <div class="col-4">Column 1</div> 
-                <div class="col-4">Column 2</div>
-                <div class="col-4">Column 3</div>
+                <div class="col-4">{{ list(product.pos_words) }}</div> 
+                <div class="col-4">{{product.pos_word}}</div>
+                <div class="col-4">{{product.pos_word}}</div>
               </div>
 
               <!-- Third row with 3 columns -->
