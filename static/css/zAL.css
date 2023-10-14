@@ -4,11 +4,11 @@
     background-color: #333;
     /* background-color: rgb(201,76,76); */
   }
-  
+
 .topnav a {
     float: left;
     display: block;
-    color: white; 
+    color: white;
     /* color: black; */
     text-align: center;
     padding: 14px 16px;
@@ -16,28 +16,28 @@
     font-size: 17px;
     margin: 0 10px;
   }
-  
+
 .topnav a:hover {
     background-color: #9d2f2f;
     color: red;
   }
-  
+
 .topnav a.active {
     background-color:hsl(12, 100%, 50%);
     color: white;
   }
-  
+
 .topnav .search-container {
     float: right;
   }
-  
+
 .topnav input[type=text] {
     padding: 6px;
     margin-top: 8px;
     font-size: 17px;
     border: none;
   }
-  
+
 .topnav .search-container button {
     float: right;
     padding: 6px 10px;
@@ -48,16 +48,16 @@
     border: none;
     cursor: pointer;
   }
-  
+
 .topnav .search-container button:hover {
     background: #92a8d1;
   }
-  
+
   @media screen and (max-width: 600px) {
     .topnav .search-container {
       float: none;
     }
-    .topnav a, .topnav input[type=text], 
+    .topnav a, .topnav input[type=text],
     .topnav .search-container button {
       float: none;
       display: block;
@@ -75,7 +75,7 @@
     display: flex;
     justify-content: center; /* Center the navigation items horizontally within the container */
     /* Add any other styling properties for the nav-container */
-  }  
+  }
 
   .about {
     background-color: #474e5d;
@@ -84,12 +84,12 @@
     text-align: center;
   }
 
- 
+
   /*taken from _reboot.scss and _root.scss as well*/
- 
+
   .search-container {
     margin: 0 auto;
-    
+
     text-align: center;
   }
   input[type="text"] {
@@ -97,7 +97,7 @@
     max-width: 400px;
   }
   .search-container button{
-  
+
     position: absolute;
     right: 20;
     bottom:15;
@@ -121,70 +121,145 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    margin: 0 50px;
+
   }
-  
+
   .product-card {
     /* Card styles */
     width: calc(50% - 20px); /* For 2 cards per row on phones */
     margin-bottom: 20px;
     border: 1px solid #ccc;
+    height: 350px; /* Adjust the height as needed */
+    margin: 10px; /* Adjust the margin as needed */
     /* Add other styles like padding, background, etc. */
   }
-  
-  /* Media query for computer screens */
-  @media (min-width: 768px) {
-    .product-card {
-        width: calc(20% - 20px); /* For 5 cards per row on computers */
+
+  @media screen and (max-width: 768px) {
+    .topnav .search-container {
+        float: none;
     }
-    /* Styles for phone or smaller screens */
-    nav li {
+    .topnav a,
+    .topnav input[type=text],
+    .topnav .search-container button {
+        float: none;
         display: block;
-        margin: 10px 0;
+        text-align: left;
+        width: 100%;
+        margin: 0;
+        padding: 14px;
     }
+    .topnav input[type=text] {
+        border: 1px solid #ccc;
+    }
+    .product-card {
+        width: 100%; /* Make the cards take up the full width of the screen on mobile */
+    }
+    .product-name {
+        font-size: 15px; /* Adjust the font size as needed for mobile */
+    }
+}
+
+/* Desktop view */
+.product-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.product-card {
+    width: calc(50% - 20px); /* For 2 cards per row on phones and tablets */
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    width: 700px; /* Adjust the width as needed for desktop */
+    height: 340px; /* Adjust the height as needed for desktop */
+    margin: 5px; /* Adjust the margin as needed for desktop */
+}
+
+/* Add this CSS for mobile view */
+@media screen and (max-width: 768px) {
+    .search-container {
+        float: none;
+        text-align: center; /* Center the search input and button */
+    }
+    .topnav .search-container button {
+        position: static; /* Remove the absolute positioning */
+    }
+    .topnav .search-container input[type="text"] {
+        width: 100%; /* Make the search input take up the full width */
+    }
+    .pagination {
+        text-align: center; /* Center the pagination */
+    }
+    .pagination .step-links {
+        display: block;
+        text-align: center;
+    }
+}
+
+
+@media (min-width: 768px) {
+    .product-card {
+        width: calc(20% - 20px); /* For 5 cards per row on desktop */
+
+    }
+    .product-name {
+        font-size: 15px; /* Adjust the font size as needed for desktop */
+    }
+}
+  .product-name {
+    font-size: 15px; /* Adjust the font size as needed for mobile */
   }
+}
+
+
+  .card-title{
+    font-size: 30px;
+  }
+
 
   /* Style for the individual buttons */
   .detail-button {
-    padding: 5px 10px;
+    font-size:8px;
     background-color: #007bff;
     color: #fff;
     border: none;
     cursor: pointer;
     display: none;
   }
-  
+
   .cancel-button {
-    padding: 5px 10px;
+    font-size:8px;
     background-color: #bc510e;
     color: #fff;
     border: none;
     cursor: pointer;
     display: none;
   }
-  
-  
+
+
   .image-container {
     max-width: 100%;
     height: auto;
     border: 1px solid #ccc;
   }
-  
+
   .image-container img {
     max-width: 100%;
     max-height: auto;
   }
-  
+
   .product-name {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-size: 8px; /* Adjust the font size as needed */
+
   }
-  
+
   .selected {
     border: 2px solid blue;
-  } 
-  
+  }
+
   .compare-button {
     position: fixed;
     bottom: 20px; /* Adjust the distance from the bottom as needed */
@@ -196,9 +271,9 @@
     border-radius: 5px;
     cursor: pointer;
   }
-  
 
-  
+
+
 
 
 /* about.html */
@@ -249,7 +324,7 @@ nav li {
 
 .hero-section h3 {
     font-style: italic;
-  
+
 }
 
 /* About section styles */
@@ -298,7 +373,7 @@ nav li {
 
 /* Add styling for the "card" class */
 .cardcolumn {
-    
+
     border: 3px solid #b92a2a;
     border-radius: 5px;
     padding: 20px;
