@@ -3,20 +3,7 @@
 
 {% block content %}
   {% include 'components/navigation.html' %}
-  
-  {% comment %} <form method="get">
-    <input id ="searchbar" type="text" name="q" placeholder="Type something.." value="{{ search_query }}">
-    <button id="searchbtn" type="submit">Search</button>
-  </form> {% endcomment %}
 
-
-  {% comment %} <div class="search-container">
-    <form method="get">
-        <div class="search-input-container">
-            <input id="searchbar" type="text" name="q" placeholder="Type something.." value="{{ search_query }}">
-            <button id="searchbtn" type="submit" class="fa fa-search"></button>
-        </div>
-    </form> {% endcomment %}
 
     <div class="search-container">
       <form method="get">
@@ -56,7 +43,7 @@
             {% endif %}
           </div>
           <div class="card-body">
-            <h3 class="card-title">{{ product.category }}</h3>
+            <h6 class="card-title">{{ product.category }}</h6>
             <p class="product-name">{{ product.product_name }}</p>
             <p class="card-text">Price: ${{ product.price }}</p>
             <!-- Add buttons here (hidden by default) -->

@@ -140,9 +140,30 @@
     /* Styles for phone or smaller screens */
     nav li {
         display: block;
-        margin: 10px 0;
+        text-align: center;
     }
+}
+
+
+@media (min-width: 768px) {
+    .product-card {
+        width: calc(20% - 20px); /* For 5 cards per row on desktop */
+
+    }
+    .product-name {
+        font-size: 15px; /* Adjust the font size as needed for desktop */
+    }
+}
+  .product-name {
+    font-size: 15px; /* Adjust the font size as needed for mobile */
   }
+
+
+
+  .card-title{
+    font-size: 10px;
+  }
+
 
   /* Style for the individual buttons */
   .detail-button {
