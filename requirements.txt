@@ -20,6 +20,7 @@ pyHanko==0.20.1
 pyhanko-certvalidator==0.24.1
 pypdf==3.16.4
 pypng==0.20220715.0
+pysqlite3==0.5.2
 python-bidi==0.4.2
 PyYAML==6.0.1
 qrcode==7.4.2
@@ -36,3 +37,4 @@ uritools==4.0.2
 urllib3==2.0.6
 webencodings==0.5.1
 xhtml2pdf==0.2.11
+

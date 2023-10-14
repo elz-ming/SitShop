@@ -160,11 +160,11 @@ def add_product():
 
 
 def main():
-    # input_merchant()
-    # input_product()
-    # input_user()
+    input_merchant()
+    input_product()
+    input_user()
     # input_review()
-    # update_product()
+    update_product()
     add_product()
 
 if __name__ == '__main__':

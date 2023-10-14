@@ -1,5 +1,5 @@
-product_id,credibility_score,tag,avg_norm_rating,count_norm_rating,pos_1,pos_2,pos_3,neg_1,neg_2,neg_3
-912d838b-5e84-4aef-a0dd-bb23f44e5913,97,beginner_L1_merchant,0.0,197,good,fast,best,bad,price,damaged
+product_id,credibility_score,merchant_class,avg_norm_rating,count_norm_rating,pos_1,pos_2,pos_3,neg_1,neg_2,neg_3
+912d838b-5e84-4aef-a0dd-bb23f44e5913,97,beginner_L1_merchant,0,197,good,fast,best,bad,price,damaged
 34bb8bfe-e134-41af-a487-3b8d4ce6fff0,100,beginner_L4_merchant,0.02,40,good,fast,worth,price,noise,bad
 35ff0f3c-8a06-4e33-a789-319ff793220d,100,beginner_L1_merchant,-0.07,14,good,great,well,pain,price,mistake
 33cfcddf-a606-4d60-8d78-5926aee333ac,100,beginner_L1_merchant,-0.12,14,good,fast,works,weak,,
