@@ -54,6 +54,10 @@
   }
   
   @media screen and (max-width: 600px) {
+    .topnav {
+      font-size: x-small;
+    }
+
     .topnav .search-container {
       float: none;
     }
@@ -65,6 +69,7 @@
       width: 100%;
       margin: 0;
       padding: 14px;
+      font-size:12px;
     }
     .topnav input[type=text] {
       border: 1px solid #ccc;
@@ -89,9 +94,23 @@
  
   .search-container {
     margin: 0 auto;
-    
     text-align: center;
+    width: 200px;
+    height: 60px;
   }
+
+  .search-left {
+    height: 100%;
+    width:70%;
+  }
+
+  .search-right {
+    height:100%;
+    width:30%;
+    border-radius: 25%;
+  }
+  
+
   input[type="text"] {
     width: 100%;
     max-width: 400px;
@@ -127,6 +146,7 @@
   .product-card {
     /* Card styles */
     width: calc(50% - 20px); /* For 2 cards per row on phones */
+    max-width: 320px;
     margin-bottom: 20px;
     border: 1px solid #ccc;
   }
@@ -185,13 +205,17 @@
   
   
   .image-container {
-    width: 100%;
+    max-width: 100%;
     height: auto;
+    border: 1px solid #ccc;
+    display: flex;
+    justify-content: center;
   }
   
   .image-container img {
     max-width: 100%;
-    max-height: auto;
+    max-height: 320px;
+    margin: 0 auto;
   }
 
 
