@@ -42,7 +42,41 @@ def comparison(request, product_list=None):
     products = product_list.split(',')
     products = [Product.objects.get(product_id=x) for x in products]
 
-    return render(request, "pages/comparison.html", {'products':products})
+    return render(request, "pages/comparison.html", {'products':products, 'product_list':product_list})
+
+def generate_pdf(request, product_ids=None):
+    products = product_ids.split(',')
+    products = [Product.objects.get(product_id=x) for x in products]
+
+    context = {
+      'products':products,
+      'product_list':product_ids
+    }
+
+    template = get_template('pages/comparison.html')
+
+    html = template.render(context)
+
+    pdf_data = BytesIO()
+
+    pdf_page_options = {"orientation": "Landscape"}
+
+    pisa_status = pisa.CreatePDF(
+        html,
+        dest=pdf_data,
+        media_css=True,
+        pagesize="A4",
+        pdf_page_options=pdf_page_options,
+        show_error_as_pdf=True
+    )
+
+    if not pisa_status.err:
+        response = HttpResponse(pdf_data.getvalue(), content_type='application/pdf')
+        response['Content-Disposition'] = 'attachment; filename="output.pdf"'    
+        pdf_data.close()
+        return response
+    else:
+        return HttpResponse('gg')
 
 def detail(request, pid):
     product = get_object_or_404(Product, product_id=pid)
@@ -56,37 +90,39 @@ def render_to_pdf(request, context):
         return result.getvalue()
     return None
 
-def generate_pdf(request, product_ids):
-    # Split the product_ids string into a list of individual IDs
-    product_ids = product_ids.split(',')
+# def generate_pdf(request, product_ids=None):
+#     # Split the product_ids string into a list of individual IDs
+#     product_ids = product_ids.split(',')
 
-    # Retrieve products from the database based on the provided product_ids
-    products = [Product.objects.get(product_id=product_id) for product_id in product_ids]
+#     # Retrieve products from the database based on the provided product_ids
+#     products = [Product.objects.get(product_id=product_id) for product_id in product_ids]
 
-    # Convert queryset to a list of dictionaries
-    products_data = [{'product_id': product.product_id,
-                      'category': product.category,
-                      'product_name': product.product_name,
-                      'avg_rating': product.avg_rating,
-                      'total_rating': product.total_rating,
-                      'total_sold': product.total_sold,
-                      'price': product.price,
-                      'fav_count': product.fav_count,
-                      'qty_avail': product.qty_avail,
-                      'description': product.description,
-                      'img_src': product.img_src} for product in products]
+#     # Convert queryset to a list of dictionaries
+#     products_data = [{'product_id': product.product_id,
+#                       'category': product.category,
+#                       'product_name': product.product_name,
+#                       'avg_rating': product.avg_rating,
+#                       'total_rating': product.total_rating,
+#                       'total_sold': product.total_sold,
+#                       'price': product.price,
+#                       'fav_count': product.fav_count,
+#                       'qty_avail': product.qty_avail,
+#                       'description': product.description,
+#                       'img_src': product.img_src} for product in products]
 
-    context = {'products': products_data}
+#     context = {'products': products_data}
 
-    # Generate PDF
-    pdf = render_to_pdf(request, context)
-    if pdf:
-        response = HttpResponse(pdf, content_type='application/pdf')
-        filename = "comparison.pdf"
-        content = "attachment; filename=%s" % filename
-        response['Content-Disposition'] = content
-        return response
-    return HttpResponse("Error generating PDF", status=400)
+#     # Generate PDF
+#     pdf = render_to_pdf(request, context)
+#     # if pdf:
+#     #     response = HttpResponse(pdf, content_type='application/pdf')
+#     #     filename = "comparison.pdf"
+#     #     content = "attachment; filename=%s" % filename
+#     #     response['Content-Disposition'] = content
+#     #     return response
+#     return HttpResponse("Hi")
+
+
 
 
 
@@ -165,35 +201,6 @@ def contact_form_view(request):
 
   # Display the form again
   return render(request, 'contact_form.html', {'contact': contact})
-
-
-#   if not request.form.get('not_a_bot'):
-#     return render(request, 'error.html', message='You must agree that you are not a bot to proceed.')
-
-#   # Verify that the user is human using a CAPTCHA service
-
-#   # If the CAPTCHA verification is successful, allow the user to proceed
-#   return HttpResponseRedirect('/success')
-
-#   # Otherwise, display an error message and prevent the user from proceeding
-#   return render(request, 'error.html', message='CAPTCHA verification failed.')
-
-# def verify_captcha(captcha_response):
-#   # Replace this with the URL of your CAPTCHA service
-#   captcha_url = 'https://example.com/captcha/verify'
-
-#   # Replace this with your CAPTCHA service's API key
-#   captcha_api_key = 'YOUR_API_KEY'
-
-#   response = requests.post(captcha_url, data={
-#     'response': captcha_response,
-#     'api_key': captcha_api_key
-#   })
-
-#   if response.status_code == 200:
-#     return response.json()['success']
-#   else:
-#     return False
 
 def userdetail(request, userid):
     user = get_object_or_404(User, username=userid)
