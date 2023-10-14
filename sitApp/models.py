@@ -10,6 +10,7 @@ class Merchant(models.Model):
     # Primary Key
     merchant_id           = models.CharField(max_length=255, primary_key=True)
 
+    # Initial data features
     merchant_name         = models.CharField(max_length=255, null=True)
     total_rating          = models.FloatField(null=True)
     response_rate_percent = models.FloatField(null=True)
@@ -66,13 +67,17 @@ class User(models.Model):
         app_label = 'sitApp'
 
     # Primary Key
-    username    = models.CharField(max_length=255, primary_key=True)
+    username          = models.CharField(max_length=255, primary_key=True)
 
-    no_review    = models.IntegerField(null=True)
-    review_list  = models.TextField(null=True)
-    no_product   = models.IntegerField(null=True)
-    product_dict = models.TextField(null=True)
-    mean_rating  = models.FloatField(null=True)
+    # Initial data features
+    no_review         = models.IntegerField(null=True)
+    review_list       = models.TextField(null=True)
+    no_product        = models.IntegerField(null=True)
+    product_dict      = models.TextField(null=True)
+    mean_rating       = models.FloatField(null=True)
+
+    # Subsequent new features
+    min_dist_username = models.CharField(max_length=255, null=True)
 
     
     def __str__(self):
@@ -95,6 +100,7 @@ class Review(models.Model):
         default=None
     )
 
+    # Initial data features
     date = models.CharField(max_length=50, null=True)
     rating = models.FloatField(null=True)
     content = models.TextField(null=True)
