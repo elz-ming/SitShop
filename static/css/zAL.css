@@ -159,22 +159,6 @@
     }
 }
 
-/* Desktop view */
-.product-cards {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-
-.product-card {
-    width: calc(50% - 20px); /* For 2 cards per row on phones and tablets */
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    width: 700px; /* Adjust the width as needed for desktop */
-    height: 340px; /* Adjust the height as needed for desktop */
-    margin: 5px; /* Adjust the margin as needed for desktop */
-}
-
 /* Add this CSS for mobile view */
 @media screen and (max-width: 768px) {
     .search-container {
@@ -197,24 +181,26 @@
 }
 
 
-@media (min-width: 768px) {
-    .product-card {
-        width: calc(20% - 20px); /* For 5 cards per row on desktop */
-
-    }
-    .product-name {
-        font-size: 15px; /* Adjust the font size as needed for desktop */
-    }
-}
-  .product-name {
-    font-size: 15px; /* Adjust the font size as needed for mobile */
-  }
-}
-
-
   .card-title{
-    font-size: 30px;
+    font-size: 20px;
   }
+
+/* Desktop view */
+.product-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.product-card {
+    width: calc(50% - 20px); /* For 2 cards per row on phones and tablets */
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    width: 700px; /* Adjust the width as needed for desktop */
+    height: 340px; /* Adjust the height as needed for desktop */
+    margin: 5px; /* Adjust the margin as needed for desktop */
+}
+
 
 
   /* Style for the individual buttons */
