@@ -97,7 +97,6 @@
     max-width: 400px;
   }
   .search-container button{
-  
     position: absolute;
     right: 20;
     bottom:15;
@@ -111,6 +110,7 @@
 /* home.html */
  .pagination .current-page {
     display: block;
+    margin: 0 auto;
     margin-top: 10px;
   }
  .pagination {
@@ -129,7 +129,6 @@
     width: calc(50% - 20px); /* For 2 cards per row on phones */
     margin-bottom: 20px;
     border: 1px solid #ccc;
-    /* Add other styles like padding, background, etc. */
   }
   
   /* Media query for computer screens */
@@ -186,15 +185,16 @@
   
   
   .image-container {
-    max-width: 100%;
+    width: 100%;
     height: auto;
-    border: 1px solid #ccc;
   }
   
   .image-container img {
     max-width: 100%;
     max-height: auto;
   }
+
+
   
   .product-name {
     white-space: nowrap;
@@ -270,7 +270,6 @@ nav li {
 
 .hero-section h3 {
     font-style: italic;
-  
 }
 
 /* About section styles */
@@ -302,7 +301,7 @@ nav li {
 
 .column {
     float: left;
-    width: 33.33%;
+    width: 20%;
     margin-bottom: 16px;
     padding: 0 8px;
 }
@@ -319,28 +318,36 @@ nav li {
 
 /* Add styling for the "card" class */
 .cardcolumn {
-    
     border: 3px solid #b92a2a;
+    background-color: #b92a2a;
     border-radius: 5px;
     padding: 20px;
     margin: 10px;
-    text-align: center;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+.image-container-about {
+  width: 100%;
+  height: auto;
+}
 
+.image-container-about img {
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
 
 .cardcolumn h3 {
     font-size: 1.5rem;
 }
 
-.cardcolumn .title {
+/* .cardcolumn .title {
     font-style: italic;
-}
+} */
 
-.cardcolumn h4 {
+/* .cardcolumn h4 {
     font-weight: bold;
-}
+} */
 
 
 
