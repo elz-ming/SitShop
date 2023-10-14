@@ -16,19 +16,22 @@
 
   <div class="pagination">
     <span class="step-links">
+        <div>
+          <span class="current-page">
+              Page {{ products.number }} of {{ products.paginator.num_pages }}.
+          </span>
+        </div>
+        <div>
         {% if products.has_previous %}
-            <a href="?page=1">&laquo; first</a>
-            <a href="?page={{ products.previous_page_number }}">previous</a>
+          <a href="?page=1">&laquo; first</a>
+          <a href="?page={{ products.previous_page_number }}">previous</a>
         {% endif %}
-
-        <span class="current-page">
-            Page {{ products.number }} of {{ products.paginator.num_pages }}.
-        </span>
 
         {% if products.has_next %}
-            <a href="?page={{ products.next_page_number }}">next</a>
-            <a href="?page={{ products.paginator.num_pages }}">last &raquo;</a>
+          <a href="?page={{ products.next_page_number }}">next</a>
+          <a href="?page={{ products.paginator.num_pages }}">last &raquo;</a>
         {% endif %}
+        <div>
     </span>
   </div>
 
@@ -48,7 +51,7 @@
             <p class="card-text">Price: ${{ product.price }}</p>
             <!-- Add buttons here (hidden by default) -->
             <div class="product-buttons">
-              <button class="detail-button" onclick="location.href='{% url 'detail' pid=product.product_id %}'">View Details</button>
+              <button class="detail-button" onclick="location.href='{% url 'p_detail' pid=product.product_id %}'">View Details</button>
               <button class="cancel-button">Cancel</button>
             </div>
           </div>

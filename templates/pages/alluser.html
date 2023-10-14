@@ -50,7 +50,7 @@
         <div class="product-card">
           <div class="card-body">
             <h3 class="usernametitle">{{ user.username }}</h3>
-            <button style="text-align: center;" onclick="location.href='{% url 'userdetail' userid=user.username %}'">View User Details</button>
+            <button style="text-align: center;" onclick="location.href='{% url 'u_detail' uid=user.username %}'">View User Details</button>
           </div>
         </div>
     {% endfor %}
