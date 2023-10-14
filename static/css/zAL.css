@@ -54,6 +54,10 @@
   }
   
   @media screen and (max-width: 600px) {
+    .topnav {
+      font-size: x-small;
+    }
+
     .topnav .search-container {
       float: none;
     }
@@ -65,6 +69,7 @@
       width: 100%;
       margin: 0;
       padding: 14px;
+      font-size:12px;
     }
     .topnav input[type=text] {
       border: 1px solid #ccc;
@@ -89,15 +94,28 @@
  
   .search-container {
     margin: 0 auto;
-    
     text-align: center;
+    width: 200px;
+    height: 60px;
   }
+
+  .search-left {
+    height: 100%;
+    width:70%;
+  }
+
+  .search-right {
+    height:100%;
+    width:30%;
+    border-radius: 25%;
+  }
+  
+
   input[type="text"] {
     width: 100%;
     max-width: 400px;
   }
   .search-container button{
-  
     position: absolute;
     right: 20;
     bottom:15;
@@ -111,6 +129,7 @@
 /* home.html */
  .pagination .current-page {
     display: block;
+    margin: 0 auto;
     margin-top: 10px;
   }
  .pagination {
@@ -127,9 +146,9 @@
   .product-card {
     /* Card styles */
     width: calc(50% - 20px); /* For 2 cards per row on phones */
+    max-width: 320px;
     margin-bottom: 20px;
     border: 1px solid #ccc;
-    /* Add other styles like padding, background, etc. */
   }
   
   /* Media query for computer screens */
@@ -189,12 +208,17 @@
     max-width: 100%;
     height: auto;
     border: 1px solid #ccc;
+    display: flex;
+    justify-content: center;
   }
   
   .image-container img {
     max-width: 100%;
-    max-height: auto;
+    max-height: 320px;
+    margin: 0 auto;
   }
+
+
   
   .product-name {
     white-space: nowrap;
@@ -270,7 +294,6 @@ nav li {
 
 .hero-section h3 {
     font-style: italic;
-  
 }
 
 /* About section styles */
@@ -302,7 +325,7 @@ nav li {
 
 .column {
     float: left;
-    width: 33.33%;
+    width: 20%;
     margin-bottom: 16px;
     padding: 0 8px;
 }
@@ -319,28 +342,36 @@ nav li {
 
 /* Add styling for the "card" class */
 .cardcolumn {
-    
     border: 3px solid #b92a2a;
+    background-color: #b92a2a;
     border-radius: 5px;
     padding: 20px;
     margin: 10px;
-    text-align: center;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+.image-container-about {
+  width: 100%;
+  height: auto;
+}
 
+.image-container-about img {
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
 
 .cardcolumn h3 {
     font-size: 1.5rem;
 }
 
-.cardcolumn .title {
+/* .cardcolumn .title {
     font-style: italic;
-}
+} */
 
-.cardcolumn h4 {
+/* .cardcolumn h4 {
     font-weight: bold;
-}
+} */
 
 
 
