@@ -155,7 +155,7 @@ def add_product():
 
     end_time = time.time()
     execution_time = end_time - start_time
-    print(f"Finish Updating Product Data in {execution_time} seconds!")
+    print(f"Finish Adding Product Data in {execution_time} seconds!")
 
 
 
