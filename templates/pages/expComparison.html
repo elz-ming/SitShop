@@ -1,0 +1,185 @@
+{% load static %}
+
+{% block content %}
+
+	<head>
+		<style type="text/css">
+			@page {
+				size: landscape;
+			}
+
+			body {
+				text-align: center;
+				padding: 0;
+			}
+
+			.container {
+				{% comment %} display: flex; {% endcomment %}
+				justify-content: center;
+				align-items: center;
+				{% comment %} height: 100vh; {% endcomment %}
+			}
+
+			td {
+				max-width: 320px;
+			}
+
+			.vertical-border {
+				width: 20px;
+			}
+
+			.property {
+				text-align: left;
+				width: 100px;
+			}
+
+			.whitespace {
+				height: 20px;
+			}
+
+			.pos-words {
+				color: green;
+			}
+
+			.neg-words {
+				color: red
+			}
+
+		</style>
+	</head>
+
+	<div class="container">
+		<table>
+			<tr class="whitespace"><td class="whitespace"></td></tr>
+
+			<tr>
+				<td class="vertical-border"></td>
+				<th></th>
+				<th class="vertical-border"></th>
+				<th>Product 1</th>
+				<th class="vertical-border"></th>
+				<th>Product 2</th>
+				<th class="vertical-border"></th>
+				<th>Product 3</th>
+				<th class="vertical-border"></th>
+				<th>Product 4</th>
+				<th class="vertical-border"></th>
+			</tr>
+
+			<tr class="whitespace"><td class="whitespace"></td></tr>
+
+			<tr>
+				<td class="vertical-border"></td>
+				<th></th>
+				<td class="vertical-border"></td>
+				{% for product in products %}
+					<td>
+						{% if product.img_src == 'no_src' %}
+							<img src="{% static 'img/NoImage.jpg' %}" alt="Default Image">
+						{% else %}
+							<img src="{{ product.img_src }}" alt="{{ product.product_name }}">
+						{% endif %}
+					</td>
+					<td class="vertical-border"></td>
+				{% endfor %}
+			</tr>
+
+			<tr class="whitespace"><td class="whitespace"></td></tr>
+
+			<tr>
+				<td class="vertical-border"></td>
+				<th class="property">Category</th>
+				<td class="vertical-border"></td>
+				{% for product in products %}
+					<td>{{product.category}}</td>
+					<td class="vertical-border"></td>
+				{% endfor %}
+			</tr>
+
+			<tr class="whitespace"><td></td></tr>
+
+			<tr>
+				<td class="vertical-border"></td>
+				<th class="property">Name</th>
+				<td class="vertical-border"></td>
+				{% for product in products %}
+					<td>{{product.product_name}}</td>
+					<td class="vertical-border"></td>
+				{% endfor %}
+			</tr>
+
+			<tr class="whitespace"><td class="whitespace"></td></tr>
+
+			<tr>
+				<td class="vertical-border"></td>
+				<th class="property">Price</th>
+				<td class="vertical-border"></td>
+				{% for product in products %}
+					<td>${{product.price}}</td>
+					<td class="vertical-border"></td>
+				{% endfor %}
+			</tr>
+
+			<tr class="whitespace"><td class="whitespace"></td></tr>
+
+			<tr>
+				<td class="vertical-border"></td>
+				<th class="property">Shopee Rating</th>
+				<td class="vertical-border"></td>
+				{% for product in products %}
+					<td>{{product.avg_rating}}</td>
+					<td class="vertical-border"></td>
+				{% endfor %}
+			</tr>
+			
+			<tr class="whitespace"><td class="whitespace"></td></tr>
+
+			<tr>
+				<td class="vertical-border"></td>
+				<th class="property">Normalized Rating</th>
+				<td class="vertical-border"></td>
+				{% for product in products %}
+					<td>{{product.avg_norm_rating}} ({{product.count_norm_rating}})</td>
+					<td class="vertical-border"></td>
+				{% endfor %}
+			</tr>
+
+			<tr class="whitespace"><td class="whitespace"></td></tr>
+
+			<tr>
+				<td class="vertical-border"></td>
+				<th class="property">Top 3 Positive Words</th>
+				<td class="vertical-border"></td>
+				{% for product in products %}
+					<td><span class="pos-words">{{product.pos_1}}</span> | <span class="pos-words">{{product.pos_2}}</span> | <span class="pos-words">{{product.pos_3}}</span></td>
+					<td class="vertical-border"></td>
+				{% endfor %}
+			</tr>
+
+			<tr class="whitespace"><td class="whitespace"></td></tr>
+
+			<tr>
+				<td class="vertical-border"></td>
+				<th class="property">Top 3 Negative Words</th>
+				<td class="vertical-border"></td>
+				{% for product in products %}
+					<td><span class="neg-words">{{product.neg_1}}</span> | <span class="neg-words">{{product.neg_2}}</span> | <span class="neg-words">{{product.neg_3}}</span></td>
+					<td class="vertical-border"></td>
+				{% endfor %}
+			</tr>
+
+			<tr class="whitespace"><td class="whitespace"></td></tr>
+
+			<tr>
+				<td class="vertical-border"></td>	
+				<th class="property">Reviews Credibility</th>
+				<td class="vertical-border"></td>
+				{% for product in products %}
+					<td>{{product.credibility_score}}%</td>
+					<td class="vertical-border"></td>
+				{% endfor %}
+			</tr>
+		</table>
+	</div>
+
+{% endblock content %}

@@ -17,6 +17,10 @@ product_df  = pd.read_csv("./sitData/asset/etlProduct.csv")
 user_df     = pd.read_csv("./sitData/asset/etlUser.csv")
 review_df   = pd.read_csv("./sitData/asset/etlReview.csv")
 
+addProduct_df = pd.read_csv("./sitData/asset/addProduct.csv")
+addUser_df    = pd.read_csv("./sitData/asset/addUser.csv")
+
+
 def input_merchant():
     start_time = time.time()
 
@@ -39,6 +43,7 @@ def input_merchant():
     end_time = time.time()
     execution_time = end_time - start_time
     print(f"Finish Inputting Merchant Data in {execution_time} seconds!")
+
 
 def input_product():
     start_time = time.time()
@@ -69,6 +74,7 @@ def input_product():
     execution_time = end_time - start_time
     print(f"Finish Inputting Product Data in {execution_time} seconds!")
 
+
 def input_user():
     start_time = time.time()
     for index, user in user_df.iterrows():
@@ -88,6 +94,7 @@ def input_user():
     end_time = time.time()
     execution_time = end_time - start_time
     print(f"Finish Inputting User Data in {execution_time} seconds!")
+
 
 def input_review():
     start_time = time.time()
@@ -119,6 +126,7 @@ def input_review():
     execution_time = end_time - start_time
     print(f"Finish Inputting Review Data in {execution_time} seconds!")
 
+
 def update_product():
     start_time = time.time()
     for index, product in product_df.iterrows():
@@ -128,16 +136,59 @@ def update_product():
             p.save()
         except IntegrityError:
             pass
+
     end_time = time.time()
     execution_time = end_time - start_time
     print(f"Finish Updating Product Data in {execution_time} seconds!")
 
+
+def add_product():
+    start_time = time.time()
+    for index, product in addProduct_df.iterrows():
+        try:
+            p = Product.objects.get(product_id=product['product_id'])
+            p.avg_norm_rating   = product['avg_norm_rating']
+            p.count_norm_rating = product['count_norm_rating']
+            p.merchant_class    = product['merchant_class']
+            p.credibility_score = product['credibility_score']
+            p.pos_1             = product['pos_1']
+            p.pos_2             = product['pos_2']
+            p.pos_3             = product['pos_3']    
+            p.neg_1             = product['neg_1']
+            p.neg_2             = product['neg_2']
+            p.neg_3             = product['neg_3']
+            p.save()
+        except IntegrityError:
+            pass
+
+    end_time = time.time()
+    execution_time = end_time - start_time
+    print(f"Finish Adding Product Data in {execution_time} seconds!")
+
+
+def add_user():
+    start_time = time.time()
+    for index, user in addUser_df.iterrows():
+        try:
+            u = User.objects.get(username=user['username'])
+            u.min_dist_username = user['min_dist_username']
+            u.save()
+        except IntegrityError:
+            pass
+
+    end_time = time.time()
+    execution_time = end_time - start_time
+    print(f"Finish Adding User Data in {execution_time} seconds!")
+
+
 def main():
-    # input_merchant()
-    # input_product()
-    # input_user()
+    input_merchant()
+    input_product()
+    input_user()
     # input_review()
-    update_product()
+    # update_product()
+    # add_product()
+    add_user()
 
 if __name__ == '__main__':
     main()
