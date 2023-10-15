@@ -203,6 +203,28 @@
     display: none;
   }
   
+@media screen and (max-width: 600px) {
+  .detail-button {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    display: none;
+    font-size: xx-small;
+  }
+  
+  .cancel-button {
+    padding: 5px 10px;
+    background-color: #bc510e;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    display: none;
+    font-size: xx-small;
+  }
+}
+
   
   .image-container {
     max-width: 100%;
@@ -241,10 +263,6 @@
     border-radius: 5px;
     cursor: pointer;
   }
-  
-
-  
-
 
 /* about.html */
 /* Reset some default styles */
@@ -321,6 +339,11 @@ nav li {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+}
+
+.row-1 {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .column {

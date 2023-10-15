@@ -50,7 +50,6 @@ def comparison(request, product_list=None):
 
     return render(request, "pages/comparison.html", {'products':products, 'product_list':product_list})
 
-
 def generate_pdf(request, product_ids=None):
     products = product_ids.split(',')
     products = [Product.objects.get(product_id=x) for x in products]
@@ -60,7 +59,7 @@ def generate_pdf(request, product_ids=None):
       'product_list':product_ids
     }
 
-    template = get_template('pages/comparison.html')
+    template = get_template('pages/expComparison.html')
 
     html = template.render(context)
 
@@ -79,7 +78,7 @@ def generate_pdf(request, product_ids=None):
 
     if not pisa_status.err:
         response = HttpResponse(pdf_data.getvalue(), content_type='application/pdf')
-        response['Content-Disposition'] = 'attachment; filename="output.pdf"'    
+        response['Content-Disposition'] = 'attachment; filename="comparison.pdf"'    
         pdf_data.close()
         return response
     else:
