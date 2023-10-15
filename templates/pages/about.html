@@ -1,4 +1,5 @@
 {% extends 'components/base.html' %}
+{% load static %}
 
 {% block content %}
 
@@ -24,49 +25,73 @@
     <br>
     
     <div class="row">
+      
+      <div class="column">
+        <div class="cardcolumn">
+          <div class="image-container-about">
+            <img src="{% static 'img/Ed.png' %}" alt="Edmund Lin Image">
+          </div>
+          <h3 id="user">Lin Zhenming</h3>
+          <h4 class="title">Project Lead</h4>
+          <div class="role-detail">
+            <p>Data Scientist, Analyst and Engineer</p>
+            <p>Full Stack Generalist</p>
+          </div>  
+        </div>
+      </div>
 
       <div class="column">
         <div class="cardcolumn">
-          <img src="rachel.jpg" alt="Rachel Wan Image">
+          <div class="image-container-about">
+            <img src="{% static 'img/Rac.png' %}" alt="Rachel Wan Image">
+          </div>
           <h3 id="user">Rachel Wan</h3>
-          <p class="title">Data Head</p>
-          <h4>Web Scraping Specialist and Sentiment Analyst</h4>
+          <h4 class="title">Data Head</h4>
+          <div class="role-detail">
+            <p>Web Scraping Specialist</p>
+            <p>Sentiment Analyst</p>
+          </div>
         </div>
       </div>
 
       <div class="column">
         <div class="cardcolumn">
-          <img src="edmund.jpg" alt="Edmund Lin Image">
-          <h3 id="user">Edmund Lin</h3>
-          <p class="title">Project Leader</p>
-          <h4>Full Stack Generalist and Data Science and Analysis</h4>
-        </div>
-      </div>
-
-      <div class="column">
-        <div class="cardcolumn">
-          <img src="brendan.jpg" alt="Brendan Edward Image">
+          <div class="image-container-about">
+            <img src="{% static 'img/Bren.png' %}" alt="Brendan Edward Image">
+          </div>
           <h3 id="user">Brendan Edward</h3>
-          <p class="title">Data Assistant</p>
-          <h4>Web Scraping Specialist and Data Analyst</h4>
+          <h4 class="title">Data Assistant</h4>
+          <div class="role-detail">
+            <p>Web Scraping Specialist</p>
+            <p>Data Analyst</p>
+          </div>
         </div>
       </div>
 
       <div class="column">
         <div class="cardcolumn">
-          <img src="alenna.jpg" alt="Alenna New Image">
+          <div class="image-container-about">
+            <img src="{% static 'img/Al.png' %}" alt="Alenna New Image">
+          </div>
           <h3 id="user">Alenna New</h3>
-          <p class="title">Graphical User Interface Developer</p>
-          <h4>Front End Developer and Database Developer</h4>
+          <h4 class="title">GUI Developer</h4>
+          <div class="role-detail">
+            <p>Frontend Developer</p>
+            <p>Database Engineer</p>
+          </div>
         </div>
       </div>
 
       <div class="column">
         <div class="cardcolumn">
-          <img src="jingyu.jpg" alt="Jing Yu Image">
+          <div class="image-container-about">
+            <img src="{% static 'img/Jy.jpg' %}" alt="Jing Yu Image">
           <h3 id="user">Jing Yu</h3>
-          <p class="title">Graphical User Interface Developer</p>
-          <h4>Front End Developer and Back End Developer</h4>
+          <h4 class="title">GUI Developer</h4>
+          <div class="role-detail">
+            <p>Frontend Developer</p>
+            <p>Backend Developer</p>
+          </div>
         </div>
       </div>
     </div>

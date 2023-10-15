@@ -4,30 +4,32 @@
 {% block content %}
   {% include 'components/navigation.html' %}
 
-    <div class="search-container">
-      <form method="get">
-        <input type="text" placeholder="Type something..." name="q" value="{{ search_query }}">
-          <button  type="submit"><i class="fa fa-search"></i></button>
-      </form>
-    </div>
-    </div>
-</div>
+
+  <div class="search-container">
+    <form method="get">
+      <input  class="search-left"  type="text" placeholder="Type something..." name="q" value="{{ search_query }}">
+      <button type="submit search-right"><i class="fa fa-search search-right"></i></button>
+    </form>
+  </div>
 
   <div class="pagination">
     <span class="step-links">
-        {% if products.has_previous %}
-            <a href="?page=1">&laquo; first</a>
-            <a href="?page={{ products.previous_page_number }}">previous</a>
-        {% endif %}
-
-        <span class="current-page">
-            Page {{ products.number }} of {{ products.paginator.num_pages }}.
+      <div>
+        <span class="current  -page">
+          Page {{ products.number }} of {{ products.paginator.num_pages }}.
         </span>
-
-        {% if products.has_next %}
-            <a href="?page={{ products.next_page_number }}">next</a>
-            <a href="?page={{ products.paginator.num_pages }}">last &raquo;</a>
+      </div>
+      <div>
+        {% if products.has_previous %}
+          <a href="?page=1">&laquo; first</a>
+          <a href="?page={{ products.previous_page_number }}">previous</a>
         {% endif %}
+        
+        {% if products.has_next %}
+          <a href="?page={{ products.next_page_number }}">next</a>
+          <a href="?page={{ products.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+      </div>
     </span>
   </div>
 
@@ -42,12 +44,12 @@
             {% endif %}
           </div>
           <div class="card-body">
-            <h3 class="card-title">{{ product.category }}</h3>
+            <h6 class="card-title">{{ product.category }}</h6>
             <p class="product-name">{{ product.product_name }}</p>
-            <p class="card-text">Price: ${{ product.price }}</p>
+            <h3 class="card-text">${{ product.price }}</h3>
             <!-- Add buttons here (hidden by default) -->
             <div class="product-buttons">
-              <button class="detail-button" onclick="location.href='{% url 'detail' pid=product.product_id %}'">View Details</button>
+              <button class="detail-button" onclick="location.href='{% url 'p_detail' pid=product.product_id %}'">View Details</button>
               <button class="cancel-button">Cancel</button>
             </div>
           </div>
@@ -58,8 +60,6 @@
   <div class="compare-button">
     Compare
   </div>
-
-  <a href="{% url 'alluser' %}" class="cart-btn">User Details</a>
 
 <script>
   const productCards = document.querySelectorAll('.product-card');
@@ -101,7 +101,7 @@
   compareButton.addEventListener('click', () => {
       if (selectedProducts.length > 0) {
           const selectedProductIds = selectedProducts.join(',');
-          window.location.href = `/comparison/${selectedProductIds}`;
+          window.location.href = `/comparison/${selectedProductIds}/`;
       } else {
           alert('Please select at least one product before proceeding to checkout.');
       }

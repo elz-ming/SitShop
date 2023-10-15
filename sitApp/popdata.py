@@ -18,6 +18,8 @@ user_df     = pd.read_csv("./sitData/asset/etlUser.csv")
 review_df   = pd.read_csv("./sitData/asset/etlReview.csv")
 
 addProduct_df = pd.read_csv("./sitData/asset/addProduct.csv")
+addUser_df    = pd.read_csv("./sitData/asset/addUser.csv")
+
 
 def input_merchant():
     start_time = time.time()
@@ -41,6 +43,7 @@ def input_merchant():
     end_time = time.time()
     execution_time = end_time - start_time
     print(f"Finish Inputting Merchant Data in {execution_time} seconds!")
+
 
 def input_product():
     start_time = time.time()
@@ -71,6 +74,7 @@ def input_product():
     execution_time = end_time - start_time
     print(f"Finish Inputting Product Data in {execution_time} seconds!")
 
+
 def input_user():
     start_time = time.time()
     for index, user in user_df.iterrows():
@@ -90,6 +94,7 @@ def input_user():
     end_time = time.time()
     execution_time = end_time - start_time
     print(f"Finish Inputting User Data in {execution_time} seconds!")
+
 
 def input_review():
     start_time = time.time()
@@ -121,6 +126,7 @@ def input_review():
     execution_time = end_time - start_time
     print(f"Finish Inputting Review Data in {execution_time} seconds!")
 
+
 def update_product():
     start_time = time.time()
     for index, product in product_df.iterrows():
@@ -130,9 +136,11 @@ def update_product():
             p.save()
         except IntegrityError:
             pass
+
     end_time = time.time()
     execution_time = end_time - start_time
     print(f"Finish Updating Product Data in {execution_time} seconds!")
+
 
 def add_product():
     start_time = time.time()
@@ -155,8 +163,22 @@ def add_product():
 
     end_time = time.time()
     execution_time = end_time - start_time
-    print(f"Finish Updating Product Data in {execution_time} seconds!")
+    print(f"Finish Adding Product Data in {execution_time} seconds!")
 
+
+def add_user():
+    start_time = time.time()
+    for index, user in addUser_df.iterrows():
+        try:
+            u = User.objects.get(username=user['username'])
+            u.min_dist_username = user['min_dist_username']
+            u.save()
+        except IntegrityError:
+            pass
+
+    end_time = time.time()
+    execution_time = end_time - start_time
+    print(f"Finish Adding User Data in {execution_time} seconds!")
 
 
 def main():
@@ -164,8 +186,9 @@ def main():
     input_product()
     input_user()
     # input_review()
-    update_product()
-    add_product()
+    # update_product()
+    # add_product()
+    add_user()
 
 if __name__ == '__main__':
     main()
