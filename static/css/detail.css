@@ -58,7 +58,9 @@ html, body {
     font-size: 16px;
     color: #86939E;
     line-height: 24px;
+    overflow-y: auto; /* Enable vertical scrolling if content overflows */
 }
+
 
 /* Product Color */
 .product-color {
@@ -104,6 +106,7 @@ html, body {
     .left-column,
     .right-column {
         width: 100%;
+        word-wrap: break-word;
     }
 
     .left-column img {
@@ -146,8 +149,6 @@ td {
     padding: 8px;
 }
 
-.descri {
-    word-wrap: break-word;
-    max-height: 250px;
-    overflow: hidden;
+.product-description p.descri {
+    display: none;
 }

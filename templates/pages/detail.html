@@ -22,11 +22,12 @@
         <div class="right-column">
             <!-- Product Description -->
             <div class="product-description">
-                <span>{{product.category}}</span>
-                <h5>{{product.product_name}}</h5>
-                <p class="descri">{{product.description}}</p>
+                <span>{{ product.category }}</span>
+                <h5>{{ product.product_name }}</h5>
+                <p id="short-description" class="description-short">{{ product.description|truncatechars:300 }}</p>
+                <p id="full-description" class="description-full" style="display: none;">{{ product.description }}</p>
+                <button onclick="toggleDescription()">View More</button>
             </div>
-
             <!-- Product Configuration -->
             <div class="product-configuration">
                 <!-- Product Pricing -->
@@ -68,4 +69,22 @@
         </div>
     </main>
 </body>
+
+<script>
+    function toggleDescription() {
+    var shortDescription = document.getElementById('short-description');
+    var fullDescription = document.getElementById('full-description');
+    var button = document.querySelector('button');
+
+    if (fullDescription.style.display === 'none' || fullDescription.style.display === '') {
+        shortDescription.style.display = 'none';
+        fullDescription.style.display = 'block';
+        button.textContent = 'View Less';
+    } else {
+        shortDescription.style.display = 'block';
+        fullDescription.style.display = 'none';
+        button.textContent = 'View More';
+    }
+}
+</script>
 {% endblock %}
