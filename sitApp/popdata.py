@@ -182,9 +182,9 @@ def add_user():
 
 
 def main():
-    # input_merchant()
-    # input_product()
-    # input_user()
+    input_merchant()
+    input_product()
+    input_user()
     # input_review()
     # update_product()
     # add_product()
