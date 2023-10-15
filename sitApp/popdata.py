@@ -170,8 +170,10 @@ def add_product():
 
 def add_user():
     start_time = time.time()
-
+    print("Started")
+    
     addUser_df    = pd.read_csv("./sitData/asset/addUser.csv")
+    counter = 0
     for index, user in addUser_df.iterrows():
         try:
             u = User.objects.get(username=user['username'])
@@ -179,6 +181,9 @@ def add_user():
             u.save()
         except IntegrityError:
             pass
+        counter += 1
+        if counter%1000 == 0:
+            print(f"Updated {counter} rows of data.")
 
     end_time = time.time()
     execution_time = end_time - start_time
