@@ -12,18 +12,10 @@ import pandas as pd
 from sitApp.models import Merchant, Product, User, Review
 from django.db import IntegrityError
 
-merchant_df = pd.read_csv("./sitData/asset/etlMerchant.csv")
-product_df  = pd.read_csv("./sitData/asset/etlProduct.csv")
-user_df     = pd.read_csv("./sitData/asset/etlUser.csv")
-review_df   = pd.read_csv("./sitData/asset/etlReview.csv")
-
-addProduct_df = pd.read_csv("./sitData/asset/addProduct.csv")
-addUser_df    = pd.read_csv("./sitData/asset/addUser.csv")
-
-
 def input_merchant():
     start_time = time.time()
 
+    merchant_df = pd.read_csv("./sitData/asset/etlMerchant.csv")
     for index, merchant in merchant_df.iterrows():
         try:
             Merchant.objects.create(
@@ -47,6 +39,8 @@ def input_merchant():
 
 def input_product():
     start_time = time.time()
+
+    product_df  = pd.read_csv("./sitData/asset/etlProduct.csv")
     for index, product in product_df.iterrows():
         try:
             merchant = Merchant.objects.get(merchant_id=product['merchant_id'])
@@ -77,6 +71,8 @@ def input_product():
 
 def input_user():
     start_time = time.time()
+
+    user_df     = pd.read_csv("./sitData/asset/etlUser.csv")
     for index, user in user_df.iterrows():
         try:
             User.objects.create(
@@ -98,6 +94,8 @@ def input_user():
 
 def input_review():
     start_time = time.time()
+
+    review_df   = pd.read_csv("./sitData/asset/etlReview.csv")
     counter = 0
     for index, review in review_df.iterrows():
         user    = User.objects.get(username=review['username'])
@@ -129,6 +127,8 @@ def input_review():
 
 def update_product():
     start_time = time.time()
+
+    product_df  = pd.read_csv("./sitData/asset/etlProduct.csv")
     for index, product in product_df.iterrows():
         try:
             p = Product.objects.get(product_id=product['product_id'])
@@ -144,6 +144,8 @@ def update_product():
 
 def add_product():
     start_time = time.time()
+
+    addProduct_df = pd.read_csv("./sitData/asset/addProduct.csv")
     for index, product in addProduct_df.iterrows():
         try:
             p = Product.objects.get(product_id=product['product_id'])
@@ -168,6 +170,8 @@ def add_product():
 
 def add_user():
     start_time = time.time()
+
+    addUser_df    = pd.read_csv("./sitData/asset/addUser.csv")
     for index, user in addUser_df.iterrows():
         try:
             u = User.objects.get(username=user['username'])
@@ -182,9 +186,9 @@ def add_user():
 
 
 def main():
-    input_merchant()
-    input_product()
-    input_user()
+    # input_merchant()
+    # input_product()
+    # input_user()
     # input_review()
     # update_product()
     # add_product()

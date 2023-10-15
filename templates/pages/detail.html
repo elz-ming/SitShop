@@ -2,11 +2,12 @@
 {% load static %}
 
 {% block content %}
-<header>
-  <link rel="stylesheet" type="text/css" href="{% static 'css/detail.css' %}">
-</header>
+	<header>
+		<link rel="stylesheet" type="text/css" href="{% static 'css/detail.css' %}">
+	</header>
+	{% include 'components/navigation.html' %}
 
-<body>
+	<body>
     <h3 style="text-align: center;">Product Detail</h3>
     <main class="container">
         <!-- Left Column / Headphones Image -->
@@ -68,23 +69,23 @@
             </div>
         </div>
     </main>
-</body>
+	</body>
 
-<script>
-    function toggleDescription() {
-    var shortDescription = document.getElementById('short-description');
-    var fullDescription = document.getElementById('full-description');
-    var button = document.querySelector('button');
+	<script>
+		function toggleDescription() {
+		var shortDescription = document.getElementById('short-description');
+		var fullDescription = document.getElementById('full-description');
+		var button = document.querySelector('button');
 
-    if (fullDescription.style.display === 'none' || fullDescription.style.display === '') {
-        shortDescription.style.display = 'none';
-        fullDescription.style.display = 'block';
-        button.textContent = 'View Less';
-    } else {
-        shortDescription.style.display = 'block';
-        fullDescription.style.display = 'none';
-        button.textContent = 'View More';
-    }
-}
-</script>
+		if (fullDescription.style.display === 'none' || fullDescription.style.display === '') {
+			shortDescription.style.display = 'none';
+			fullDescription.style.display = 'block';
+			button.textContent = 'View Less';
+		} else {
+			shortDescription.style.display = 'block';
+			fullDescription.style.display = 'none';
+			button.textContent = 'View More';
+		}
+		}
+	</script>
 {% endblock %}
